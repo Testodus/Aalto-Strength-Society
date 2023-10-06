@@ -1,13 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavBarRouter from './router/main';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Header text</p>
+        <h1>Aalto Strength Society</h1>
       </header>
+      <NavBarRouter />
     </div>
   );
 }
