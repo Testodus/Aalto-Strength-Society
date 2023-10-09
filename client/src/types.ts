@@ -13,5 +13,23 @@ export type Board = {
 export type BoardMember = {
   name: string;
   role: string;
-  constact: string;
+  contact: string;
+};
+
+export type Note = {
+  userID: string;
+  timestamp: number;
+  title: string;
+  note: string;
+  imageSrc?: string;
+};
+
+export type NoticeBoard = {
+  title: string;
+  notes: Array<Note>;
+};
+
+export type Profile = {
+  userID: string;
+  username: string;
 };

@@ -15,6 +15,7 @@ const FrameDiv = styled.div`
   justify-content: center;
   align-items: start;
   padding: 3rem 0rem 3rem 0rem;
+  background: #151515;
 
   @media only screen and (max-width: 640px) {
     padding: 2rem 0rem 2rem 0rem;
