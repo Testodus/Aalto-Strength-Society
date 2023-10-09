@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageConfig } from '../../assets/pageConfig';
 import styled from 'styled-components';
+import { Heading2, Bodytext } from '../../text-styles';
 
 const ContentFrame = styled.div`
   display: flex;
@@ -28,9 +29,11 @@ const BasicFrame = ({ topic }: BasicFrameProps) => {
 
   return (
     <ContentFrame>
-      {Title ? <h2>{Title}</h2> : null}
+      {Title ? <Heading2>{Title}</Heading2> : null}
       {TextContent?.length
-        ? TextContent.map((text, i) => <p key={'basic-text-' + i}>{text}</p>)
+        ? TextContent.map((text, i) => (
+            <Bodytext key={'basic-text-' + i}>{text}</Bodytext>
+          ))
         : null}
     </ContentFrame>
   );

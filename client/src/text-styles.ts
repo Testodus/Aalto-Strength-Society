@@ -30,3 +30,8 @@ export const Bodytext = styled.p`
   font-size: 20px;
   color: #d9d9d9;
 `;
+
+export const NoteBodyText = styled.p`
+  font-size: 20px;
+  color: #ad4805;
+`;

@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { DummyProfiles, BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
-import { DetailText, Heading2, Heading3, Heading4 } from '../../text-styles';
+import {
+  DetailText,
+  Heading2,
+  Heading3,
+  Heading4,
+  NoteBodyText,
+} from '../../text-styles';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
@@ -84,9 +90,10 @@ const Noticeboard = () => {
           ? currentBoard.notes.map((note, i) => (
               <Note key={currentBoard.title + '-note-' + i}>
                 <Heading4>{note.title}</Heading4>
-                <DetailText>{getUsername(note.userID)}</DetailText>
-                <DetailText>{getDate(note.timestamp)}</DetailText>
-                <p>{note.note}</p>
+                <DetailText>
+                  <i>{getUsername(note.userID)}</i> {getDate(note.timestamp)}
+                </DetailText>
+                <NoteBodyText>{note.note}</NoteBodyText>
                 <MenuButton>Comment</MenuButton>
               </Note>
             ))
