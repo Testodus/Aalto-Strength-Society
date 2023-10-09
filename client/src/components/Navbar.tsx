@@ -14,10 +14,10 @@ const NavbarContainer = styled.nav`
     text-decoration: none;
     color: inherit;
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 30px;
+    font-size: 26px;
 
     @media only screen and (max-width: 640px) {
-      font-size: 26px;
+      font-size: 24px;
     }
   }
 `;
@@ -31,8 +31,8 @@ const FullWidthDiv = styled.div`
 
 const SecondaryNavbarContainer = styled.nav`
   max-width: 1000px;
-  widht: max-content
-  height: auto;
+  widht: max-content;
+  height: max-content;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -61,6 +61,14 @@ const NavContainer = styled.div`
   }
 `;
 
+const SecondaryMenuContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+`;
+
 const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
@@ -86,31 +94,54 @@ const Navbar = () => {
     setMenubarOpen(!menuBarOpen);
   };
 
-  const CloseAboutUsMenu = () => {
+  const ChangeAboutUsMenu = () => {
     setSecondaryMenuOpen(!secondaryMenuOpen);
   };
 
+  const CloseMenus = () => {
+    setSecondaryMenuOpen(false);
+  };
+
   return (
-    <NavContainer>
-      <NavButton onClick={CloseMenuBar}> MENU </NavButton>
-      {menuBarOpen || window.innerWidth > 640 ? (
-        <FullWidthDiv>
-          <NavbarContainer>
-            <Link to="/">HOME</Link>
-            <Link to="/contact">CONTACT</Link>
-            <a onClick={CloseAboutUsMenu}>ABOUT US</a>
-          </NavbarContainer>
-          {secondaryMenuOpen ? (
-            <SecondaryNavbarContainer>
-              <Link to="/board">Board</Link>
-              <Link to="/rules">Rules</Link>
-              <Link to="/join">How to join?</Link>
-              <Link to="/harassment">Harassment situations</Link>
-            </SecondaryNavbarContainer>
-          ) : null}
-        </FullWidthDiv>
-      ) : null}
-    </NavContainer>
+    <>
+      <NavContainer>
+        <NavButton onClick={CloseMenuBar}> MENU </NavButton>
+        {menuBarOpen || window.innerWidth > 640 ? (
+          <FullWidthDiv>
+            <NavbarContainer>
+              <Link onClick={CloseMenus} to="/">
+                HOME
+              </Link>
+              <a onClick={ChangeAboutUsMenu}>ABOUT US</a>
+              <Link onClick={CloseMenus} to="/noticeboard">
+                NOTICE BOARD
+              </Link>
+              <Link onClick={CloseMenus} to="/login">
+                LOG IN
+              </Link>
+            </NavbarContainer>
+          </FullWidthDiv>
+        ) : null}
+      </NavContainer>
+      <SecondaryMenuContainer>
+        {secondaryMenuOpen && (menuBarOpen || window.innerWidth > 640) ? (
+          <SecondaryNavbarContainer>
+            <Link onClick={CloseMenus} to="/board">
+              Board
+            </Link>
+            <Link onClick={CloseMenus} to="/rules">
+              Rules
+            </Link>
+            <Link onClick={CloseMenus} to="/join">
+              How to join?
+            </Link>
+            <Link onClick={CloseMenus} to="/harassment">
+              Harassment situations
+            </Link>
+          </SecondaryNavbarContainer>
+        ) : null}
+      </SecondaryMenuContainer>
+    </>
   );
 };
 
