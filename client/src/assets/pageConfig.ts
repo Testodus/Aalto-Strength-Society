@@ -11,8 +11,13 @@ export const PageConfig: Array<PageInfo> = [
     ],
   },
   {
-    name: 'about',
-    title: 'About us',
+    name: 'board',
+    title: 'Board 2023',
+    textContent: ['This is the about page.', 'Welcome', 'ASS is strong'],
+  },
+  {
+    name: 'contact',
+    title: 'Contact',
     textContent: ['This is the about page.', 'Welcome', 'ASS is strong'],
   },
 ];
