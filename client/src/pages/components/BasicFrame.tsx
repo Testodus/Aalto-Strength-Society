@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageConfig } from '../../assets/pageConfig';
 import styled from 'styled-components';
-import { Heading2, Bodytext } from '../../text-styles';
+import { Heading2, Bodytext } from '../../shared-styles';
 
 const ContentFrame = styled.div`
   display: flex;

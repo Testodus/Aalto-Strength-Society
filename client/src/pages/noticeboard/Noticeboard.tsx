@@ -7,8 +7,9 @@ import {
   Heading2,
   Heading3,
   Heading4,
-  NoteBodyText,
-} from '../../text-styles';
+  DarkBodyText,
+  PrimaryButton,
+} from '../../shared-styles';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
@@ -18,25 +19,13 @@ const NoticeBoardContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem 5rem;
-  color: white;
+  color: F2F2F2;
 `;
 
 const NotesMenuBar = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-around;
-`;
-
-const MenuButton = styled.button`
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 1rem;
-  margin: 1rem;
-  background: #d0d1f2;
-  border: 1px solid #8889c2;
-  width: max-content;
-  padding: 0.5rem 1rem;
-  align-self: center;
 `;
 
 const NotesContainer = styled.div`
@@ -83,7 +72,7 @@ const Noticeboard = () => {
       <Heading2>Notice Board</Heading2>
       <NotesMenuBar>
         <Heading3>{currentBoard.title}</Heading3>
-        <MenuButton>Post a Note</MenuButton>
+        <PrimaryButton>Post a Note</PrimaryButton>
       </NotesMenuBar>
       <NotesContainer>
         {currentBoard.notes.length
@@ -93,8 +82,8 @@ const Noticeboard = () => {
                 <DetailText>
                   <i>{getUsername(note.userID)}</i> {getDate(note.timestamp)}
                 </DetailText>
-                <NoteBodyText>{note.note}</NoteBodyText>
-                <MenuButton>Comment</MenuButton>
+                <DarkBodyText>{note.note}</DarkBodyText>
+                <PrimaryButton>Comment</PrimaryButton>
               </Note>
             ))
           : null}

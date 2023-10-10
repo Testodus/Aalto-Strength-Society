@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bodytext, Heading2 } from '../../text-styles';
+import { Bodytext, Heading2 } from '../../shared-styles';
 
 const Login = () => {
   return (

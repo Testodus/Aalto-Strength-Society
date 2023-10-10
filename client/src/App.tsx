@@ -2,12 +2,13 @@ import React from 'react';
 import NavBarRouter from './router/main';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
 
 const AppHeader = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 2rem 15% 2rem 15%;
+  padding: 2rem 10% 2rem 10%;
   align-items: center;
 
   @media only screen and (max-width: 640px) {
@@ -23,6 +24,22 @@ const AppHeader = styled.header`
 
 const AppFooter = styled.footer`
   background: black;
+  min-height: 15vh;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const FooterNode = styled.div`
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 const ImageContainer = styled.svg`
@@ -31,15 +48,6 @@ const ImageContainer = styled.svg`
   color: grey;
   background: grey;
   flex-shrink: 0;
-`;
-
-const MainHeading = styled.h1`
-  font-size: 45px;
-  text-align: center;
-
-  @media only screen and (max-width: 465px) {
-    font-size: 70px;
-  }
 `;
 
 function App() {
@@ -67,12 +75,23 @@ function App() {
     <div>
       <AppHeader>
         <ImageContainer></ImageContainer>
-        <MainHeading>
+        <Heading1>
           {screenSize.width > 465 ? 'Aalto Strength Society' : 'ASS'}
-        </MainHeading>
+        </Heading1>
       </AppHeader>
       <NavBarRouter />
-      <AppFooter></AppFooter>
+      <AppFooter>
+        <FooterNode>
+          <Heading4>App Footer</Heading4>
+          <DarkBodyText>
+            {' '}
+            Hello and Welcome, please contact us here: diibadaaba duu.
+          </DarkBodyText>
+        </FooterNode>
+        <FooterNode>
+          <DetailText>Second node</DetailText>
+        </FooterNode>
+      </AppFooter>
     </div>
   );
 }

@@ -16,6 +16,9 @@ const NavbarContainer = styled.nav`
     padding: 1rem 1rem 1rem 1rem;
     font-size: 26px;
 
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+
     @media only screen and (max-width: 640px) {
       font-size: 24px;
     }
@@ -42,6 +45,9 @@ const SecondaryNavbarContainer = styled.nav`
     color: inherit;
     padding: 1rem 1rem 1rem 1rem;
     font-size: 24px;
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
 
     @media only screen and (max-width: 640px) {
       font-size: 22px;
@@ -74,7 +80,7 @@ const NavButton = styled.button`
   font-weight: bold;
   border: none;
   font-size: 20px;
-  background: white;
+  background: F2F2F2;
   padding: 1rem;
   max-width: 8rem;
   margin: 0.5rem 2rem 0.5rem 2rem;
