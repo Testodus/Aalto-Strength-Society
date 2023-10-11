@@ -1,5 +1,6 @@
 import { PageInfo } from '../types';
 
+// This is a dummydata file for storing page information (fast solution to create many pages). But I assume we will be coding the content statically so this will be removed most likely
 export const PageConfig: Array<PageInfo> = [
   {
     name: 'HomePage',

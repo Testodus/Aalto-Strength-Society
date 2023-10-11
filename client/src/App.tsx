@@ -67,9 +67,13 @@ const ImageContainer = styled.svg`
   flex-shrink: 0;
 `;
 
+/***
+ * The app: contains the basic structure of the whole thing
+ */
 function App() {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
+  // get the window dimensions
   function getCurrentDimension() {
     return {
       width: window.innerWidth,
@@ -77,6 +81,7 @@ function App() {
     };
   }
 
+  // when the website is on use, update the dimensions (follows with eventListener if the window resizes)
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());

@@ -19,6 +19,12 @@ type BasicFrameProps = {
   topic: string;
 };
 
+/** The basic frame for a simple page, will probably end removing this since we do not really have need for creating identical layouts :D
+ *
+ * and the page structure will most certainly depend on the page-content.
+ *
+ * BUT for now it is used to compose the static dummy pages quickly
+ */
 const BasicFrame = ({ topic }: BasicFrameProps) => {
   const Title: string | undefined = PageConfig.find(page => page.name === topic)
     ?.title;

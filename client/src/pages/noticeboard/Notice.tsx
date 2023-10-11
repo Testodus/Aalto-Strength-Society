@@ -27,6 +27,15 @@ type NoticeProps = {
   userID: string | number;
 };
 
+/**
+ *
+ * @param title: the title of the notice
+ * @param time: the formatted time of the notice
+ * @param username: username
+ * @param notice: the content of the notice
+ * @param userID: the ID of the user, is used to making the router link to correct profile
+ * @returns Notice -element
+ */
 const Notice = ({ title, time, username, notice, userID }: NoticeProps) => {
   return (
     <NoticeDiv>

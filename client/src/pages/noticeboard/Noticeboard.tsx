@@ -46,6 +46,14 @@ const NoticesContainer = styled.div`
   }
 `;
 
+/**
+ * This creates the notice board component. It contains the headers, menumar for buttons and the notices section
+ *
+ * Notices section is formatted with responsive grid layout.
+ *
+ * Should be fully responsive
+ * @returns Noticeboard
+ */
 const Noticeboard = () => {
   const [currentBoard, setCurrentBoard] = useState(BasicBoard);
 

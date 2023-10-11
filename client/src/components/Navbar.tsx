@@ -75,6 +75,7 @@ const SecondaryMenuContainer = styled.div`
   height: max-content;
 `;
 
+// Button that opens the About us menu, literally identical to the nav Links
 const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
@@ -95,18 +96,30 @@ const NavButton = styled.button`
   }
 `;
 
+/***
+ * Navbar is a Component to create a Navbar.
+ *
+ * It uses the react-router-dom -Links to make the navigation links.
+ *
+ * Menu is responsible. The Menu-button appears on mobile (closes/opens the menu).
+ *
+ * About Us is not a direct link. It is a button that opens a secondary menu. Secondary menu closes if any of the links is pressed
+ */
 const Navbar = () => {
   const [menuBarOpen, setMenubarOpen] = useState(window.innerWidth < 640);
   const [secondaryMenuOpen, setSecondaryMenuOpen] = useState(false);
 
+  // close the whole menu
   const CloseMenuBar = () => {
     setMenubarOpen(!menuBarOpen);
   };
 
+  // Open or close the Secondary menu to opposite of its state
   const ChangeAboutUsMenu = () => {
     setSecondaryMenuOpen(!secondaryMenuOpen);
   };
 
+  // Close the secondary menu, but do not open it
   const CloseMenus = () => {
     setSecondaryMenuOpen(false);
   };

@@ -1,5 +1,9 @@
 import { NoticeBoard, Profile } from '../types';
 
+/** Dummy data for running the noticeboard functionalities.
+ */
+
+// dummy of  a single noticeboard
 export const BasicBoard: NoticeBoard = {
   title: 'First Noticeboard',
   notices: [
@@ -70,6 +74,10 @@ export const BasicBoard: NoticeBoard = {
   ],
 };
 
+/* dummy dataset of profiles
+      Profile-component and Noticeboard use this to search profiles from
+
+*/
 export const DummyProfiles: Array<Profile> = [
   {
     userID: '1',
@@ -92,8 +100,3 @@ export const DummyProfiles: Array<Profile> = [
     username: 'Gym bro',
   },
 ];
-
-export const getProfile = (userID: string) => {
-  const profile = DummyProfiles.find(profile => profile.userID === userID);
-  return profile ? profile : null;
-};

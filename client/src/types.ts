@@ -1,3 +1,11 @@
+/**
+ * This is a file for shared types
+ *
+ * Used for building the front-side
+ *
+ * TODO: think about these
+ */
+
 export type PageInfo = {
   name: string;
   title: string;

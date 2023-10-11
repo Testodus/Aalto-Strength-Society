@@ -3,6 +3,10 @@ import { useLoaderData } from 'react-router-dom';
 import { Bodytext, Heading2 } from '../../shared-styles';
 import { Profile } from '../../types';
 
+/**
+ * TODO: create the profile layout
+ * @returns ProfileElement
+ */
 const ProfileElement = () => {
   const profile = useLoaderData() as Profile | null;
 

@@ -36,6 +36,10 @@ const ImageContainer = styled.svg`
   flex-shrink: 0;
 `;
 
+/**
+ * The Homepage-component, this is used as the landing page (the index-role is defined on the router-const in index.tsx).
+ * @returns HomePage component
+ */
 const HomePage = () => {
   return (
     <HomePageContainer>

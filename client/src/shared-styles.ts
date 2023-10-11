@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 
-/*
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital,wght@0,400;0,500;1,200&family=IBM+Plex+Sans:ital,wght@0,300;0,400;1,300&family=Nunito:wght@300;400&display=swap');
-
-font-family: 'IBM Plex Sans', sans-serif;
-font-family: 'IBM Plex Sans Condensed', sans-serif;
-font-family: 'Nunito', sans-serif;
-*/
+/**
+ * This is file for shared styles on the different components: text-styles and buttons.
+ */
 
 // Text-styles
 export const DetailText = styled.p`

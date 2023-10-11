@@ -9,6 +9,7 @@ import ProfileElement from './profile/Profile';
 import HomePage from './HomePage';
 import Noticeboard from './noticeboard/Noticeboard';
 
+// shared export for all the pages :D
 export {
   Board,
   ErrorElement,
