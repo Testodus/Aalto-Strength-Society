@@ -84,6 +84,7 @@ const Noticeboard = () => {
                 title={note.title}
                 username={getUsername(note.userID)}
                 time={getDate(note.timeStamp)}
+                userID={note.userID}
               ></NoteElement>
             ))
           : null}

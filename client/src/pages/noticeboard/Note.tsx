@@ -6,6 +6,7 @@ import {
   DarkBodyText,
   SecondaryButton,
 } from '../../shared-styles';
+import { Link } from 'react-router-dom';
 
 const Note = styled.div`
   display: flex;
@@ -23,14 +24,15 @@ type NoteProps = {
   time: string;
   username: string;
   note: string;
+  userID: string | number;
 };
 
-const NoteElement = ({ title, time, username, note }: NoteProps) => {
+const NoteElement = ({ title, time, username, note, userID }: NoteProps) => {
   return (
     <Note>
       <Heading4>{title}</Heading4>
       <DetailText>
-        <i>{username}</i> {time}
+        <Link to={'/profile/' + userID}>{username}</Link> {time}
       </DetailText>
       <DarkBodyText>{note}</DarkBodyText>
       <SecondaryButton>Comment</SecondaryButton>
