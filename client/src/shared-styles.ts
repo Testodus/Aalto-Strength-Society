@@ -81,10 +81,31 @@ export const DarkBodyText = styled.p`
 export const PrimaryButton = styled.button`
   text-decoration: none;
   font-size: 16px;
-  border-radius: 1rem;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+
+  border-radius: 1.5rem;
   margin: 1rem;
   background: #d0d1f2;
   border: 1px solid #8889c2;
+  width: max-content;
+  padding: 0.5rem 1rem;
+  align-self: center;
+`;
+
+export const SecondaryButton = styled.button`
+  text-decoration: none;
+  font-size: 16px;
+  color: #f2f2f2;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+
+  border-radius: 1.5rem;
+  margin: 1rem;
+  background: #3d3e8a;
+  border: 1px solid #d0d1f2;
   width: max-content;
   padding: 0.5rem 1rem;
   align-self: center;

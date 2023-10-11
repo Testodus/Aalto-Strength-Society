@@ -79,11 +79,14 @@ const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
   background: F2F2F2;
   padding: 1rem;
   max-width: 8rem;
   margin: 0.5rem 2rem 0.5rem 2rem;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
 
   @media only screen and (min-width: 640px) {
     display: none;

@@ -32,6 +32,10 @@ const AppFooter = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  @media only screen and (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 const FooterNode = styled.div`
