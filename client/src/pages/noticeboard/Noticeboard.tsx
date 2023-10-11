@@ -2,14 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { DummyProfiles, BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
-import {
-  DetailText,
-  Heading2,
-  Heading3,
-  Heading4,
-  DarkBodyText,
-  PrimaryButton,
-} from '../../shared-styles';
+import { Heading2, Heading3, PrimaryButton } from '../../shared-styles';
+import NoteElement from './Note';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
@@ -20,12 +14,23 @@ const NoticeBoardContainer = styled.div`
   justify-content: center;
   padding: 1rem 5rem;
   color: F2F2F2;
+
+  overflow: hidden;
+
+  @media only screen and (max-width: 500px) {
+    padding: 0rem 2rem;
+  }
 `;
 
 const NotesMenuBar = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-around;
+
+  @media only screen and (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const NotesContainer = styled.div`
@@ -41,17 +46,6 @@ const NotesContainer = styled.div`
   }
 `;
 
-const Note = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 1rem;
-  background: #f1f1f1;
-  padding: 1rem;
-  justify-content: space-between;
-  height: min-content;
-`;
-// jos haluut notet saman kokosiks ota toi hieght pois
-
 const Noticeboard = () => {
   const [currentBoard, setCurrentBoard] = useState(BasicBoard);
 
@@ -60,10 +54,17 @@ const Noticeboard = () => {
     return user ? user.username : 'did not find it';
   };
 
-  const getDate = (timestamp: number) => {
-    const date = new Date(timestamp);
+  const addZeroToTime = (number: number) =>
+    number > 9 ? number : '0' + number;
+
+  const getDate = (timeStamp: number) => {
+    const date = new Date(timeStamp);
     return (
-      date.getHours() + ':' + date.getMinutes() + ', ' + date.toDateString()
+      addZeroToTime(date.getHours()) +
+      ':' +
+      addZeroToTime(date.getMinutes()) +
+      ', ' +
+      date.toDateString()
     );
   };
 
@@ -77,14 +78,13 @@ const Noticeboard = () => {
       <NotesContainer>
         {currentBoard.notes.length
           ? currentBoard.notes.map((note, i) => (
-              <Note key={currentBoard.title + '-note-' + i}>
-                <Heading4>{note.title}</Heading4>
-                <DetailText>
-                  <i>{getUsername(note.userID)}</i> {getDate(note.timestamp)}
-                </DetailText>
-                <DarkBodyText>{note.note}</DarkBodyText>
-                <PrimaryButton>Comment</PrimaryButton>
-              </Note>
+              <NoteElement
+                key={currentBoard.title + '-note-' + i}
+                note={note.note}
+                title={note.title}
+                username={getUsername(note.userID)}
+                time={getDate(note.timeStamp)}
+              ></NoteElement>
             ))
           : null}
       </NotesContainer>
