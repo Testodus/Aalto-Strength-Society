@@ -1,8 +1,9 @@
 import React from 'react';
-import NavBarRouter from './router/main';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 const AppHeader = styled.header`
   display: flex;
@@ -19,6 +20,18 @@ const AppHeader = styled.header`
   svg,
   h1 {
     margin: 1rem;
+  }
+`;
+
+const FrameDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 3rem 0rem 3rem 0rem;
+  background: #151515;
+
+  @media only screen and (max-width: 640px) {
+    padding: 2rem 0rem 2rem 0rem;
   }
 `;
 
@@ -83,7 +96,10 @@ function App() {
           {screenSize.width > 465 ? 'Aalto Strength Society' : 'ASS'}
         </Heading1>
       </AppHeader>
-      <NavBarRouter />
+      <Navbar />
+      <FrameDiv>
+        <Outlet />
+      </FrameDiv>
       <AppFooter>
         <FooterNode>
           <Heading4>App Footer</Heading4>
