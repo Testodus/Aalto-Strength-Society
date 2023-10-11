@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DummyProfiles, BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
 import { Heading2, Heading3, PrimaryButton } from '../../shared-styles';
-import NoteElement from './Note';
+import Notice from './Notice';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ const NoticeBoardContainer = styled.div`
   }
 `;
 
-const NotesMenuBar = styled.div`
+const NoticesMenuBar = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -33,7 +33,7 @@ const NotesMenuBar = styled.div`
   }
 `;
 
-const NotesContainer = styled.div`
+const NoticesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 2rem;
@@ -71,24 +71,24 @@ const Noticeboard = () => {
   return (
     <NoticeBoardContainer>
       <Heading2>Notice Board</Heading2>
-      <NotesMenuBar>
+      <NoticesMenuBar>
         <Heading3>{currentBoard.title}</Heading3>
-        <PrimaryButton>Post a Note</PrimaryButton>
-      </NotesMenuBar>
-      <NotesContainer>
-        {currentBoard.notes.length
-          ? currentBoard.notes.map((note, i) => (
-              <NoteElement
-                key={currentBoard.title + '-note-' + i}
-                note={note.note}
-                title={note.title}
-                username={getUsername(note.userID)}
-                time={getDate(note.timeStamp)}
-                userID={note.userID}
-              ></NoteElement>
+        <PrimaryButton>Post a Notice</PrimaryButton>
+      </NoticesMenuBar>
+      <NoticesContainer>
+        {currentBoard.notices.length
+          ? currentBoard.notices.map((notice, i) => (
+              <Notice
+                key={currentBoard.title + '-Notice-' + i}
+                notice={notice.notice}
+                title={notice.title}
+                username={getUsername(notice.userID)}
+                time={getDate(notice.timeStamp)}
+                userID={notice.userID}
+              ></Notice>
             ))
           : null}
-      </NotesContainer>
+      </NoticesContainer>
     </NoticeBoardContainer>
   );
 };

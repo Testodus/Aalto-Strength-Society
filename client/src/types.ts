@@ -16,17 +16,17 @@ export type BoardMember = {
   contact: string;
 };
 
-export type Note = {
+export type Notice = {
   userID: string;
   timeStamp: number;
   title: string;
-  note: string;
+  notice: string;
   imageSrc?: string;
 };
 
 export type NoticeBoard = {
   title: string;
-  notes: Array<Note>;
+  notices: Array<Notice>;
 };
 
 export type Profile = {

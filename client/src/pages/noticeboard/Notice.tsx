@@ -8,7 +8,7 @@ import {
 } from '../../shared-styles';
 import { Link } from 'react-router-dom';
 
-const Note = styled.div`
+const NoticeDiv = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
@@ -17,27 +17,27 @@ const Note = styled.div`
   justify-content: space-between;
   height: min-content;
 `;
-// jos haluut notet saman kokosiks ota toi hieght pois
+// jos haluut noticet saman kokosiks ota toi hieght pois
 
-type NoteProps = {
+type NoticeProps = {
   title: string;
   time: string;
   username: string;
-  note: string;
+  notice: string;
   userID: string | number;
 };
 
-const NoteElement = ({ title, time, username, note, userID }: NoteProps) => {
+const Notice = ({ title, time, username, notice, userID }: NoticeProps) => {
   return (
-    <Note>
+    <NoticeDiv>
       <Heading4>{title}</Heading4>
       <DetailText>
         <Link to={'/profile/' + userID}>{username}</Link> {time}
       </DetailText>
-      <DarkBodyText>{note}</DarkBodyText>
+      <DarkBodyText>{notice}</DarkBodyText>
       <SecondaryButton>Comment</SecondaryButton>
-    </Note>
+    </NoticeDiv>
   );
 };
 
-export default NoteElement;
+export default Notice;
