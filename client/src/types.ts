@@ -18,7 +18,7 @@ export type BoardMember = {
 
 export type Note = {
   userID: string;
-  timestamp: number;
+  timeStamp: number;
   title: string;
   note: string;
   imageSrc?: string;
