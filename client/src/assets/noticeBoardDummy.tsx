@@ -88,3 +88,8 @@ export const DummyProfiles: Array<Profile> = [
     username: 'Gym bro',
   },
 ];
+
+export const getProfile = (userID: string) => {
+  const profile = DummyProfiles.find(profile => profile.userID === userID);
+  return profile ? profile : null;
+};
