@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import logo from './assets/ass.jpg';
+import AssLogo from './components/AssLogo';
 
 const AppHeader = styled.header`
   display: flex;
@@ -58,15 +60,6 @@ const FooterNode = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 `;
-
-const ImageContainer = styled.svg`
-  height: 100px;
-  width: 100px;
-  color: grey;
-  background: grey;
-  flex-shrink: 0;
-`;
-
 /***
  * The app: contains the basic structure of the whole thing
  */
@@ -96,7 +89,7 @@ function App() {
   return (
     <div>
       <AppHeader>
-        <ImageContainer></ImageContainer>
+        <img height={250} width={250} src={logo}></img>
         <Heading1>
           {screenSize.width > 465 ? 'Aalto Strength Society' : 'ASS'}
         </Heading1>
