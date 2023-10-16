@@ -6,6 +6,8 @@ import { NoticeBoard, Profile } from '../types';
 // dummy of  a single noticeboard
 export const BasicBoard: NoticeBoard = {
   title: 'First Noticeboard',
+  description:
+    'Welcome, here you are free to discuss muscles, gym and buddies. ',
   notices: [
     {
       noticeID: '1',
@@ -13,6 +15,22 @@ export const BasicBoard: NoticeBoard = {
       timeStamp: 1696881731877,
       title: 'Moikka',
       notice: 'I have a crush on someone...',
+      comments: [
+        {
+          noticeID: '1',
+          userID: '3',
+          timeStamp: 1696881731877,
+          comment: 'Who is it???',
+          commentID: '1-1',
+        },
+        {
+          noticeID: '1',
+          userID: '4',
+          timeStamp: 1696881731877,
+          comment: '??',
+          commentID: '1-2',
+        },
+      ],
     },
     {
       noticeID: '2',
@@ -20,6 +38,22 @@ export const BasicBoard: NoticeBoard = {
       timeStamp: 1696881731877,
       title: 'Juu',
       notice: 'Me too!!',
+      comments: [
+        {
+          noticeID: '2',
+          userID: '3',
+          timeStamp: 1696881731877,
+          comment: 'Who is it???',
+          commentID: '2-1',
+        },
+        {
+          noticeID: '2',
+          userID: '4',
+          timeStamp: 1696881731877,
+          comment: '??',
+          commentID: '2-2',
+        },
+      ],
     },
     {
       noticeID: '3',
@@ -28,6 +62,22 @@ export const BasicBoard: NoticeBoard = {
       title: 'Heh',
       notice:
         'I would like to tell you something!! this is the best association i have ever been a member in. This is great, keep going..',
+      comments: [
+        {
+          noticeID: '3',
+          userID: '3',
+          timeStamp: 1696881731877,
+          comment: 'Who is it???',
+          commentID: '3-1',
+        },
+        {
+          noticeID: '3',
+          userID: '4',
+          timeStamp: 1696881731877,
+          comment: '??',
+          commentID: '3-2',
+        },
+      ],
     },
     {
       noticeID: '4',
@@ -36,6 +86,7 @@ export const BasicBoard: NoticeBoard = {
       title: 'Kettlebell',
       notice:
         'This should be a longer text too, I do not know what to write but I write anyways. Have a nice day.',
+      comments: [],
     },
     {
       noticeID: '5',
@@ -44,6 +95,7 @@ export const BasicBoard: NoticeBoard = {
       title: 'Snadwitch',
       notice:
         'Today I ate only a one sandwitch. It was not enough for my big muscles.',
+      comments: [],
     },
     {
       noticeID: '6',
@@ -52,6 +104,7 @@ export const BasicBoard: NoticeBoard = {
       title: 'Writing',
       notice:
         'Writing these notices is not easy,you should try too. It required quite a lot of skill.',
+      comments: [],
     },
     {
       noticeID: '7',
@@ -59,6 +112,7 @@ export const BasicBoard: NoticeBoard = {
       timeStamp: 1696881731877,
       title: 'noticed',
       notice: 'I need 10 notices',
+      comments: [],
     },
     {
       noticeID: '8',
@@ -66,6 +120,7 @@ export const BasicBoard: NoticeBoard = {
       timeStamp: 1696881731877,
       title: 'TBH',
       notice: 'To be honest writing is not that bad, this will be great',
+      comments: [],
     },
     {
       noticeID: '9',
@@ -73,6 +128,7 @@ export const BasicBoard: NoticeBoard = {
       timeStamp: 1696881731877,
       title: 'Finally',
       notice: 'This is the last notice good bye',
+      comments: [],
     },
     {
       noticeID: '10',
@@ -80,6 +136,7 @@ export const BasicBoard: NoticeBoard = {
       timeStamp: 1696881731877,
       title: 'Finally',
       notice: 'This is the last notice good bye',
+      comments: [],
     },
   ],
 };
