@@ -2,18 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
-import { Heading2, Heading3, PrimaryButton } from '../../shared-styles';
+import {
+  Bodytext,
+  Heading2,
+  Heading3,
+  PrimaryButton,
+} from '../../shared-styles';
 import NoticeEl from './Notice';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
+  max-width: 1000px;
   background: #151515;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem 5rem;
-  color: F2F2F2;
 
   overflow: hidden;
 
@@ -61,7 +66,10 @@ const Noticeboard = () => {
     <NoticeBoardContainer>
       <Heading2>Notice Board</Heading2>
       <NoticesMenuBar>
-        <Heading3>{currentBoard.title}</Heading3>
+        <div>
+          <Heading3>{currentBoard.title}</Heading3>
+          <Bodytext>{currentBoard.description}</Bodytext>
+        </div>
         <PrimaryButton>Post a Notice</PrimaryButton>
       </NoticesMenuBar>
       <NoticesContainer>
