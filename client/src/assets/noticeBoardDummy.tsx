@@ -82,21 +82,35 @@ export const DummyProfiles: Array<Profile> = [
   {
     userID: '1',
     username: 'Henna',
+    email: 'Henna.com',
+    contactInformation: 'Telegram: @theGymLover123',
+    favoriteLift: 'Lifting groceries',
+    profilePictureSrc: 'Henna`s profile pic',
   },
   {
     userID: '2',
     username: 'Maikki',
+    email: 'Maikki@outlook.com',
+    contactInformation: 'Telegram: @theMaikki',
+    profilePictureSrc: 'Maikki`s profile pic',
   },
   {
     userID: '3',
     username: 'Heidi',
+    email: 'Heidi.com',
+    favoriteLift: 'Lifting groceries',
+    profilePictureSrc: 'Heidi`s profile pic',
   },
   {
     userID: '4',
     username: 'Jenski',
+    email: 'Henna.com',
+    contactInformation: 'Telegram: @theBoulderLover123',
+    favoriteLift: 'Lifting groceries',
   },
   {
     userID: '5',
     username: 'Gym bro',
+    email: 'Gymbro.com',
   },
 ];
