@@ -30,6 +30,7 @@ export type Notice = {
   title: string;
   notice: string;
   imageSrc?: string;
+  noticeID: string;
 };
 
 export type NoticeBoard = {

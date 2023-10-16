@@ -4,12 +4,14 @@ import {
   ParamParseKey,
   LoaderFunction,
 } from 'react-router-dom';
-import { Profile } from '../types';
+import { Profile, Notice } from '../types';
 import { DummyProfiles } from '../assets/noticeBoardDummy';
+import { BasicBoard } from '../assets/noticeBoardDummy';
 
 // the pathnames for loaders
 const PathNames = {
   profilePath: '/profile/:userID',
+  noticePath: '/view-notice/:noticeID',
 } as const;
 
 // interface to type the Args of the profileLoader
@@ -38,4 +40,28 @@ export const profileLoader: LoaderFunction = async ({
   if (params.userID === undefined) return null;
   const profile = await getProfile(params.userID);
   return profile?.userID ? profile : null;
+};
+
+// NOTICE
+
+// function to query profile from the dummydata
+export const getNotice = (noticeID: string) => {
+  const notice = BasicBoard.notices.find(
+    notice => notice.noticeID === noticeID
+  );
+  return notice ? notice : null;
+};
+
+// interface to type the Args of the noticeLoader
+interface NoticeArgs extends ActionFunctionArgs {
+  params: Params<ParamParseKey<typeof PathNames.noticePath>>;
+}
+
+// Loader for notices
+export const noticeLoader: LoaderFunction = async ({
+  params,
+}: NoticeArgs): Promise<Notice | null> => {
+  if (params.noticeID === undefined) return null;
+  const notice = await getNotice(params.noticeID);
+  return notice?.noticeID ? notice : null;
 };
