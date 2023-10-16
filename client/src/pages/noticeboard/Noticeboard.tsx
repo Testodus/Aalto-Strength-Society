@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DummyProfiles, BasicBoard } from '../../assets/noticeBoardDummy';
+import { BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
 import { Heading2, Heading3, PrimaryButton } from '../../shared-styles';
-import Notice from './Notice';
+import NoticeEl from './Notice';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
@@ -57,25 +57,6 @@ const NoticesContainer = styled.div`
 const Noticeboard = () => {
   const [currentBoard, setCurrentBoard] = useState(BasicBoard);
 
-  const getUsername = (id: string) => {
-    const user = DummyProfiles.find(profile => profile.userID === id);
-    return user ? user.username : 'did not find it';
-  };
-
-  const addZeroToTime = (number: number) =>
-    number > 9 ? number : '0' + number;
-
-  const getDate = (timeStamp: number) => {
-    const date = new Date(timeStamp);
-    return (
-      addZeroToTime(date.getHours()) +
-      ':' +
-      addZeroToTime(date.getMinutes()) +
-      ', ' +
-      date.toDateString()
-    );
-  };
-
   return (
     <NoticeBoardContainer>
       <Heading2>Notice Board</Heading2>
@@ -86,14 +67,11 @@ const Noticeboard = () => {
       <NoticesContainer>
         {currentBoard.notices.length
           ? currentBoard.notices.map((notice, i) => (
-              <Notice
+              <NoticeEl
                 key={currentBoard.title + '-Notice-' + i}
-                notice={notice.notice}
-                title={notice.title}
-                username={getUsername(notice.userID)}
-                time={getDate(notice.timeStamp)}
-                userID={notice.userID}
-              ></Notice>
+                notice={notice}
+                fullNotice={false}
+              ></NoticeEl>
             ))
           : null}
       </NoticesContainer>
