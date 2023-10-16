@@ -5,7 +5,6 @@ import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import logo from './assets/ass.jpg';
-import AssLogo from './components/AssLogo';
 
 const AppHeader = styled.header`
   display: flex;

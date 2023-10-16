@@ -11,18 +11,23 @@ export const DetailText = styled.p`
 
   font-family: 'Nunito', sans-serif;
   font-weight: 300;
+
+  a {
+    text-decoration: none;
+    color: #1e4b69;
+    font-weight: bold;
+  }
 `;
 
 export const Heading1 = styled.h1`
-  color: #ad4805;
-  font-size: 50px;
+  font-size: 80px;
   text-align: center;
 
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-weight: 500;
 
   @media only screen and (max-width: 465px) {
-    font-size: 70px;
+    font-size: 80px;
   }
 `;
 

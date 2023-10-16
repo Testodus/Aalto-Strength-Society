@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   Heading4,
@@ -9,6 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Notice } from '../../types';
+import CommentEl from './Comment';
 
 const NoticeDiv = styled.div`
   display: flex;
@@ -78,6 +79,8 @@ type NoticeProps = {
  * @returns Notice -element
  */
 const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
+  const [comments, setComments] = useState(notice.comments);
+
   const getUsername = (id: string) => {
     const user = DummyProfiles.find(profile => profile.userID === id);
     return user ? user.username : 'did not find it';
@@ -109,6 +112,13 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
       {fullNotice ? (
         <>
           <DarkBodyText>{notice.notice}</DarkBodyText>
+          {comments.map((comment, i) => (
+            <CommentEl
+              key={'comment-' + comment.commentID + i}
+              comment={comment}
+            ></CommentEl>
+          ))}
+
           <SecondaryButton>Comment</SecondaryButton>
         </>
       ) : (
@@ -117,7 +127,7 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
             {notice.notice.slice(0, 100) + '..'}
           </DarkBodyTextGrid>
           <Fade></Fade>
-          <Link to={'/join'}>Show Notice</Link>
+          <Link to={'/view-notice/' + notice.noticeID}>Show Notice</Link>
         </FadedContentGrid>
       )}
     </NoticeDiv>
