@@ -167,7 +167,8 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
       ) : (
         <FadedContentGrid>
           <DarkBodyTextGrid>
-            {notice.notice.slice(0, 100) + '..'}
+            {notice.notice.slice(0, 100) +
+              (notice.notice.length > 100 ? '..' : '')}
           </DarkBodyTextGrid>
           <Fade></Fade>
           <Link to={'/view-notice/' + notice.noticeID}>Show Notice</Link>
