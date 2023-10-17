@@ -99,14 +99,15 @@ function App() {
       </FrameDiv>
       <AppFooter>
         <FooterNode>
-          <Heading4>App Footer</Heading4>
+          <Heading4>Aalto Strenght Society</Heading4>
           <DarkBodyText>
-            {' '}
-            Hello and Welcome, please contact us here: diibadaaba duu.
+            See you at the gym!
+            <br />
+            Keep Lifting!
           </DarkBodyText>
         </FooterNode>
         <FooterNode>
-          <DetailText>Second node</DetailText>
+          <DetailText>Copyright is....</DetailText>
         </FooterNode>
       </AppFooter>
     </div>

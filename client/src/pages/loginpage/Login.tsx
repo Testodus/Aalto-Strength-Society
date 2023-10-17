@@ -74,7 +74,7 @@ const Login = () => {
           <SecondaryButton type="submit">Log in</SecondaryButton>
         </FormStyle>
         <DetailText>
-          {'If you are not a user, register '}
+          {'If you are not an user, register '}
           <Link to="/register">here.</Link>
         </DetailText>
       </RoundDivLight>

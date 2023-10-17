@@ -14,7 +14,7 @@ const NavbarContainer = styled.nav`
     text-decoration: none;
     color: #304f42;
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 26px;
+    font-size: 30px;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -44,7 +44,7 @@ const SecondaryNavbarContainer = styled.nav`
     text-decoration: none;
     color: #304f42;
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 24px;
+    font-size: 26px;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
