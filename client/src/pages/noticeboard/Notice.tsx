@@ -5,10 +5,14 @@ import {
   DetailText,
   DarkBodyText,
   SecondaryButton,
+  FormLabel,
+  FormInputContainer,
+  FormTextarea,
+  WarningText,
 } from '../../shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
-import { Notice } from '../../types';
+import { Comment, Notice } from '../../types';
 import CommentEl from './Comment';
 
 const NoticeDiv = styled.div`
@@ -80,6 +84,8 @@ type NoticeProps = {
  */
 const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
   const [comments, setComments] = useState(notice.comments);
+  const [shortComment, setShortComment] = useState(false);
+  const [textAreaValue, setTextAreaValue] = useState('');
 
   const getUsername = (id: string) => {
     const user = DummyProfiles.find(profile => profile.userID === id);
@@ -100,6 +106,30 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
     );
   };
 
+  const onSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    const target = event.target as typeof event.target & {
+      commentText: { value: string };
+    };
+
+    if (target.commentText.value.length > 0) {
+      const newComment: Comment = {
+        comment: target.commentText.value,
+        userID: '3',
+        commentID: notice.noticeID + '-' + (comments.length + 1),
+        noticeID: notice.noticeID,
+        timeStamp: Date.now(),
+      };
+
+      setComments([...comments, newComment]);
+      setShortComment(false);
+      setTextAreaValue('');
+    } else {
+      setShortComment(true);
+    }
+  };
+
   return (
     <NoticeDiv>
       <Heading4>{notice.title}</Heading4>
@@ -118,8 +148,20 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
               comment={comment}
             ></CommentEl>
           ))}
-
-          <SecondaryButton>Comment</SecondaryButton>
+          <form onSubmit={onSubmit}>
+            <FormInputContainer>
+              <FormLabel htmlFor="commentText">Comment</FormLabel>
+              {shortComment ? (
+                <WarningText>Comment is too short!</WarningText>
+              ) : null}
+              <FormTextarea
+                id="commentText"
+                value={textAreaValue}
+                onChange={e => setTextAreaValue(e.target.value)}
+              />
+            </FormInputContainer>
+            <SecondaryButton type="submit">Comment</SecondaryButton>
+          </form>
         </>
       ) : (
         <FadedContentGrid>
