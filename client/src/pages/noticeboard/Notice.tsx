@@ -23,6 +23,7 @@ const NoticeDiv = styled.div`
   padding: 1rem;
   justify-content: space-between;
   height: min-content;
+  margin: 0.3rem;
 `;
 // jos haluut noticet saman kokosiks ota toi hieght pois
 
@@ -34,7 +35,7 @@ const FadedContentGrid = styled.div`
   a {
     text-decoration: none;
     font-size: 16px;
-    color: #f2f2f2;
+    color: #f4f4f4;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -58,12 +59,12 @@ const Fade = styled.div`
   grid-row-start: 1;
   grid-row-end: 3;
 
-  background-image: linear-gradient(transparent, #f2f2f2);
+  background-image: linear-gradient(transparent, #f4f4f4);
 `;
 
 export const DarkBodyTextGrid = styled.p`
   font-size: 20px;
-  color: #ad4805;
+  color: #304f42;
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;

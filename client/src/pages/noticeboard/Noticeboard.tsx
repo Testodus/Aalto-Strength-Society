@@ -13,7 +13,6 @@ import NoticeEl from './Notice';
 const NoticeBoardContainer = styled.div`
   width: 100%;
   max-width: 1000px;
-  background: #151515;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +39,7 @@ const NoticesMenuBar = styled.div`
 
 const NoticesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   grid-gap: 2rem;
   max-widht: 800px;
   widht: 100%;

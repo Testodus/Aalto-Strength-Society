@@ -9,7 +9,7 @@ const CommentDiv = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  background: #f0c7ad;
+  background: #f0e2cc;
   padding: 1rem;
   justify-content: space-between;
   height: min-content;

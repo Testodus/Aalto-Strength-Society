@@ -29,7 +29,7 @@ const FrameDiv = styled.div`
   justify-content: center;
   align-items: start;
   padding: 3rem 0rem 3rem 0rem;
-  background: #151515;
+  background: #304f42;
 
   @media only screen and (max-width: 640px) {
     padding: 2rem 0rem 2rem 0rem;
@@ -39,7 +39,7 @@ const FrameDiv = styled.div`
 const AppFooter = styled.footer`
   background: black;
   min-height: 15vh;
-  background: #f2f2f2;
+  background: #f0e2cc;
   margin: 0;
   padding: 0;
 

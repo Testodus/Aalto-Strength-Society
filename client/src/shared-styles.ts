@@ -52,8 +52,8 @@ export const Heading3 = styled.h3`
 `;
 
 export const Heading4 = styled.h4`
-  color: #ad4805;
-  font-size: 24px;
+  color: #519a85;
+  font-size: 30px;
   margin: 0;
   padding: 0;
 
@@ -63,7 +63,7 @@ export const Heading4 = styled.h4`
 
 export const Bodytext = styled.p`
   font-size: 20px;
-  color: #d9d9d9;
+  color: #f4f4f4;
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
@@ -71,7 +71,7 @@ export const Bodytext = styled.p`
 
 export const DarkBodyText = styled.p`
   font-size: 20px;
-  color: #ad4805;
+  color: #304f42;
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
@@ -106,7 +106,7 @@ export const PrimaryButton = styled.button`
 export const SecondaryButton = styled.button`
   text-decoration: none;
   font-size: 16px;
-  color: #f2f2f2;
+  color: #f4f4f4;
 
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
@@ -133,7 +133,7 @@ export const FormLabel = styled.label`
 
 export const FormTextarea = styled.textarea`
   border: 1px solid #3d3e8a;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   margin: 0.3rem;
   padding: 1rem;
   min-height: 2rem;
@@ -143,15 +143,49 @@ export const FormTextarea = styled.textarea`
 
 export const FormInput = styled.textarea`
   border: 1px solid #3d3e8a;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   margin: 0.3rem;
-  padding: 1rem;
-  min-height: 2rem;
+  padding: 0.3rem;
   overflow: hidden;
 `;
 
 export const FormInputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0.8rem;
+`;
+
+export const FormStyle = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+`;
+
+// DIVS
+
+export const RoundDivLight = styled.div`
+  background: #f4f4f4;
+  border-radius: 1rem;
+  padding: 1rem;
+  max-width: 800px;
+  width: 100%;
   margin: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const FullWidthDiv = styled.div`
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;

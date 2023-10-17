@@ -12,7 +12,7 @@ const NavbarContainer = styled.nav`
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: #304f42;
     padding: 1rem 1rem 1rem 1rem;
     font-size: 26px;
 
@@ -42,7 +42,7 @@ const SecondaryNavbarContainer = styled.nav`
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: #304f42;
     padding: 1rem 1rem 1rem 1rem;
     font-size: 24px;
 
@@ -57,7 +57,7 @@ const SecondaryNavbarContainer = styled.nav`
 
 const NavContainer = styled.div`
   width: 100%;
-  background: #e7e7e7;
+  background: #f0e2cc;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,10 +81,11 @@ const NavButton = styled.button`
   font-weight: bold;
   border: none;
   font-size: 24px;
-  background: F2F2F2;
-  padding: 1rem;
+  background: #f4f4f4;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
   max-width: 8rem;
-  margin: 0.5rem 2rem 0.5rem 2rem;
+  margin: 1rem 2rem 1rem 2rem;
 
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
