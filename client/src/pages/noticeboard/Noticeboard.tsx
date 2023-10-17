@@ -37,6 +37,13 @@ const NoticesMenuBar = styled.div`
   }
 `;
 
+const NoticeboardInfoDiv = styled.div`
+  max-width: 60%;
+  @media only screen and (max-width: 640px) {
+    max-width: none;
+  }
+`;
+
 const NoticesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
@@ -65,10 +72,10 @@ const Noticeboard = () => {
     <NoticeBoardContainer>
       <Heading2>Notice Board</Heading2>
       <NoticesMenuBar>
-        <div>
+        <NoticeboardInfoDiv>
           <Heading3>{currentBoard.title}</Heading3>
           <Bodytext>{currentBoard.description}</Bodytext>
-        </div>
+        </NoticeboardInfoDiv>
         <PrimaryButton>Post a Notice</PrimaryButton>
       </NoticesMenuBar>
       <NoticesContainer>

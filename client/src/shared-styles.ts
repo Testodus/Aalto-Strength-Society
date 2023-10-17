@@ -89,17 +89,17 @@ export const WarningText = styled.p`
 
 export const PrimaryButton = styled.button`
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
 
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
 
   border-radius: 1.5rem;
   margin: 1rem;
+  border: none;
   background: #d0d1f2;
-  border: 1px solid #8889c2;
   width: max-content;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   align-self: center;
 `;
 
