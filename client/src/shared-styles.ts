@@ -77,6 +77,14 @@ export const DarkBodyText = styled.p`
   font-weight: 300;
 `;
 
+export const WarningText = styled.p`
+  font-size: 16px;
+  color: #a83d2f;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+`;
+
 // Buttons
 
 export const PrimaryButton = styled.button`
@@ -110,4 +118,40 @@ export const SecondaryButton = styled.button`
   width: max-content;
   padding: 0.5rem 1rem;
   align-self: center;
+`;
+
+// FORM
+
+export const FormLabel = styled.label`
+  font-size: 16px;
+  color: #151515;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  margin: 0.1rem;
+`;
+
+export const FormTextarea = styled.textarea`
+  border: 1px solid #3d3e8a;
+  border-radius: 1rem;
+  margin: 0.3rem;
+  padding: 1rem;
+  min-height: 2rem;
+  resize: both;
+  overflow: hidden;
+`;
+
+export const FormInput = styled.textarea`
+  border: 1px solid #3d3e8a;
+  border-radius: 1rem;
+  margin: 0.3rem;
+  padding: 1rem;
+  min-height: 2rem;
+  overflow: hidden;
+`;
+
+export const FormInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
 `;
