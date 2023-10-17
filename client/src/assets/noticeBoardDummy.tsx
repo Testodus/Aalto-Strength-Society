@@ -165,7 +165,7 @@ export const DummyProfiles: Array<Profile> = [
   },
   {
     userID: '4',
-    username: 'Henna',
+    username: 'ICouldLiftYourMom',
     email: 'Henna.com',
     contactInformation: 'Telegram: @theBoulderLover123',
     favoriteLift: 'Lifting groceries',
