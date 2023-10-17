@@ -143,7 +143,7 @@ export const BasicBoard: NoticeBoard = {
 export const DummyProfiles: Array<Profile> = [
   {
     userID: '1',
-    username: 'Henna',
+    username: 'GymLover123',
     email: 'Henna.com',
     contactInformation: 'Telegram: @theGymLover123',
     favoriteLift: 'Lifting groceries',
@@ -151,28 +151,28 @@ export const DummyProfiles: Array<Profile> = [
   },
   {
     userID: '2',
-    username: 'Maikki',
+    username: 'RockHardAbs',
     email: 'Maikki@outlook.com',
     contactInformation: 'Telegram: @theMaikki',
     profilePictureSrc: 'Maikki`s profile pic',
   },
   {
     userID: '3',
-    username: 'Heidi',
+    username: 'Kettlebell',
     email: 'Heidi.com',
     favoriteLift: 'Lifting groceries',
     profilePictureSrc: 'Heidi`s profile pic',
   },
   {
     userID: '4',
-    username: 'Jenski',
+    username: 'Henna',
     email: 'Henna.com',
     contactInformation: 'Telegram: @theBoulderLover123',
     favoriteLift: 'Lifting groceries',
   },
   {
     userID: '5',
-    username: 'Gym bro',
+    username: 'TheLifter99',
     email: 'Gymbro.com',
   },
 ];
