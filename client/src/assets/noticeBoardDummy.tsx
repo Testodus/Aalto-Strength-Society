@@ -147,7 +147,7 @@ export const DummyProfiles: Array<Profile> = [
     email: 'Henna.com',
     contactInformation: 'Telegram: @theGymLover123',
     favoriteLift: 'Lifting groceries',
-    profilePictureSrc: 'Henna`s profile pic',
+    profilePictureSrc: 'GymLovers`s profile pic',
   },
   {
     userID: '2',

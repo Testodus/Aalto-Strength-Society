@@ -160,20 +160,17 @@ export const FormStyle = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 400px;
+  width: min-content;
 `;
 
 // DIVS
 
 export const RoundDivLight = styled.div`
-  background: #f4f4f4;
+  background: ##1d4032;
   border-radius: 1rem;
-  padding: 1rem;
-  max-width: 800px;
+  max-width: 700px;
   width: 100%;
-  margin: 1rem;
-
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,4 +185,7 @@ export const FullWidthDiv = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media only screen and (max-width: 500px) {
+    padding: 0rem 1rem;
+  }
 `;
