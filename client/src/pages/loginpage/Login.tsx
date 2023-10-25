@@ -12,7 +12,7 @@ import {
   WarningText,
   SecondaryButton,
   FormStyle,
-} from '../../shared-styles';
+} from '../../styles/shared-styles';
 
 /**
  * TODO: the login form

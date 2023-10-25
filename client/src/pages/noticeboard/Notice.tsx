@@ -9,7 +9,7 @@ import {
   FormInputContainer,
   FormTextarea,
   WarningText,
-} from '../../shared-styles';
+} from '../../styles/shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment, Notice } from '../../types';
@@ -19,7 +19,7 @@ import {
   SECONDARY_BUTTON_BG,
   SECONDARY_BUTTON_SIZE,
   SECONDARY_BUTTON_TC,
-} from '../../variables';
+} from '../../styles/variables';
 
 const NoticeDiv = styled.div`
   display: flex;

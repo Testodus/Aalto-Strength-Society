@@ -6,7 +6,7 @@ import {
   Bodytext,
   RoundDivMedium,
   Padding2Rem,
-} from '../../shared-styles';
+} from '../../styles/shared-styles';
 
 const ContentFrame = styled.div`
   display: flex;

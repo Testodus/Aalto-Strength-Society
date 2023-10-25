@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
+import {
+  DarkBodyText,
+  DetailText,
+  Heading4,
+  Heading1,
+} from './styles/shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import logo from './assets/ass.jpg';
-import { BG_COLOR_FOOTER, BG_COLOR_HEADER, BG_COLOR_MAIN } from './variables';
+import { BG_COLOR_FOOTER, BG_COLOR_HEADER, BG_COLOR_MAIN } from './styles/variables';
 
 const AppHeader = styled.header`
   display: flex;

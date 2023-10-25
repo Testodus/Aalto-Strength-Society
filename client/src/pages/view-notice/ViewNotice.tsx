@@ -1,7 +1,7 @@
 import NoticeEl from '../noticeboard/Notice';
 import { Notice } from '../../types';
 import { useLoaderData } from 'react-router-dom';
-import { Heading3 } from '../../shared-styles';
+import { Heading3 } from '../../styles/shared-styles';
 import styled from 'styled-components';
 
 const ViewNoticeContainer = styled.div`

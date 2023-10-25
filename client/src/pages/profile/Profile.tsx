@@ -5,7 +5,7 @@ import {
   Heading2,
   Heading3,
   RoundDivMedium,
-} from '../../shared-styles';
+} from '../../styles/shared-styles';
 import { Profile } from '../../types';
 import styled from 'styled-components';
 

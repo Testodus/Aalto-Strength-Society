@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Bodytext, Heading2, RoundDivMedium } from '../shared-styles';
+import { Bodytext, Heading2, RoundDivMedium } from '../styles/shared-styles';
 
 const HomePageContainer = styled.div`
   display: flex;

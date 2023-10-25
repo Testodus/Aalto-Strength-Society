@@ -8,7 +8,7 @@ import {
   Heading3,
   PrimaryButton,
   RoundDivMedium,
-} from '../../shared-styles';
+} from '../../styles/shared-styles';
 import NoticeEl from './Notice';
 
 const NoticeBoardContainer = styled.div`
