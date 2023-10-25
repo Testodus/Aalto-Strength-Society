@@ -112,7 +112,7 @@ export const SecondaryButton = styled.button`
   border-radius: 1.5rem;
   margin: 1rem;
   background: ${palette.SECONDARY_BUTTON_BG};
-  border: 1px solid #d0d1f2;
+  border: none;
   width: max-content;
   padding: 0.5rem 1rem;
   align-self: center;
@@ -121,7 +121,7 @@ export const SecondaryButton = styled.button`
 // FORM
 
 export const FormLabel = styled.label`
-  font-size: 16px;
+  font-size: 1rem;
   color: #151515;
 
   font-family: 'Nunito', sans-serif;
@@ -166,28 +166,28 @@ export const FormStyle = styled.form`
 export const RoundDivSmall = styled.div`
   background: ${palette.BG_COLOR_ROUND_DIV_MEDIUM};
   border-radius: 2rem;
-  max-width: 700px;
+  max-width: 44rem;
   width: 100%;
   padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.25);
 `;
 
 export const RoundDivMedium = styled.div`
   background: ${palette.BG_COLOR_ROUND_DIV_MEDIUM};
   border-radius: 2rem;
   width: 100%;
-  max-width: 1000px;
+  max-width: 62rem;
   margin: 0.2rem;
   padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.25);
 
   @media only screen and (max-width: 640px) {
     widht: 97%;

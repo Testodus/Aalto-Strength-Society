@@ -6,7 +6,7 @@ const HomePageContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  max-width: 1000px;
+  max-width: 62rem;
   width: 100%;
 
   @media only screen and (max-width: 640px) {
@@ -28,6 +28,7 @@ const TextContent = styled.div`
   flex-direction: column;
 `;
 
+// TODO: use actual images
 const ImageContainer = styled.svg`
   height: 250px;
   width: 250px;

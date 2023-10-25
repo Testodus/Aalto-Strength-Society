@@ -11,7 +11,7 @@ import {
 const ContentFrame = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 62rem;
   width: 100%;
   text-align: left;
   align-items: start;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 const NavbarContainer = styled.nav`
-  max-width: 1000px;
+  max-width: 62rem;
   width: 100%;
   height: auto;
   display: flex;
@@ -14,26 +14,26 @@ const NavbarContainer = styled.nav`
     text-decoration: none;
     color: #304f42;
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 30px;
+    font-size: 2rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 
     @media only screen and (max-width: 640px) {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
   }
 `;
 
 const FullWidthDiv = styled.div`
   width: 100%;
-  max-width: 750px;
+  max-width: 47rem;
   margin: 0;
   padding: 0;
 `;
 
 const SecondaryNavbarContainer = styled.nav`
-  max-width: 1000px;
+  max-width: 62rem;
   widht: max-content;
   height: max-content;
   display: flex;
@@ -44,13 +44,13 @@ const SecondaryNavbarContainer = styled.nav`
     text-decoration: none;
     color: #304f42;
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 26px;
+    font-size: 1.6rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 
     @media only screen and (max-width: 640px) {
-      font-size: 22px;
+      font-size: 1.4rem;
     }
   }
 `;
@@ -80,7 +80,7 @@ const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   background: #f4f4f4;
   border-radius: 0.5rem;
   padding: 1rem 1.5rem;

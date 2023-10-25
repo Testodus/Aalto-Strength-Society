@@ -34,8 +34,8 @@ const FrameDiv = styled.div`
   background: ${BG_COLOR_MAIN};
 
   box-shadow:
-    0px 5px 10px 0px rgba(0, 0, 0, 0.1) inset,
-    0px -5px 10px 0px rgba(0, 0, 0, 0.1) inset;
+    0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.1) inset,
+    0 -0.3rem 0.6rem 0 rgba(0, 0, 0, 0.1) inset;
 
   @media only screen and (max-width: 640px) {
     padding: 2rem 0rem 2rem 0rem;

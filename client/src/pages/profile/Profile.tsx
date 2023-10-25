@@ -1,9 +1,15 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { Bodytext, Heading2, Heading3 } from '../../shared-styles';
+import {
+  Bodytext,
+  Heading2,
+  Heading3,
+  RoundDivMedium,
+} from '../../shared-styles';
 import { Profile } from '../../types';
 import styled from 'styled-components';
 
+// TODO use actual images
 const ImageContainer = styled.div`
   height: 250px;
   width: 250px;
@@ -16,7 +22,7 @@ const ResponsiveContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  max-width: 1100px;
+  max-width: 62rem;
   width: 100%;
 
   @media only screen and (max-width: 640px) {
@@ -43,7 +49,7 @@ const ProfileElement = () => {
   return (
     <>
       {profile ? (
-        <div>
+        <RoundDivMedium>
           <Heading2>Profiles</Heading2>
           <ResponsiveContainer>
             <ImageContainer>
@@ -69,7 +75,7 @@ const ProfileElement = () => {
               ) : null}
             </div>
           </ResponsiveContainer>
-        </div>
+        </RoundDivMedium>
       ) : (
         <Heading2> Profile does not exist </Heading2>
       )}

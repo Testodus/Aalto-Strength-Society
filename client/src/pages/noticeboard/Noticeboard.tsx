@@ -13,7 +13,7 @@ import NoticeEl from './Notice';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
-  max-width: 1000px;
+  max-width: 62rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +49,7 @@ const NoticesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   grid-gap: 2rem;
-  max-widht: 800px;
+  max-widht: 50rem;
   widht: 100%;
   margin: 2rem;
   padding-bottom: 1rem;

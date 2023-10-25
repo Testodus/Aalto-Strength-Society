@@ -30,7 +30,7 @@ const NoticeDiv = styled.div`
   justify-content: space-between;
   height: min-content;
   margin: 0.3rem;
-  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.25);
 `;
 // jos haluut noticet saman kokosiks ota toi hieght pois
 
@@ -50,7 +50,6 @@ const FadedContentGrid = styled.div`
     border-radius: 1.5rem;
     margin: 1rem;
     background: ${SECONDARY_BUTTON_BG};
-    border: 1px solid #d0d1f2;
     width: max-content;
     padding: 0.5rem 1rem;
     align-self: center;
@@ -70,7 +69,7 @@ const Fade = styled.div`
 `;
 
 export const DarkBodyTextGrid = styled.p`
-  font-size: 20px;
+  font-size: 1.7rem;
   color: #304f42;
 
   font-family: 'IBM Plex Sans', sans-serif;

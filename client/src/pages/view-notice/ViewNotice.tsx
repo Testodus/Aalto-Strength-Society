@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const ViewNoticeContainer = styled.div`
   width: 100%;
-  max-width: 700px;
+  max-width: 44rem;
 `;
 
 const ViewNotice = () => {
