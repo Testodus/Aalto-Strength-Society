@@ -5,6 +5,7 @@ import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import logo from './assets/ass.jpg';
+import { BG_COLOR_FOOTER, BG_COLOR_HEADER, BG_COLOR_MAIN } from './variables';
 
 const AppHeader = styled.header`
   display: flex;
@@ -12,6 +13,7 @@ const AppHeader = styled.header`
   justify-content: space-around;
   padding: 2rem 10% 2rem 10%;
   align-items: center;
+  background: ${BG_COLOR_HEADER};
 
   @media only screen and (max-width: 640px) {
     padding: 0rem;
@@ -29,7 +31,11 @@ const FrameDiv = styled.div`
   justify-content: center;
   align-items: start;
   padding: 3rem 0rem 3rem 0rem;
-  background: #304f42;
+  background: ${BG_COLOR_MAIN};
+
+  box-shadow:
+    0px 5px 10px 0px rgba(0, 0, 0, 0.1) inset,
+    0px -5px 10px 0px rgba(0, 0, 0, 0.1) inset;
 
   @media only screen and (max-width: 640px) {
     padding: 2rem 0rem 2rem 0rem;
@@ -37,9 +43,8 @@ const FrameDiv = styled.div`
 `;
 
 const AppFooter = styled.footer`
-  background: black;
   min-height: 15vh;
-  background: #f0e2cc;
+  background: ${BG_COLOR_FOOTER};
   margin: 0;
   padding: 0;
 

@@ -14,16 +14,23 @@ import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment, Notice } from '../../types';
 import CommentEl from './Comment';
+import {
+  BG_COLOR_ROUND_DIV_LIGHT,
+  SECONDARY_BUTTON_BG,
+  SECONDARY_BUTTON_SIZE,
+  SECONDARY_BUTTON_TC,
+} from '../../variables';
 
 const NoticeDiv = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  background: #f1f1f1;
+  background: ${BG_COLOR_ROUND_DIV_LIGHT};
   padding: 1rem;
   justify-content: space-between;
   height: min-content;
   margin: 0.3rem;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
 `;
 // jos haluut noticet saman kokosiks ota toi hieght pois
 
@@ -34,15 +41,15 @@ const FadedContentGrid = styled.div`
 
   a {
     text-decoration: none;
-    font-size: 16px;
-    color: #f4f4f4;
+    font-size: ${SECONDARY_BUTTON_SIZE};
+    color: ${SECONDARY_BUTTON_TC};
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 
     border-radius: 1.5rem;
     margin: 1rem;
-    background: #3d3e8a;
+    background: ${SECONDARY_BUTTON_BG};
     border: 1px solid #d0d1f2;
     width: max-content;
     padding: 0.5rem 1rem;
@@ -59,7 +66,7 @@ const Fade = styled.div`
   grid-row-start: 1;
   grid-row-end: 3;
 
-  background-image: linear-gradient(transparent, #f4f4f4);
+  background-image: linear-gradient(transparent, ${BG_COLOR_ROUND_DIV_LIGHT});
 `;
 
 export const DarkBodyTextGrid = styled.p`

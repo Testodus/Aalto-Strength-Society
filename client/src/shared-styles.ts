@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as palette from './variables';
 
 /**
  * This is file for shared styles on the different components: text-styles and buttons.
@@ -6,54 +7,50 @@ import styled from 'styled-components';
 
 // Text-styles
 export const DetailText = styled.p`
-  font-size: 16px;
-  color: #151515;
+  font-size: ${palette.DETAIL_SIZE};
+  color: ${palette.TEXT_COLOR_DETAIL_GREY};
 
   font-family: 'Nunito', sans-serif;
   font-weight: 300;
 
   a {
     text-decoration: none;
-    color: #1e4b69;
+    color: ${palette.TEXT_COLOR_DETAIL_ACCENT};
     font-weight: bold;
   }
 `;
 
 export const Heading1 = styled.h1`
-  font-size: 80px;
+  font-size: ${palette.HEADING_1_SIZE};
+  color: ${palette.TEXT_COLOR_DARK_MAIN};
   text-align: center;
-
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-weight: 500;
-
-  @media only screen and (max-width: 465px) {
-    font-size: 80px;
-  }
 `;
 
 export const Heading2 = styled.h2`
-  color: #d9d9d9;
-  font-size: 48px;
+  color: ${palette.TEXT_COLOR_DARK_MAIN};
+  font-size: ${palette.HEADING_2_SIZE};
   margin: 1rem;
+  padding: 0;
+
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-weight: 500;
+`;
+
+export const Heading3 = styled.h3`
+  color: ${palette.TEXT_COLOR_DARK_ACCENT};
+  font-size: ${palette.HEADING_3_SIZE};
+  margin: 0;
   padding: 0;
 
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-weight: 400;
 `;
 
-export const Heading3 = styled.h3`
-  color: #d9d9d9;
-  font-size: 32px;
-  margin: 0;
-  padding: 0;
-
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
-  font-weight: 300;
-`;
-
 export const Heading4 = styled.h4`
-  color: #519a85;
-  font-size: 30px;
+  color: ${palette.TEXT_COLOR_ACCENT};
+  font-size: ${palette.HEADING_4_SIZE};
   margin: 0;
   padding: 0;
 
@@ -62,15 +59,15 @@ export const Heading4 = styled.h4`
 `;
 
 export const Bodytext = styled.p`
-  font-size: 20px;
-  color: #f4f4f4;
+  font-size: ${palette.BODYTEXT_SIZE};
+  color: ${palette.TEXT_COLOR_DARK_MAIN};
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
 `;
 
 export const DarkBodyText = styled.p`
-  font-size: 20px;
+  font-size: ${palette.BODYTEXT_SIZE};
   color: #304f42;
 
   font-family: 'IBM Plex Sans', sans-serif;
@@ -78,7 +75,7 @@ export const DarkBodyText = styled.p`
 `;
 
 export const WarningText = styled.p`
-  font-size: 16px;
+  font-size: ${palette.DETAIL_SIZE};
   color: #a83d2f;
 
   font-family: 'Nunito', sans-serif;
@@ -89,15 +86,16 @@ export const WarningText = styled.p`
 
 export const PrimaryButton = styled.button`
   text-decoration: none;
-  font-size: 20px;
+  font-size: ${palette.PRIMARY_BUTTON_SIZE};
 
   font-family: 'Nunito', sans-serif;
-  font-weight: 400;
+  font-weight: bold;
 
   border-radius: 1.5rem;
   margin: 1rem;
   border: none;
-  background: #d0d1f2;
+  background: ${palette.PRIMARY_BUTTON_BG};
+  color: ${palette.PRIMARY_BUTTON_TC};
   width: max-content;
   padding: 0.6rem 1.2rem;
   align-self: center;
@@ -105,15 +103,15 @@ export const PrimaryButton = styled.button`
 
 export const SecondaryButton = styled.button`
   text-decoration: none;
-  font-size: 16px;
-  color: #f4f4f4;
+  font-size: ${palette.SECONDARY_BUTTON_SIZE};
+  color: ${palette.SECONDARY_BUTTON_TC};
 
   font-family: 'Nunito', sans-serif;
-  font-weight: 400;
+  font-weight: bold;
 
   border-radius: 1.5rem;
   margin: 1rem;
-  background: #3d3e8a;
+  background: ${palette.SECONDARY_BUTTON_BG};
   border: 1px solid #d0d1f2;
   width: max-content;
   padding: 0.5rem 1rem;
@@ -165,9 +163,9 @@ export const FormStyle = styled.form`
 
 // DIVS
 
-export const RoundDivLight = styled.div`
-  background: ##1d4032;
-  border-radius: 1rem;
+export const RoundDivSmall = styled.div`
+  background: ${palette.BG_COLOR_ROUND_DIV_MEDIUM};
+  border-radius: 2rem;
   max-width: 700px;
   width: 100%;
   padding: 0.5rem;
@@ -175,6 +173,26 @@ export const RoundDivLight = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const RoundDivMedium = styled.div`
+  background: ${palette.BG_COLOR_ROUND_DIV_MEDIUM};
+  border-radius: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+
+  @media only screen and (max-width: 640px) {
+    widht: 97%;
+    margin: 1.5%;
+  }
 `;
 
 export const FullWidthDiv = styled.div`
@@ -188,4 +206,8 @@ export const FullWidthDiv = styled.div`
   @media only screen and (max-width: 500px) {
     padding: 0rem 1rem;
   }
+`;
+
+export const Padding2Rem = styled.div`
+  padding: 2rem;
 `;

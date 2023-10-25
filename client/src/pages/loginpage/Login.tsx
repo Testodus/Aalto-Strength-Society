@@ -5,7 +5,7 @@ import {
   DetailText,
   FullWidthDiv,
   Heading2,
-  RoundDivLight,
+  RoundDivSmall,
   FormInputContainer,
   FormLabel,
   FormInput,
@@ -44,8 +44,8 @@ const Login = () => {
 
   return (
     <FullWidthDiv>
-      <Heading2>Login</Heading2>
-      <RoundDivLight>
+      <RoundDivSmall>
+        <Heading2>Login</Heading2>
         <DarkBodyText>Here you can log in to the ASS-website.</DarkBodyText>
         <FormStyle onSubmit={onSubmit}>
           {noMatch ? (
@@ -77,7 +77,7 @@ const Login = () => {
           {'If you are not an user, register '}
           <Link to="/register">here.</Link>
         </DetailText>
-      </RoundDivLight>
+      </RoundDivSmall>
     </FullWidthDiv>
   );
 };

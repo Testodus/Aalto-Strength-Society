@@ -1,16 +1,21 @@
 import React from 'react';
 import { PageConfig } from '../../assets/pageConfig';
 import styled from 'styled-components';
-import { Heading2, Bodytext } from '../../shared-styles';
+import {
+  Heading2,
+  Bodytext,
+  RoundDivMedium,
+  Padding2Rem,
+} from '../../shared-styles';
 
 const ContentFrame = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   text-align: left;
   align-items: start;
-  margin: 3rem 0 3rem 0;
+  margin: 1rem 0 1rem 0;
   padding: 1rem;
   background: none;
 `;
@@ -34,14 +39,18 @@ const BasicFrame = ({ topic }: BasicFrameProps) => {
   )?.textContent;
 
   return (
-    <ContentFrame>
-      {Title ? <Heading2>{Title}</Heading2> : null}
-      {TextContent?.length
-        ? TextContent.map((text, i) => (
-            <Bodytext key={'basic-text-' + i}>{text}</Bodytext>
-          ))
-        : null}
-    </ContentFrame>
+    <RoundDivMedium>
+      <ContentFrame>
+        <Padding2Rem>
+          {Title ? <Heading2>{Title}</Heading2> : null}
+          {TextContent?.length
+            ? TextContent.map((text, i) => (
+                <Bodytext key={'basic-text-' + i}>{text}</Bodytext>
+              ))
+            : null}
+        </Padding2Rem>
+      </ContentFrame>
+    </RoundDivMedium>
   );
 };
 

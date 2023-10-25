@@ -7,6 +7,7 @@ import {
   Heading2,
   Heading3,
   PrimaryButton,
+  RoundDivMedium,
 } from '../../shared-styles';
 import NoticeEl from './Notice';
 
@@ -51,6 +52,7 @@ const NoticesContainer = styled.div`
   max-widht: 800px;
   widht: 100%;
   margin: 2rem;
+  padding-bottom: 1rem;
 
   @media only screen and (max-width: 640px) {
     margin: 0rem;
@@ -69,27 +71,29 @@ const Noticeboard = () => {
   const [currentBoard, setCurrentBoard] = useState(BasicBoard);
 
   return (
-    <NoticeBoardContainer>
-      <Heading2>Notice Board</Heading2>
-      <NoticesMenuBar>
-        <NoticeboardInfoDiv>
-          <Heading3>{currentBoard.title}</Heading3>
-          <Bodytext>{currentBoard.description}</Bodytext>
-        </NoticeboardInfoDiv>
-        <PrimaryButton>Post a Notice</PrimaryButton>
-      </NoticesMenuBar>
-      <NoticesContainer>
-        {currentBoard.notices.length
-          ? currentBoard.notices.map((notice, i) => (
-              <NoticeEl
-                key={currentBoard.title + '-Notice-' + i}
-                notice={notice}
-                fullNotice={false}
-              ></NoticeEl>
-            ))
-          : null}
-      </NoticesContainer>
-    </NoticeBoardContainer>
+    <RoundDivMedium>
+      <NoticeBoardContainer>
+        <Heading2>Notice Board</Heading2>
+        <NoticesMenuBar>
+          <NoticeboardInfoDiv>
+            <Heading3>{currentBoard.title}</Heading3>
+            <Bodytext>{currentBoard.description}</Bodytext>
+          </NoticeboardInfoDiv>
+          <PrimaryButton>Post a Notice</PrimaryButton>
+        </NoticesMenuBar>
+        <NoticesContainer>
+          {currentBoard.notices.length
+            ? currentBoard.notices.map((notice, i) => (
+                <NoticeEl
+                  key={currentBoard.title + '-Notice-' + i}
+                  notice={notice}
+                  fullNotice={false}
+                ></NoticeEl>
+              ))
+            : null}
+        </NoticesContainer>
+      </NoticeBoardContainer>
+    </RoundDivMedium>
   );
 };
 
