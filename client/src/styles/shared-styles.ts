@@ -8,28 +8,28 @@ import * as palette from './variables';
 // Text-styles
 export const DetailText = styled.p`
   font-size: ${palette.DETAIL_SIZE};
-  color: ${palette.TEXT_COLOR_DETAIL_GREY};
+  color: ${palette.DETAIL_TC};
 
   font-family: 'Nunito', sans-serif;
   font-weight: 300;
 
   a {
     text-decoration: none;
-    color: ${palette.TEXT_COLOR_DETAIL_ACCENT};
+    color: ${palette.DETAIL_ACCENT};
     font-weight: bold;
   }
 `;
 
 export const Heading1 = styled.h1`
   font-size: ${palette.HEADING_1_SIZE};
-  color: ${palette.TEXT_COLOR_DARK_MAIN};
+  color: ${palette.TEXT_COLOR_MAIN};
   text-align: center;
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-weight: 500;
 `;
 
 export const Heading2 = styled.h2`
-  color: ${palette.TEXT_COLOR_DARK_MAIN};
+  color: ${palette.TEXT_COLOR_MAIN};
   font-size: ${palette.HEADING_2_SIZE};
   margin: 1rem;
   padding: 0;
@@ -39,7 +39,7 @@ export const Heading2 = styled.h2`
 `;
 
 export const Heading3 = styled.h3`
-  color: ${palette.TEXT_COLOR_DARK_ACCENT};
+  color: ${palette.TEXT_COLOR_ACCENT};
   font-size: ${palette.HEADING_3_SIZE};
   margin: 0;
   padding: 0;
@@ -60,7 +60,7 @@ export const Heading4 = styled.h4`
 
 export const Bodytext = styled.p`
   font-size: ${palette.BODYTEXT_SIZE};
-  color: ${palette.TEXT_COLOR_DARK_MAIN};
+  color: ${palette.TEXT_COLOR_MAIN};
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
@@ -68,7 +68,7 @@ export const Bodytext = styled.p`
 
 export const DarkBodyText = styled.p`
   font-size: ${palette.BODYTEXT_SIZE};
-  color: #304f42;
+  color: ${palette.TEXT_COLOR_MAIN};
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
@@ -163,8 +163,8 @@ export const FormStyle = styled.form`
 
 // DIVS
 
-export const RoundDivSmall = styled.div`
-  background: ${palette.BG_COLOR_ROUND_DIV_MEDIUM};
+export const RoundDivMedium = styled.div`
+  background: ${palette.BG_ROUND_DIV_MEDIUM};
   border-radius: 2rem;
   max-width: 44rem;
   width: 100%;
@@ -176,8 +176,8 @@ export const RoundDivSmall = styled.div`
   box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.25);
 `;
 
-export const RoundDivMedium = styled.div`
-  background: ${palette.BG_COLOR_ROUND_DIV_MEDIUM};
+export const RoundDivLarge = styled.div`
+  background: ${palette.BG_ROUND_DIV_LARGE};
   border-radius: 2rem;
   width: 100%;
   max-width: 62rem;

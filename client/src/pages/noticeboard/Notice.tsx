@@ -15,18 +15,23 @@ import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment, Notice } from '../../types';
 import CommentEl from './Comment';
 import {
-  BG_COLOR_ROUND_DIV_LIGHT,
+  BG_ROUND_DIV_SMALL,
+  BG_ROUND_DIV_LARGE,
   SECONDARY_BUTTON_BG,
   SECONDARY_BUTTON_SIZE,
   SECONDARY_BUTTON_TC,
+  TEXT_COLOR_MAIN,
+  NOTICE_BODYTEXT_SIZE,
 } from '../../styles/variables';
 
-const NoticeDiv = styled.div`
+const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  background: ${BG_COLOR_ROUND_DIV_LIGHT};
+  background: ${props =>
+    props.$fullNotice ? BG_ROUND_DIV_LARGE : BG_ROUND_DIV_SMALL};
   padding: 1rem;
+
   justify-content: space-between;
   height: min-content;
   margin: 0.3rem;
@@ -65,12 +70,12 @@ const Fade = styled.div`
   grid-row-start: 1;
   grid-row-end: 3;
 
-  background-image: linear-gradient(transparent, ${BG_COLOR_ROUND_DIV_LIGHT});
+  background-image: linear-gradient(transparent, ${BG_ROUND_DIV_SMALL});
 `;
 
-export const DarkBodyTextGrid = styled.p`
-  font-size: 1.7rem;
-  color: #304f42;
+export const BodyTextGrid = styled.p`
+  font-size: ${NOTICE_BODYTEXT_SIZE};
+  color: ${TEXT_COLOR_MAIN};
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
@@ -78,6 +83,7 @@ export const DarkBodyTextGrid = styled.p`
   grid-row-start: 1;
   grid-row-end: 2;
   grid-column-start: 1;
+  padding-bottom: 0.5rem;
 `;
 
 type NoticeProps = {
@@ -138,7 +144,7 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
   };
 
   return (
-    <NoticeDiv>
+    <NoticeDiv $fullNotice={fullNotice}>
       <Heading4>{notice.title}</Heading4>
       <DetailText>
         <Link to={'/profile/' + notice.userID}>
@@ -172,10 +178,10 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
         </>
       ) : (
         <FadedContentGrid>
-          <DarkBodyTextGrid>
+          <BodyTextGrid>
             {notice.notice.slice(0, 100) +
               (notice.notice.length > 100 ? '..' : '')}
-          </DarkBodyTextGrid>
+          </BodyTextGrid>
           <Fade></Fade>
           <Link to={'/view-notice/' + notice.noticeID}>Show Notice</Link>
         </FadedContentGrid>

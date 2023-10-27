@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {
   Heading2,
   Bodytext,
-  RoundDivMedium,
+  RoundDivLarge,
   Padding2Rem,
 } from '../../styles/shared-styles';
 
@@ -39,7 +39,7 @@ const BasicFrame = ({ topic }: BasicFrameProps) => {
   )?.textContent;
 
   return (
-    <RoundDivMedium>
+    <RoundDivLarge>
       <ContentFrame>
         <Padding2Rem>
           {Title ? <Heading2>{Title}</Heading2> : null}
@@ -50,7 +50,7 @@ const BasicFrame = ({ topic }: BasicFrameProps) => {
             : null}
         </Padding2Rem>
       </ContentFrame>
-    </RoundDivMedium>
+    </RoundDivLarge>
   );
 };
 

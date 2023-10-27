@@ -7,7 +7,7 @@ import {
   Heading2,
   Heading3,
   PrimaryButton,
-  RoundDivMedium,
+  RoundDivLarge,
 } from '../../styles/shared-styles';
 import NoticeEl from './Notice';
 
@@ -71,7 +71,7 @@ const Noticeboard = () => {
   const [currentBoard, setCurrentBoard] = useState(BasicBoard);
 
   return (
-    <RoundDivMedium>
+    <RoundDivLarge>
       <NoticeBoardContainer>
         <Heading2>Notice Board</Heading2>
         <NoticesMenuBar>
@@ -93,7 +93,7 @@ const Noticeboard = () => {
             : null}
         </NoticesContainer>
       </NoticeBoardContainer>
-    </RoundDivMedium>
+    </RoundDivLarge>
   );
 };
 

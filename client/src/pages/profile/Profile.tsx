@@ -4,7 +4,7 @@ import {
   Bodytext,
   Heading2,
   Heading3,
-  RoundDivMedium,
+  RoundDivLarge,
 } from '../../styles/shared-styles';
 import { Profile } from '../../types';
 import styled from 'styled-components';
@@ -49,7 +49,7 @@ const ProfileElement = () => {
   return (
     <>
       {profile ? (
-        <RoundDivMedium>
+        <RoundDivLarge>
           <Heading2>Profiles</Heading2>
           <ResponsiveContainer>
             <ImageContainer>
@@ -75,7 +75,7 @@ const ProfileElement = () => {
               ) : null}
             </div>
           </ResponsiveContainer>
-        </RoundDivMedium>
+        </RoundDivLarge>
       ) : (
         <Heading2> Profile does not exist </Heading2>
       )}
