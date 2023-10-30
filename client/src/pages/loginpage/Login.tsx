@@ -12,6 +12,7 @@ import {
   WarningText,
   SecondaryButton,
   FormStyle,
+  PaddingEl,
 } from '../../styles/shared-styles';
 
 /**
@@ -46,7 +47,9 @@ const Login = () => {
     <FullWidthDiv>
       <RoundDivMedium>
         <Heading2>Login</Heading2>
-        <Bodytext>Here you can log in to the ASS-website.</Bodytext>
+        <PaddingEl>
+          <Bodytext>Here you can log in to the ASS-website.</Bodytext>
+        </PaddingEl>
         <FormStyle onSubmit={onSubmit}>
           {noMatch ? (
             <WarningText>Email or password was not valid</WarningText>

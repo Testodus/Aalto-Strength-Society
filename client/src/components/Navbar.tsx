@@ -34,7 +34,7 @@ const FullWidthDiv = styled.div`
 
 const SecondaryNavbarContainer = styled.nav`
   max-width: 62rem;
-  widht: max-content;
+  width: max-content;
   height: max-content;
   display: flex;
   justify-content: center;
@@ -92,7 +92,7 @@ const NavButton = styled.button`
 
   @media only screen and (min-width: 640px) {
     display: none;
-    widht: 0;
+    width: 0;
     height: 0;
   }
 `;

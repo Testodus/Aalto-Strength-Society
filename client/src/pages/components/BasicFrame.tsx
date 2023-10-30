@@ -5,7 +5,7 @@ import {
   Heading2,
   Bodytext,
   RoundDivLarge,
-  Padding2Rem,
+  PaddingEl,
 } from '../../styles/shared-styles';
 
 const ContentFrame = styled.div`
@@ -41,14 +41,14 @@ const BasicFrame = ({ topic }: BasicFrameProps) => {
   return (
     <RoundDivLarge>
       <ContentFrame>
-        <Padding2Rem>
+        <PaddingEl>
           {Title ? <Heading2>{Title}</Heading2> : null}
           {TextContent?.length
             ? TextContent.map((text, i) => (
                 <Bodytext key={'basic-text-' + i}>{text}</Bodytext>
               ))
             : null}
-        </Padding2Rem>
+        </PaddingEl>
       </ContentFrame>
     </RoundDivLarge>
   );

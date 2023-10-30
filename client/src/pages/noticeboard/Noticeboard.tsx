@@ -49,8 +49,8 @@ const NoticesContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   grid-gap: 2rem;
-  max-widht: 50rem;
-  widht: 100%;
+  max-width: 50rem;
+  width: 100%;
   margin: 2rem;
   padding-bottom: 1rem;
 

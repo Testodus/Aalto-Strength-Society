@@ -72,6 +72,7 @@ export const WarningText = styled.p`
 
   font-family: 'Nunito', sans-serif;
   font-weight: bold;
+  margin: 0;
 `;
 
 // Buttons
@@ -119,6 +120,8 @@ export const FormLabel = styled.label`
   font-family: 'Nunito', sans-serif;
   font-weight: 300;
   margin: 0.1rem;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const FormTextarea = styled.textarea`
@@ -129,20 +132,24 @@ export const FormTextarea = styled.textarea`
   min-height: 2rem;
   resize: both;
   overflow: hidden;
+  width: 90%;
 `;
 
-export const FormInput = styled.textarea`
+export const FormInput = styled.input`
   border: 1px solid #3d3e8a;
   border-radius: 0.5rem;
-  margin: 0.3rem;
-  padding: 0.3rem;
+  padding: 0rem 0.4rem;
   overflow: hidden;
+  max-width: 15rem;
+  width: 100%;
+  height: 2rem;
 `;
 
 export const FormInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0.8rem;
+  margin: 0.7rem;
+  width: 100%;
 `;
 
 export const FormStyle = styled.form`
@@ -150,7 +157,8 @@ export const FormStyle = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: min-content;
+  widht: 100%;
+  max-width: 30rem;
 `;
 
 // DIVS
@@ -160,12 +168,17 @@ export const RoundDivMedium = styled.div`
   border-radius: 2rem;
   max-width: 44rem;
   width: 100%;
-  padding: 0.5rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.25);
+  @media only screen and (max-width: 640px) {
+    width: 90%;
+    margin: 1.5%;
+    padding: 0.5rem;
+  }
 `;
 
 export const RoundDivLarge = styled.div`
@@ -174,7 +187,7 @@ export const RoundDivLarge = styled.div`
   width: 100%;
   max-width: 62rem;
   margin: 0.2rem;
-  padding: 0.5rem;
+  padding: 1.5rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,8 +195,9 @@ export const RoundDivLarge = styled.div`
   box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.25);
 
   @media only screen and (max-width: 640px) {
-    widht: 97%;
+    width: 97%;
     margin: 1.5%;
+    padding: 0.5rem;
   }
 `;
 
@@ -196,10 +210,13 @@ export const FullWidthDiv = styled.div`
   align-items: center;
   flex-direction: column;
   @media only screen and (max-width: 500px) {
-    padding: 0rem 1rem;
+    padding: 0rem;
   }
 `;
 
-export const Padding2Rem = styled.div`
+export const PaddingEl = styled.div`
   padding: 2rem;
+  @media only screen and (max-width: 500px) {
+    padding: 1rem;
+  }
 `;

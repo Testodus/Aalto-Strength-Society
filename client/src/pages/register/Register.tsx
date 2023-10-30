@@ -12,6 +12,7 @@ import {
   FormLabel,
   DetailText,
   SecondaryButton,
+  PaddingEl,
 } from '../../styles/shared-styles';
 
 /**
@@ -62,7 +63,12 @@ const Register = () => {
     <FullWidthDiv>
       <RoundDivMedium>
         <Heading2>Register</Heading2>
-        <Bodytext>Create a new user.</Bodytext>
+        <PaddingEl>
+          <Bodytext>
+            Create a new account. Registered users get access to discuss in the
+            noticeboard.
+          </Bodytext>
+        </PaddingEl>
         <FormStyle onSubmit={onSubmit}>
           {flawedFields.length ? (
             <WarningText>
@@ -71,7 +77,9 @@ const Register = () => {
             </WarningText>
           ) : null}
           <FormInputContainer>
-            <FormLabel htmlFor="email">Email</FormLabel>
+            <FormLabel htmlFor="email">
+              Email<WarningText>*</WarningText>
+            </FormLabel>
             <FormInput
               id="email"
               value={inputValues.email}
@@ -81,7 +89,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="username">Username</FormLabel>
+            <FormLabel htmlFor="username">
+              Username<WarningText>*</WarningText>
+            </FormLabel>
             <FormInput
               id="username"
               value={inputValues.username}
@@ -91,7 +101,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="password">Password</FormLabel>
+            <FormLabel htmlFor="password">
+              Password<WarningText>*</WarningText>
+            </FormLabel>
             <FormInput
               id="password"
               value={inputValues.password}
