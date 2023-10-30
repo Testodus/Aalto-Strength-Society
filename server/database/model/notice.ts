@@ -2,27 +2,27 @@ import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../util/db';
 
 // eslint-disable-next-line
-class User extends Model { }
+class Notice extends Model { }
 
-User.init(
+Notice.init(
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    title: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    password: {
-      // Password as hash
+    text: {
+      // Kind of a description of a notice
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    email: {
+    picture: {
+      // What is the datatype of this? Just a string pointing to an externally hosted picture URL?
       type: DataTypes.TEXT,
-      allowNull: false,
     },
   },
   {
@@ -33,4 +33,4 @@ User.init(
   }
 );
 
-export { User };
+export { Notice };
