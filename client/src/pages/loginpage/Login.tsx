@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  DarkBodyText,
+  Bodytext,
   DetailText,
   FullWidthDiv,
   Heading2,
@@ -22,10 +22,10 @@ const Login = () => {
   const [noMatch, setNoMatch] = useState(false);
   const [inputValues, setInputValues] = useState({
     password: '',
-    username: '',
+    email: '',
   });
 
-  const onSubmit = (event: React.SyntheticEvent) => {
+  const onSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     const target = event.target as typeof event.target & {
@@ -36,7 +36,7 @@ const Login = () => {
 
     if (validate) {
       setNoMatch(false);
-      setInputValues({ username: '', password: '' });
+      setInputValues({ email: '', password: '' });
     } else {
       setNoMatch(true);
     }
@@ -46,18 +46,18 @@ const Login = () => {
     <FullWidthDiv>
       <RoundDivMedium>
         <Heading2>Login</Heading2>
-        <DarkBodyText>Here you can log in to the ASS-website.</DarkBodyText>
+        <Bodytext>Here you can log in to the ASS-website.</Bodytext>
         <FormStyle onSubmit={onSubmit}>
           {noMatch ? (
-            <WarningText>Username or password was not valid</WarningText>
+            <WarningText>Email or password was not valid</WarningText>
           ) : null}
           <FormInputContainer>
-            <FormLabel htmlFor="username">Username</FormLabel>
+            <FormLabel htmlFor="email">email</FormLabel>
             <FormInput
-              id="username"
-              value={inputValues.username}
+              id="email"
+              value={inputValues.email}
               onChange={e =>
-                setInputValues({ ...inputValues, username: e.target.value })
+                setInputValues({ ...inputValues, email: e.target.value })
               }
             />
           </FormInputContainer>
