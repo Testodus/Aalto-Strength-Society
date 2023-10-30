@@ -51,8 +51,8 @@ export type NoticeBoard = {
 export type Profile = {
   userID: string;
   username: string;
-  favoriteLift?: string;
-  contactInformation?: string;
+  favouriteLift?: string;
+  contactInfo?: string;
   email: string;
-  profilePictureSrc?: string;
+  profilePicture?: string;
 };
