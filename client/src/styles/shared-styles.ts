@@ -215,7 +215,7 @@ export const FullWidthDiv = styled.div`
 `;
 
 export const PaddingEl = styled.div`
-  padding: 2rem;
+  padding: 1.5rem 1rem;
   @media only screen and (max-width: 500px) {
     padding: 1rem;
   }
