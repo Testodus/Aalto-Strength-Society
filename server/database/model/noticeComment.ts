@@ -21,7 +21,7 @@ NoticeComment.init(
     sequelize,
     underscored: true,
     timestamps: true,
-    modelName: 'note',
+    modelName: 'noticeComment',
   }
 );
 

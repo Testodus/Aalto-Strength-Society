@@ -12,16 +12,16 @@ User.init(
       autoIncrement: true,
     },
     username: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
       // Password as hash
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -29,7 +29,7 @@ User.init(
     sequelize,
     underscored: true,
     timestamps: true,
-    modelName: 'note',
+    modelName: 'user',
   }
 );
 

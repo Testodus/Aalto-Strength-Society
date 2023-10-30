@@ -12,7 +12,7 @@ Notice.init(
       autoIncrement: true,
     },
     title: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     text: {
@@ -29,7 +29,7 @@ Notice.init(
     sequelize,
     underscored: true,
     timestamps: true,
-    modelName: 'note',
+    modelName: 'notice',
   }
 );
 
