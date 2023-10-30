@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import {
-  DarkBodyText,
+  Bodytext,
   DetailText,
   Heading4,
   Heading1,
@@ -10,7 +10,11 @@ import {
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import logo from './assets/ass.jpg';
-import { BG_COLOR_FOOTER, BG_COLOR_HEADER, BG_COLOR_MAIN } from './styles/variables';
+import {
+  BG_COLOR_FOOTER,
+  BG_COLOR_HEADER,
+  BG_COLOR_MAIN,
+} from './styles/variables';
 
 const AppHeader = styled.header`
   display: flex;
@@ -110,11 +114,11 @@ function App() {
       <AppFooter>
         <FooterNode>
           <Heading4>Aalto Strenght Society</Heading4>
-          <DarkBodyText>
+          <Bodytext>
             See you at the gym!
             <br />
             Keep Lifting!
-          </DarkBodyText>
+          </Bodytext>
         </FooterNode>
         <FooterNode>
           <DetailText>Copyright is....</DetailText>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DetailText, DarkBodyText } from '../../styles/shared-styles';
+import { DetailText, Bodytext } from '../../styles/shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment } from '../../types';
@@ -57,7 +57,7 @@ const CommentEl = ({ comment }: CommentProps) => {
         </Link>{' '}
         {getDate(comment.timeStamp)}
       </DetailText>
-      <DarkBodyText>{comment.comment}</DarkBodyText>
+      <Bodytext>{comment.comment}</Bodytext>
     </CommentDiv>
   );
 };

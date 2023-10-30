@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   Heading4,
   DetailText,
-  DarkBodyText,
+  Bodytext,
   SecondaryButton,
   FormLabel,
   FormInputContainer,
@@ -154,7 +154,7 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
       </DetailText>
       {fullNotice ? (
         <>
-          <DarkBodyText>{notice.notice}</DarkBodyText>
+          <Bodytext>{notice.notice}</Bodytext>
           {comments.map((comment, i) => (
             <CommentEl
               key={'comment-' + comment.commentID + i}

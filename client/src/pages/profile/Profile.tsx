@@ -54,23 +54,23 @@ const ProfileElement = () => {
           <ResponsiveContainer>
             <ImageContainer>
               <Heading3>
-                {profile.profilePictureSrc
-                  ? profile.profilePictureSrc
+                {profile.profilePicture
+                  ? profile.profilePicture
                   : 'No profile picture set'}
               </Heading3>
             </ImageContainer>
             <div>
               <Heading3>{profile.username}</Heading3>
-              {profile.contactInformation ? (
+              {profile.contactInfo ? (
                 <Bodytext>
                   <b>Contact information: </b>
-                  {profile.contactInformation}
+                  {profile.contactInfo}
                 </Bodytext>
               ) : null}
-              {profile.favoriteLift ? (
+              {profile.favouriteLift ? (
                 <Bodytext>
                   <b>{profile.username + '´s favourite lift: '}</b>
-                  {profile.favoriteLift}
+                  {profile.favouriteLift}
                 </Bodytext>
               ) : null}
             </div>

@@ -66,14 +66,6 @@ export const Bodytext = styled.p`
   font-weight: 300;
 `;
 
-export const DarkBodyText = styled.p`
-  font-size: ${palette.BODYTEXT_SIZE};
-  color: ${palette.TEXT_COLOR_MAIN};
-
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 300;
-`;
-
 export const WarningText = styled.p`
   font-size: ${palette.DETAIL_SIZE};
   color: #a83d2f;
