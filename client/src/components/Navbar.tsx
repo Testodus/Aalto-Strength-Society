@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
+import {
+  BG_COLOR_NAVIGATION,
+  TEXT_COLOR_NAVIGATION,
+  colors,
+} from '../styles/variables';
 
 const NavbarContainer = styled.nav`
   max-width: 62rem;
@@ -12,7 +17,7 @@ const NavbarContainer = styled.nav`
 
   a {
     text-decoration: none;
-    color: #304f42;
+    color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
     font-size: 2rem;
 
@@ -42,7 +47,7 @@ const SecondaryNavbarContainer = styled.nav`
 
   a {
     text-decoration: none;
-    color: #304f42;
+    color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
     font-size: 1.6rem;
 
@@ -57,7 +62,7 @@ const SecondaryNavbarContainer = styled.nav`
 
 const NavContainer = styled.div`
   width: 100%;
-  background: #f0e2cc;
+  background: ${BG_COLOR_NAVIGATION};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,7 +86,7 @@ const NavButton = styled.button`
   font-weight: bold;
   border: none;
   font-size: 1.5rem;
-  background: #f4f4f4;
+  background: ${colors.WHITE};
   border-radius: 0.5rem;
   padding: 1rem 1.5rem;
   max-width: 8rem;

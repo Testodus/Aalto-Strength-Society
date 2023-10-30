@@ -4,6 +4,7 @@ export const colors = {
   ACCENT_MINT_TEXT: '#327B67',
   SAND: '#F0E2CC',
   DARK_BLUE: '#14436B',
+  DARK_GREEN: '#304f42',
 
   WHITE: '#F3F3F3',
   REAL_WHITE: '#FFFFFF',
@@ -38,11 +39,13 @@ export const PRIMARY_BUTTON_TC = colors.REAL_WHITE;
 // TEXT COLORS
 export const TEXT_COLOR_MAIN = colors.BLACK;
 export const TEXT_COLOR_ACCENT = colors.ACCENT_MINT_TEXT;
+export const TEXT_COLOR_NAVIGATION = colors.DARK_GREEN;
 
 // BG COLORS FOR FRAME
 export const BG_COLOR_HEADER = colors.WHITE;
 export const BG_COLOR_MAIN = colors.LIGHT_GREEN;
 export const BG_COLOR_FOOTER = colors.SAND;
+export const BG_COLOR_NAVIGATION = colors.SAND;
 
 // ROUNDED DIV CONTAINERS (BG_COLORS)
 export const BG_ROUND_DIV_SMALL = colors.SAND; // noticeboard's notice containers
