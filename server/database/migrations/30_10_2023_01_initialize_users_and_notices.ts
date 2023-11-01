@@ -1,7 +1,8 @@
 import { DataTypes } from 'sequelize';
+import { migrationQueryInterface } from 'database/util/databaseTypes';
 
 module.exports = {
-  up: async ({ context: queryInterface }) => {
+  up: async ({ context: queryInterface }: migrationQueryInterface) => {
     await queryInterface.createTable('users', {
       id: {
         type: DataTypes.INTEGER,
@@ -48,7 +49,7 @@ module.exports = {
       references: { model: 'users', key: 'id' },
     });
   },
-  down: async ({ context: queryInterface }) => {
+  down: async ({ context: queryInterface }: migrationQueryInterface) => {
     await queryInterface.dropTable('notes');
     await queryInterface.dropTable('users');
   },

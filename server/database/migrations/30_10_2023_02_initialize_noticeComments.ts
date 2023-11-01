@@ -1,7 +1,8 @@
 import { DataTypes } from 'sequelize';
+import { migrationQueryInterface } from 'database/util/databaseTypes';
 
 module.exports = {
-  up: async ({ context: queryInterface }) => {
+  up: async ({ context: queryInterface }: migrationQueryInterface) => {
     await queryInterface.createTable('notice_comments', {
       id: {
         type: DataTypes.INTEGER,
@@ -26,7 +27,7 @@ module.exports = {
       references: { model: 'notices', key: 'id' },
     });
   },
-  down: async ({ context: queryInterface }) => {
+  down: async ({ context: queryInterface }: migrationQueryInterface) => {
     await queryInterface.dropTable('note_comments');
   },
 };
