@@ -1,4 +1,4 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, Sequelize } from 'sequelize';
 import { sequelize } from '../util/db';
 
 // eslint-disable-next-line
@@ -12,15 +12,19 @@ NoticeComment.init(
       autoIncrement: true,
     },
     text: {
-      // The only attribute defined in the model. Other ones are added automatically by sequelize
       type: DataTypes.TEXT,
       allowNull: false,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.fn('NOW'), // Automatic timestamp with the Sequelize function. The idea is that you dont give this attribute a value and it defaults to now
     },
   },
   {
     sequelize,
     underscored: true,
-    timestamps: true,
+    timestamps: false,
     modelName: 'noticeComment',
   }
 );
