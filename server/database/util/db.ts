@@ -13,7 +13,7 @@ const sequelize = new Sequelize(DATABASE_URL, {
 
 const migrationConf = {
   migrations: {
-    glob: 'migrations/*.ts',
+    glob: '../migrations/*.ts',
   },
   storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),
   context: sequelize.getQueryInterface(),

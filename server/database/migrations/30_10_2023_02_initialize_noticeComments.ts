@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
 import { migrationQueryInterface } from 'database/util/databaseTypes';
 
 module.exports = {
@@ -12,6 +12,11 @@ module.exports = {
       text: {
         type: DataTypes.TEXT,
         allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.fn('NOW'), // Automatic timestamp with the Sequelize function. The idea is that you dont give this attribute a value and it defaults to now
       },
     });
     // Define the FK to user.id
