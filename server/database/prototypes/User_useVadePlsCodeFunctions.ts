@@ -6,6 +6,7 @@ import {
   getAllUsers,
   updateUserEmail,
   updateUserPicture,
+  getUsersNotices,
 } from '../../src/vadePlsCode';
 
 const testUser: UserCreationAttributes = {
@@ -61,11 +62,17 @@ async function testUpdatingProfilePicture() {
   await updateUserPicture(2, 'www.imgur.com/cardiobunny.jpeg');
 }
 
+async function testGetUsersNotices() {
+  await getUsersNotices(1); // liftingDude => Favorite lift
+  await getUsersNotices(2); // cardioBunny => Any bulking recipe tips?
+}
+
 // ---- Run the test functions ----
-testGetAllUsers();
+//testGetAllUsers();
 
 //testUserCreation();
 //testGettingUserByEmail();
 //testGetUser();
 //testUpdatingEmail();
 //testUpdatingProfilePicture();
+testGetUsersNotices();

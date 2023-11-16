@@ -4,6 +4,8 @@ import {
   NoticeCreationAttributes,
   UserAttributes,
   UserCreationAttributes,
+  NoticeCommentAttributes,
+  NoticeCommentCreationAttributes,
 } from 'database/util/databaseTypes';
 
 // ---------- USER --------------
@@ -46,6 +48,17 @@ export const getUser = async (id: number) => {
   return userToJSON;
 };
 
+// Gets user by email
+// TO-DO: test this
+export const getUserByUsername = async (username: string) => {
+  const userByEmail = await User.findOne({
+    where: {
+      username: username,
+    },
+  });
+  return userByEmail;
+};
+
 // Gets all users and their full details
 export const getAllUsers = async () => {
   const users = await User.findAll();
@@ -76,8 +89,27 @@ export const updateUserPicture = async (id: number, newPicture: string) => {
     user.profilePicture = newPicture;
     await user.save();
     console.log('new picture: ', user.profilePicture);
+    // Return the updated user
+    return user;
   } else {
     return Error('User does not exist, cant update profile picture');
+  }
+};
+
+// Returns the user object and the notices she/he has posted
+export const getUsersNotices = async (userId: number) => {
+  const user = await User.findByPk(userId, {
+    include: [
+      {
+        model: Notice,
+      },
+    ],
+  });
+  if (user) {
+    console.log(JSON.stringify(user, null, 2));
+    return user;
+  } else {
+    return Error('User does not exist');
   }
 };
 
@@ -89,8 +121,11 @@ export const createNotice = async (newNotice: NoticeCreationAttributes) => {
   return notice;
 };
 
-export const getNoticeByID = async () => {
-  // TO-DO
+export const getNoticeByID = async (id: number) => {
+  const noticeByID = await Notice.findByPk(id);
+  const noticeToJSON = noticeByID?.toJSON();
+  console.log(noticeToJSON);
+  return noticeToJSON;
 };
 
 export const getAllNotices = async () => {
@@ -101,6 +136,61 @@ export const getAllNotices = async () => {
   return prunedNotices;
 };
 
-export const getCommentsInNotice = async () => {
-  // TO-DO
+// Change or add a picture to the notice
+// (Not sure if this is needed but its here. Can be made one for changing the text)
+export const updateNoticePicture = async (id: number, newPicture: string) => {
+  const notice = await Notice.findByPk(id);
+  if (notice) {
+    console.log('old picture: ', notice.picture);
+    notice.picture = newPicture;
+    await notice.save();
+    console.log('new picture: ', notice.picture);
+    // Return the updated notice
+    return notice;
+  } else {
+    return Error('Notice does not exist, cant update picture');
+  }
+};
+
+export const getCommentsInNotice = async (noticeId: number) => {
+  const notice = await Notice.findByPk(noticeId, {
+    include: [
+      {
+        model: NoticeComment,
+      },
+    ],
+  });
+  if (notice) {
+    console.log(JSON.stringify(notice, null, 2));
+    return notice;
+  } else {
+    return Error('Notice does not exist');
+  }
+};
+
+// -------- NOTICE COMMENTS ------------
+export const createNoticeComment = async (
+  newNoticeComment: NoticeCommentCreationAttributes
+) => {
+  console.log('newNoticeComment: ', newNoticeComment);
+  const noticeComment = await NoticeComment.create(newNoticeComment);
+  console.log('noticeComment', noticeComment);
+  return noticeComment;
+};
+
+export const getNoticeCommentByID = async (id: number) => {
+  const noticeCommentByID = await NoticeComment.findByPk(id);
+  const noticeCommentToJSON = noticeCommentByID?.toJSON();
+  console.log(noticeCommentToJSON);
+  return noticeCommentToJSON;
+};
+
+export const getAllNoticeComments = async () => {
+  const noticeComments = await NoticeComment.findAll();
+  const prunedNoticeComments = noticeComments.map(
+    noticeComment => noticeComment.dataValues
+  );
+  console.log(prunedNoticeComments);
+  // returns the current data values of the users in an array
+  return prunedNoticeComments;
 };

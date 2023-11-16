@@ -1,5 +1,11 @@
 import { NoticeCreationAttributes } from 'database/util/databaseTypes';
-import { createNotice, getAllNotices } from '../../src/vadePlsCode';
+import {
+  createNotice,
+  getAllNotices,
+  getNoticeByID,
+  updateNoticePicture,
+  getCommentsInNotice,
+} from '../../src/vadePlsCode';
 
 // --- Create the test data ---
 const testNotice: NoticeCreationAttributes = {
@@ -24,6 +30,23 @@ async function testGetAllNotices() {
   await getAllNotices();
 }
 
+async function testGetNoticeById() {
+  await getNoticeByID(1); // Favorite lift?
+  await getNoticeByID(2); // Any bulking recipe tips?
+}
+
+async function testUpdateNoticePicture() {
+  await updateNoticePicture(1, 'www.imgur.com/coolLift.png'); // Favorite lift?
+}
+
+async function testGetCommentsInNotice() {
+  await getCommentsInNotice(1); // Favorite lift? => Romanian deadlifts have to be mine
+}
+
 // ---- Run the test functions ----
+//testGetAllNotices();
+
 //testNoticeCreation();
-testGetAllNotices();
+//testGetNoticeById();
+//testUpdateNoticePicture();
+testGetCommentsInNotice();
