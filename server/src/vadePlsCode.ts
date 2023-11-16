@@ -9,12 +9,13 @@ export const createUser = async (newUser: UserCreationAttributes) => {
   // Takes userObject as input
   // Creaters user in database. Crerates id for user.
   // Returns userObject with fields: id, email
-  console.log(newUser);
+  console.log('newUser', newUser);
   const newUserInDB: UserAttributes = await User.create(newUser);
   const createdUser = {
     userID: newUserInDB.id,
     email: newUserInDB.email,
   };
+  console.log('createdUser', createdUser);
   return createdUser;
 };
 

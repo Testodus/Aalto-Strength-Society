@@ -7,8 +7,15 @@ const testUser: UserCreationAttributes = {
   email: 'liftingdude@gmail.com',
 };
 
+const testUserBunny: UserCreationAttributes = {
+  username: 'cardioBunny',
+  password: 'hash600',
+  email: 'cardiobunny@gmail.com',
+};
+
 async function testUserCreation() {
-  console.log(await createUser(testUser));
+  //console.log(await createUser(testUser));
+  console.log(await createUser(testUserBunny));
 }
 
 testUserCreation();

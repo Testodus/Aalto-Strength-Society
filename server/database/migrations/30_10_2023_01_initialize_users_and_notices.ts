@@ -23,22 +23,22 @@ module.exports = {
         allowNull: false,
         unique: true, // Email must be unique
       },
-      profilePicture: {
+      profile_picture: {
         type: DataTypes.STRING, // Optional profile picture URL pointing to some external image hosting website
       },
-      typeOfLifting: {
+      type_of_lifting: {
         type: DataTypes.STRING, // E.g. Are they interested in powerlifting, crossfit, weightlifting, bodybuilding etc.
       },
-      favouriteLift: {
+      favourite_lift: {
         type: DataTypes.STRING, // E.g. Bench, squat, OHP, hammer curl
       },
-      favouriteGym: {
+      favourite_gym: {
         type: DataTypes.STRING, // E.g. Unisport Otaniemi, Liikku A bloc, Unisport Meilahti
       },
-      favouriteGymTime: {
+      favourite_gym_time: {
         type: DataTypes.STRING, // E.g. Usually from 18-20 in weekdays, or Sundays 13-15
       },
-      contactInfo: {
+      contact_info: {
         type: DataTypes.STRING, // E.g. Telegram nick: @lifterDude99
       },
     });
@@ -60,7 +60,7 @@ module.exports = {
       picture: {
         type: DataTypes.TEXT, // The picture for the notice is optional
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: DataTypes.DATE,
         defaultValue: Sequelize.fn('NOW'), // Automatic timestamp with the Sequelize function. The idea is that you dont give this attribute a value and it defaults to now
