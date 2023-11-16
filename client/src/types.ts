@@ -30,14 +30,29 @@ export type Notice = {
   title: string;
   notice: string;
   imageSrc?: string;
+  noticeID: string;
+  comments: Array<Comment>;
+};
+
+export type Comment = {
+  userID: string;
+  timeStamp: number;
+  comment: string;
+  commentID: string;
+  noticeID: string;
 };
 
 export type NoticeBoard = {
   title: string;
   notices: Array<Notice>;
+  description: string;
 };
 
 export type Profile = {
   userID: string;
   username: string;
+  favouriteLift?: string;
+  contactInfo?: string;
+  email: string;
+  profilePicture?: string;
 };

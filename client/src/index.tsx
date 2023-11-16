@@ -18,8 +18,9 @@ import {
   ProfileElement,
   HomePage,
   Noticeboard,
+  ViewNotice,
 } from './pages/pages';
-import { profileLoader } from './loaders/loaders';
+import { profileLoader, noticeLoader } from './loaders/loaders';
 
 /**
  * This is the router configuration:
@@ -39,6 +40,11 @@ const RoutesJSX = (
         path={'profile/:userID'}
         loader={profileLoader}
         element={<ProfileElement />}
+      />
+      <Route
+        path={'view-notice/:noticeID'}
+        loader={noticeLoader}
+        element={<ViewNotice />}
       />
       <Route path={'board'} element={<Board />} />
       <Route path={'noticeboard'} element={<Noticeboard />} />

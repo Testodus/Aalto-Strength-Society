@@ -45,9 +45,3 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-
-## Colors used
-
-White #F2F2F2
-Black #151515
-

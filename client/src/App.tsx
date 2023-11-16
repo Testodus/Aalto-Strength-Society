@@ -1,9 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { DarkBodyText, DetailText, Heading4, Heading1 } from './shared-styles';
+import {
+  Bodytext,
+  DetailText,
+  Heading4,
+  Heading1,
+} from './styles/shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import logo from './assets/ass.jpg';
+import {
+  BG_COLOR_FOOTER,
+  BG_COLOR_HEADER,
+  BG_COLOR_MAIN,
+} from './styles/variables';
 
 const AppHeader = styled.header`
   display: flex;
@@ -11,6 +22,7 @@ const AppHeader = styled.header`
   justify-content: space-around;
   padding: 2rem 10% 2rem 10%;
   align-items: center;
+  background: ${BG_COLOR_HEADER};
 
   @media only screen and (max-width: 640px) {
     padding: 0rem;
@@ -28,7 +40,11 @@ const FrameDiv = styled.div`
   justify-content: center;
   align-items: start;
   padding: 3rem 0rem 3rem 0rem;
-  background: #151515;
+  background: ${BG_COLOR_MAIN};
+
+  box-shadow:
+    0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.1) inset,
+    0 -0.3rem 0.6rem 0 rgba(0, 0, 0, 0.1) inset;
 
   @media only screen and (max-width: 640px) {
     padding: 2rem 0rem 2rem 0rem;
@@ -36,9 +52,8 @@ const FrameDiv = styled.div`
 `;
 
 const AppFooter = styled.footer`
-  background: black;
   min-height: 15vh;
-  background: #f2f2f2;
+  background: ${BG_COLOR_FOOTER};
   margin: 0;
   padding: 0;
 
@@ -58,15 +73,6 @@ const FooterNode = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 `;
-
-const ImageContainer = styled.svg`
-  height: 100px;
-  width: 100px;
-  color: grey;
-  background: grey;
-  flex-shrink: 0;
-`;
-
 /***
  * The app: contains the basic structure of the whole thing
  */
@@ -96,7 +102,7 @@ function App() {
   return (
     <div>
       <AppHeader>
-        <ImageContainer></ImageContainer>
+        <img height={250} width={250} src={logo}></img>
         <Heading1>
           {screenSize.width > 465 ? 'Aalto Strength Society' : 'ASS'}
         </Heading1>
@@ -107,14 +113,15 @@ function App() {
       </FrameDiv>
       <AppFooter>
         <FooterNode>
-          <Heading4>App Footer</Heading4>
-          <DarkBodyText>
-            {' '}
-            Hello and Welcome, please contact us here: diibadaaba duu.
-          </DarkBodyText>
+          <Heading4>Aalto Strenght Society</Heading4>
+          <Bodytext>
+            See you at the gym!
+            <br />
+            Keep Lifting!
+          </Bodytext>
         </FooterNode>
         <FooterNode>
-          <DetailText>Second node</DetailText>
+          <DetailText>Copyright is....</DetailText>
         </FooterNode>
       </AppFooter>
     </div>
