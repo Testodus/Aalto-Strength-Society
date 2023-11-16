@@ -1,5 +1,7 @@
 import { User, Notice, NoticeComment } from '../database/model/index';
 import {
+  NoticeAttributes,
+  NoticeCreationAttributes,
   UserAttributes,
   UserCreationAttributes,
 } from 'database/util/databaseTypes';
@@ -80,8 +82,11 @@ export const updateUserPicture = async (id: number, newPicture: string) => {
 };
 
 // -------- NOTICES ------------
-export const createNotice = async () => {
-  // TO-DO
+export const createNotice = async (newNotice: NoticeCreationAttributes) => {
+  console.log('newNotice: ', newNotice);
+  const notice = await Notice.create(newNotice);
+  console.log('notice', notice);
+  return notice;
 };
 
 export const getNoticeByID = async () => {
@@ -89,7 +94,11 @@ export const getNoticeByID = async () => {
 };
 
 export const getAllNotices = async () => {
-  // TO-DO
+  const notices = await Notice.findAll();
+  const prunedNotices = notices.map(notice => notice.dataValues);
+  console.log(prunedNotices);
+  // returns the current data values of the users in an array
+  return prunedNotices;
 };
 
 export const getCommentsInNotice = async () => {

@@ -1,9 +1,21 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import { sequelize } from '../util/db';
+import {
+  NoticeAttributes,
+  NoticeCreationAttributes,
+} from 'database/util/databaseTypes';
 
-// eslint-disable-next-line
-class Notice extends Model { }
-
+class Notice
+  extends Model<NoticeAttributes, NoticeCreationAttributes>
+  implements NoticeAttributes { // eslint-disable-line
+  public id!: number;
+  public title!: string;
+  public text!: string;
+  public picture?: string | null;
+  public createdAt!: string;
+  public userId!: number;
+}
+// TO-DO, make the typescript model
 Notice.init(
   {
     id: {
@@ -27,6 +39,11 @@ Notice.init(
       allowNull: false,
       type: DataTypes.DATE,
       defaultValue: Sequelize.fn('NOW'), // Automatic timestamp with the Sequelize function. The idea is that you dont give this attribute a value and it defaults to now
+    },
+    userId: {
+      // Have to add this here, otherwise Typescript cries. Let's see if this breaks everything
+      allowNull: false,
+      type: DataTypes.NUMBER,
     },
   },
   {

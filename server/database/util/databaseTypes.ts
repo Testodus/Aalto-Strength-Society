@@ -17,5 +17,28 @@ export interface UserAttributes {
   contactInfo?: string | null;
 }
 
+export interface NoticeAttributes {
+  id: number;
+  title: string;
+  text: string;
+  picture?: string | null;
+  createdAt: string;
+  userId: number;
+}
+
+export interface NoticeCommentAttributes {
+  id: number;
+  text: string;
+  createdAt: string;
+  userId: number;
+  noticeId: number;
+}
+
 export interface UserCreationAttributes
   extends Optional<UserAttributes, 'id'> { } // eslint-disable-line
+
+export interface NoticeCreationAttributes
+  extends Optional<NoticeAttributes, 'id' | 'createdAt'> { } // eslint-disable-line
+
+export interface NoticeCommentCreationAttributes
+  extends Optional<NoticeCommentAttributes, 'id' | 'createdAt'> { } // eslint-disable-line
