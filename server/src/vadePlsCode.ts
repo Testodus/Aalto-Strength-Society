@@ -51,12 +51,13 @@ export const getUser = async (id: number) => {
 // Gets user by email
 // TO-DO: test this
 export const getUserByUsername = async (username: string) => {
-  const userByEmail = await User.findOne({
+  const userByUsername = await User.findOne({
     where: {
       username: username,
     },
   });
-  return userByEmail;
+  console.log(JSON.stringify(userByUsername, null, 2));
+  return userByUsername;
 };
 
 // Gets all users and their full details
