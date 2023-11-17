@@ -19,5 +19,6 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
+    "strictPropertyInitialization": false,
   }
 }

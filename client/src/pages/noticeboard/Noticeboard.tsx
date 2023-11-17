@@ -1,19 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DummyProfiles, BasicBoard } from '../../assets/noticeBoardDummy';
+import { BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
-import { Heading2, Heading3, PrimaryButton } from '../../shared-styles';
-import Notice from './Notice';
+import {
+  Bodytext,
+  Heading2,
+  Heading3,
+  PrimaryButton,
+  RoundDivLarge,
+} from '../../styles/shared-styles';
+import NoticeEl from './Notice';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
-  background: #151515;
+  max-width: 62rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem 5rem;
-  color: F2F2F2;
 
   overflow: hidden;
 
@@ -33,13 +38,21 @@ const NoticesMenuBar = styled.div`
   }
 `;
 
+const NoticeboardInfoDiv = styled.div`
+  max-width: 60%;
+  @media only screen and (max-width: 640px) {
+    max-width: none;
+  }
+`;
+
 const NoticesContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   grid-gap: 2rem;
-  max-widht: 800px;
-  widht: 100%;
+  max-width: 50rem;
+  width: 100%;
   margin: 2rem;
+  padding-bottom: 1rem;
 
   @media only screen and (max-width: 640px) {
     margin: 0rem;
@@ -57,47 +70,30 @@ const NoticesContainer = styled.div`
 const Noticeboard = () => {
   const [currentBoard, setCurrentBoard] = useState(BasicBoard);
 
-  const getUsername = (id: string) => {
-    const user = DummyProfiles.find(profile => profile.userID === id);
-    return user ? user.username : 'did not find it';
-  };
-
-  const addZeroToTime = (number: number) =>
-    number > 9 ? number : '0' + number;
-
-  const getDate = (timeStamp: number) => {
-    const date = new Date(timeStamp);
-    return (
-      addZeroToTime(date.getHours()) +
-      ':' +
-      addZeroToTime(date.getMinutes()) +
-      ', ' +
-      date.toDateString()
-    );
-  };
-
   return (
-    <NoticeBoardContainer>
-      <Heading2>Notice Board</Heading2>
-      <NoticesMenuBar>
-        <Heading3>{currentBoard.title}</Heading3>
-        <PrimaryButton>Post a Notice</PrimaryButton>
-      </NoticesMenuBar>
-      <NoticesContainer>
-        {currentBoard.notices.length
-          ? currentBoard.notices.map((notice, i) => (
-              <Notice
-                key={currentBoard.title + '-Notice-' + i}
-                notice={notice.notice}
-                title={notice.title}
-                username={getUsername(notice.userID)}
-                time={getDate(notice.timeStamp)}
-                userID={notice.userID}
-              ></Notice>
-            ))
-          : null}
-      </NoticesContainer>
-    </NoticeBoardContainer>
+    <RoundDivLarge>
+      <NoticeBoardContainer>
+        <Heading2>Notice Board</Heading2>
+        <NoticesMenuBar>
+          <NoticeboardInfoDiv>
+            <Heading3>{currentBoard.title}</Heading3>
+            <Bodytext>{currentBoard.description}</Bodytext>
+          </NoticeboardInfoDiv>
+          <PrimaryButton>Post a Notice</PrimaryButton>
+        </NoticesMenuBar>
+        <NoticesContainer>
+          {currentBoard.notices.length
+            ? currentBoard.notices.map((notice, i) => (
+                <NoticeEl
+                  key={currentBoard.title + '-Notice-' + i}
+                  notice={notice}
+                  fullNotice={false}
+                ></NoticeEl>
+              ))
+            : null}
+        </NoticesContainer>
+      </NoticeBoardContainer>
+    </RoundDivLarge>
   );
 };
 

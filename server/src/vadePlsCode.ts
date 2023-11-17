@@ -49,7 +49,6 @@ export const getUser = async (id: number) => {
 };
 
 // Gets user by email
-// TO-DO: test this
 export const getUserByUsername = async (username: string) => {
   const userByUsername = await User.findOne({
     where: {

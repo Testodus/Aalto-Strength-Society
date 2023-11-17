@@ -8,6 +8,7 @@ import Rules from './rules/Rules';
 import ProfileElement from './profile/Profile';
 import HomePage from './HomePage';
 import Noticeboard from './noticeboard/Noticeboard';
+import ViewNotice from './view-notice/ViewNotice';
 
 // shared export for all the pages :D
 export {
@@ -21,4 +22,5 @@ export {
   ProfileElement,
   HomePage,
   Noticeboard,
+  ViewNotice,
 };

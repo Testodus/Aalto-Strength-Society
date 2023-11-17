@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
+import {
+  BG_COLOR_NAVIGATION,
+  TEXT_COLOR_NAVIGATION,
+  colors,
+} from '../styles/variables';
 
 const NavbarContainer = styled.nav`
-  max-width: 1000px;
+  max-width: 62rem;
   width: 100%;
   height: auto;
   display: flex;
@@ -12,29 +17,29 @@ const NavbarContainer = styled.nav`
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 26px;
+    font-size: 2rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 
     @media only screen and (max-width: 640px) {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
   }
 `;
 
 const FullWidthDiv = styled.div`
   width: 100%;
-  max-width: 750px;
+  max-width: 47rem;
   margin: 0;
   padding: 0;
 `;
 
 const SecondaryNavbarContainer = styled.nav`
-  max-width: 1000px;
-  widht: max-content;
+  max-width: 62rem;
+  width: max-content;
   height: max-content;
   display: flex;
   justify-content: center;
@@ -42,22 +47,22 @@ const SecondaryNavbarContainer = styled.nav`
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 24px;
+    font-size: 1.6rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 
     @media only screen and (max-width: 640px) {
-      font-size: 22px;
+      font-size: 1.4rem;
     }
   }
 `;
 
 const NavContainer = styled.div`
   width: 100%;
-  background: #e7e7e7;
+  background: ${BG_COLOR_NAVIGATION};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,18 +85,19 @@ const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
   border: none;
-  font-size: 24px;
-  background: F2F2F2;
-  padding: 1rem;
+  font-size: 1.5rem;
+  background: ${colors.WHITE};
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
   max-width: 8rem;
-  margin: 0.5rem 2rem 0.5rem 2rem;
+  margin: 1rem 2rem 1rem 2rem;
 
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
 
   @media only screen and (min-width: 640px) {
     display: none;
-    widht: 0;
+    width: 0;
     height: 0;
   }
 `;
