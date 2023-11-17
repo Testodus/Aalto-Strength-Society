@@ -14,49 +14,65 @@ import {
   SecondaryButton,
   PaddingEl,
 } from '../../styles/shared-styles';
+import axios, { AxiosError } from 'axios';
+import { filterErrors } from '../../shared-functions';
+import { emptyErrors } from '../../shared-functions';
 
+const emptyRegisterFields = {
+  password: '',
+  username: '',
+  email: '',
+  typeOfLifting: '',
+  favouriteLift: '',
+  profilePicture: '',
+  favouriteGym: '',
+  favouriteGymTime: '',
+  contactInfo: '',
+};
 /**
  *TODO: the form for registering, can be accessed from the login page
  * @returns Register page
  */
 const Register = () => {
-  const [flawedFields, setflawedFields] = useState<Array<string>>([]); // array of the fields that have faulty values
-  const [inputValues, setInputValues] = useState({
-    password: '',
-    username: '',
-    email: '',
-    typeOfLifting: '',
-    favouriteLift: '',
-    profilePicture: '',
-    favouriteGym: '',
-    favouriteGymTime: '',
-    contactInfo: '',
-  });
+  const [errorMessages, setErrorMessages] = useState(emptyErrors); // array of the fields that have faulty values
+  const [inputValues, setInputValues] = useState(emptyRegisterFields);
 
+  const clearValues = () => {
+    setErrorMessages(emptyErrors);
+    setInputValues(emptyRegisterFields);
+  };
+
+  // HANDLE SUBMIT
   const onSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-
-    const target = event.target as typeof event.target & {
-      commentText: { value: string };
-    };
-
-    const validate = true; // chnage when there is actually a validation
-
-    if (validate) {
-      setflawedFields([]);
-      setInputValues({
-        username: '',
-        password: '',
-        email: '',
-        typeOfLifting: '',
-        favouriteLift: '',
-        profilePicture: '',
-        favouriteGym: '',
-        favouriteGymTime: '',
-        contactInfo: '',
-      });
-    } else {
-      setflawedFields(['yes', 'yes']);
+    // try to log in
+    try {
+      const response = await axios.post(
+        'http://localhost:3333/auth/register',
+        JSON.stringify(inputValues),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      const accessToken = response?.data?.access_token;
+      alert(accessToken ? 'yes' : 'no');
+      // TODO: aseta käyttäjä!! setAuth({ username, password, accessToken });
+      clearValues();
+      // TODO: redirect
+    } catch (err: unknown) {
+      if (!(err instanceof AxiosError)) {
+        setErrorMessages({ ...errorMessages, general: 'Server error' });
+      } else if (err.response?.status === 400) {
+        setErrorMessages({
+          ...errorMessages,
+          password: filterErrors('password', err.response.data.message),
+          username: filterErrors('username', err.response.data.message),
+          email: filterErrors('email', err.response.data.message),
+        });
+      } else {
+        setErrorMessages({ ...errorMessages, general: 'Registering failed' });
+      }
+      // what is thiis?errRef.current.focus();
     }
   };
   return (
@@ -70,13 +86,13 @@ const Register = () => {
           </Bodytext>
         </PaddingEl>
         <FormStyle onSubmit={onSubmit}>
-          {flawedFields.length ? (
-            <WarningText>
-              The values of following fields were not correct
-              {flawedFields.map(fieldName => fieldName + ', ')}
-            </WarningText>
+          {errorMessages.general.length ? (
+            <WarningText>{errorMessages.general}</WarningText>
           ) : null}
           <FormInputContainer>
+            {errorMessages.email.length ? (
+              <WarningText>{errorMessages.email}</WarningText>
+            ) : null}
             <FormLabel htmlFor="email">
               Email<WarningText>*</WarningText>
             </FormLabel>
@@ -89,6 +105,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
+            {errorMessages.username.length ? (
+              <WarningText>{errorMessages.username}</WarningText>
+            ) : null}
             <FormLabel htmlFor="username">
               Username<WarningText>*</WarningText>
             </FormLabel>
@@ -101,6 +120,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
+            {errorMessages.password.length ? (
+              <WarningText>{errorMessages.password}</WarningText>
+            ) : null}
             <FormLabel htmlFor="password">
               Password<WarningText>*</WarningText>
             </FormLabel>
