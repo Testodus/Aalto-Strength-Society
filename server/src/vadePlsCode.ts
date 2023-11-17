@@ -15,7 +15,6 @@ export const createUser = (newUser: createUser) => {
   // Takes userObject as input
   // Creaters user in database. Crerates id for user.
   // Returns userObject with fields: id, email
-  console.log(newUser);
   const createdUser = {
     userID: 239048239058,
     email: 'rockHardCalves@gmail.com',
@@ -32,4 +31,20 @@ export const getPartialUser = (email: string) => {
   };
 };
 
-export const getUser = () => {};
+// Based on userID gets the whole userObject excluding the password.
+export const getUser = (userID: number) => {
+  return {
+    userName: 'MusclesForDays',
+    userID: 123456,
+    email: 'muscleMania@gmail.com',
+    profilePicture: 'picture@picture.com',
+    typeOfLifting: undefined,
+    favouriteLift: undefined,
+    favouriteGym: 'unispruit',
+    favouriteGymTime: '17.00',
+    contactInfo: undefined,
+  };
+};
+
+// Based on userID, deletes whole user from database.
+export const deleteUser = (userID: number) => {};

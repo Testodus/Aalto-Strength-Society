@@ -44,7 +44,8 @@ export class AuthService {
     const salt = bcrypt.genSaltSync(10);
     return bcrypt.hash(dto.password, salt).then(hash => {
       // Construct a user object that contains all possible fields.
-      const user = this.createUserObject(dto, hash);
+      //const user = this.createUserObject(dto, hash);
+      const user = { ...dto, password: hash };
 
       //TODO: Add user to database. Replace with real function.
       const createdUser = createUser(user);
