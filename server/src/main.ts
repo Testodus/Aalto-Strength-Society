@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.useGlobalPipes(
     // TODO: Pitää tutkia miten nää pipet vaikuttaa error handlingiin. D:
     new ValidationPipe({

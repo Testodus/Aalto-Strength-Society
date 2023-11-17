@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 /* User profile
 Mandatory
 - email
-- userName
+- username
 - password
 
 Optional
@@ -18,7 +18,7 @@ Optional
 export class RegisterDto {
   @IsString()
   @IsNotEmpty()
-  userName: string;
+  username: string;
 
   @IsString()
   @IsNotEmpty()

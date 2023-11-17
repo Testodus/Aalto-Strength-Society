@@ -1,5 +1,5 @@
 type createUser = {
-  userName: string;
+  username: string;
   password: string;
   email: string;
   profilePicture: string | undefined;
