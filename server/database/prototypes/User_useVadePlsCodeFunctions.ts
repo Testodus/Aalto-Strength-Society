@@ -1,13 +1,16 @@
-import { UserCreationAttributes } from 'database/util/databaseTypes';
+import {
+  UserCreationAttributes,
+  UpdateUserAttributes,
+} from 'database/util/databaseTypes';
 import {
   createUser,
   getPartialUser,
   getUser,
   getAllUsers,
-  updateUserEmail,
-  updateUserPicture,
   getUsersNotices,
   getUserByUsername,
+  updateUser,
+  deleteUser,
 } from '../../src/vadePlsCode';
 
 const testUser: UserCreationAttributes = {
@@ -55,14 +58,6 @@ async function testGetAllUsers() {
   await getAllUsers();
 }
 
-async function testUpdatingEmail() {
-  await updateUserEmail(1, 'liftingdude@hotmail.com');
-}
-
-async function testUpdatingProfilePicture() {
-  await updateUserPicture(2, 'www.imgur.com/cardiobunny.jpeg');
-}
-
 async function testGetUsersNotices() {
   await getUsersNotices(1); // liftingDude => Favorite lift
   await getUsersNotices(2); // cardioBunny => Any bulking recipe tips?
@@ -71,6 +66,25 @@ async function testGetUsersNotices() {
 async function testGetUserByUsername() {
   await getUserByUsername('liftingDude');
   await getUserByUsername('cardioBunny');
+}
+
+async function testUpdateUser() {
+  const updateThisUser: UpdateUserAttributes = {
+    // jollellel
+    id: 15,
+    profilePicture: 'www.imgur.com/jollellel.jpeg',
+    typeOfLifting: 'Bodybuilding',
+    favouriteLift: 'Pec deck',
+    favouriteGym: 'Unisport meilahti',
+    favouriteGymTime: 'Mondays 18',
+    contactInfo: 'TG: @jollellel',
+  };
+
+  await updateUser(updateThisUser);
+}
+
+async function testDeleteUser() {
+  await deleteUser(55); // No such user with id 55
 }
 
 // ---- Run the test functions ----
@@ -82,4 +96,6 @@ async function testGetUserByUsername() {
 //testUpdatingEmail();
 //testUpdatingProfilePicture();
 //testGetUsersNotices();
-testGetUserByUsername();
+//testGetUserByUsername();
+testUpdateUser();
+//testDeleteUser();

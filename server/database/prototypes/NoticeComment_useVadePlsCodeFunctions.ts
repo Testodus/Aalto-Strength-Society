@@ -4,6 +4,7 @@ import {
   createNoticeComment,
   getAllNoticeComments,
   getNoticeCommentByID,
+  updateNotice,
 } from '../../src/vadePlsCode';
 
 // --- Create the test data ---

@@ -1,3 +1,4 @@
+import { ForbiddenException } from '@nestjs/common';
 import { User, Notice, NoticeComment } from '../database/model/index';
 import {
   NoticeAttributes,
@@ -6,6 +7,8 @@ import {
   UserCreationAttributes,
   NoticeCommentAttributes,
   NoticeCommentCreationAttributes,
+  UpdateUserAttributes,
+  UpdateNoticeAttributes,
 } from 'database/util/databaseTypes';
 
 // ---------- USER --------------
@@ -68,34 +71,6 @@ export const getAllUsers = async () => {
   return prunedUsers;
 };
 
-// For updating email of user
-// (Similar logic to all the other updations. Need to think whether there is a way to prevent duplication)
-export const updateUserEmail = async (id: number, newEmail: string) => {
-  const user = await User.findByPk(id);
-  if (user) {
-    console.log('old email: ', user.email);
-    user.email = newEmail;
-    await user.save();
-    console.log('new email: ', user.email);
-  } else {
-    return Error('User does not exist, cant update email');
-  }
-};
-
-export const updateUserPicture = async (id: number, newPicture: string) => {
-  const user = await User.findByPk(id);
-  if (user) {
-    console.log('old picture: ', user.profilePicture);
-    user.profilePicture = newPicture;
-    await user.save();
-    console.log('new picture: ', user.profilePicture);
-    // Return the updated user
-    return user;
-  } else {
-    return Error('User does not exist, cant update profile picture');
-  }
-};
-
 // Returns the user object and the notices she/he has posted
 export const getUsersNotices = async (userId: number) => {
   const user = await User.findByPk(userId, {
@@ -113,12 +88,69 @@ export const getUsersNotices = async (userId: number) => {
   }
 };
 
+export const updateUser = async (user: UpdateUserAttributes) => {
+  console.log('user', user);
+  try {
+    const userToUpdate = await User.findByPk(user.id);
+    if (userToUpdate) {
+      // Update each field
+      userToUpdate.profilePicture = user.profilePicture;
+      userToUpdate.typeOfLifting = user.typeOfLifting;
+      userToUpdate.favouriteLift = user.favouriteLift;
+      userToUpdate.favouriteGym = user.favouriteGym;
+      userToUpdate.favouriteGymTime = user.favouriteGymTime;
+      userToUpdate.contactInfo = user.contactInfo;
+      await userToUpdate.save();
+
+      console.log('userToUpdate.dataValues', userToUpdate.dataValues);
+      // Lets not return passwords and such
+      const updatedUserToReturn: UpdateUserAttributes = {
+        id: userToUpdate.id,
+        profilePicture: userToUpdate.profilePicture,
+        typeOfLifting: userToUpdate.typeOfLifting,
+        favouriteLift: userToUpdate.favouriteLift,
+        favouriteGym: userToUpdate.favouriteGym,
+        favouriteGymTime: userToUpdate.favouriteGymTime,
+        contactInfo: userToUpdate.contactInfo,
+      };
+      console.log('updatedUserToReturn', updatedUserToReturn);
+      return updatedUserToReturn;
+    } else {
+      throw new ForbiddenException(
+        `Could not update the user: There is no user with such id as: ${user.id}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to update the user: ${error}`
+    );
+  }
+};
+
+export const deleteUser = async (userId: number) => {
+  try {
+    const userToDelete = await User.findByPk(userId);
+    console.log('userToDelete', userToDelete);
+    if (userToDelete) {
+      await userToDelete.destroy();
+    } else {
+      throw new ForbiddenException(
+        `Could not delete the user: There is no user with such id as: ${userId}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to delete the user: ${error}`
+    );
+  }
+};
+
 // -------- NOTICES ------------
 export const createNotice = async (newNotice: NoticeCreationAttributes) => {
   console.log('newNotice: ', newNotice);
   const notice = await Notice.create(newNotice);
-  console.log('notice', notice);
-  return notice;
+  console.log('notice.dataValues', notice.dataValues);
+  return notice.dataValues;
 };
 
 export const getNoticeByID = async (id: number) => {
@@ -136,19 +168,29 @@ export const getAllNotices = async () => {
   return prunedNotices;
 };
 
-// Change or add a picture to the notice
-// (Not sure if this is needed but its here. Can be made one for changing the text)
-export const updateNoticePicture = async (id: number, newPicture: string) => {
-  const notice = await Notice.findByPk(id);
-  if (notice) {
-    console.log('old picture: ', notice.picture);
-    notice.picture = newPicture;
-    await notice.save();
-    console.log('new picture: ', notice.picture);
-    // Return the updated notice
-    return notice;
-  } else {
-    return Error('Notice does not exist, cant update picture');
+export const updateNotice = async (notice: UpdateNoticeAttributes) => {
+  console.log('notice', notice);
+  try {
+    const noticeToUpdate = await Notice.findByPk(notice.id);
+    if (noticeToUpdate) {
+      // Update each field
+      noticeToUpdate.title = notice.title;
+      noticeToUpdate.text = notice.text;
+      noticeToUpdate.picture = notice.picture;
+      // Save the new values of the notice to database
+      await noticeToUpdate.save();
+      // Return the updated notice
+      console.log('noticeToUpdate.dataValues', noticeToUpdate.dataValues);
+      return noticeToUpdate.dataValues;
+    } else {
+      throw new ForbiddenException(
+        `Could not update the notice: There is no notice with such id as: ${notice.id}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to update the notice: ${error}`
+    );
   }
 };
 
