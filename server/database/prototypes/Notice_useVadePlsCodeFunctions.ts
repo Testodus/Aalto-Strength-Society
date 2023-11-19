@@ -47,7 +47,7 @@ async function testNoticeCreation() {
   //await createNotice(testNotice);
   //await createNotice(testNoticeFood);
   //await createNotice(testNoticeCrossFitGal);
-  await createNotice(testNoticeCurl);
+  await createNotice(testNotice);
 }
 
 async function testGetAllNotices() {
@@ -75,15 +75,15 @@ async function testUpdateNotice() {
 }
 
 async function testDeleteNotice() {
-  await deleteNotice(200);
+  await deleteNotice(1);
 }
 
 // ---- Run the test functions ----
 //testGetAllNotices();
 
-//testNoticeCreation();
+testNoticeCreation();
 //testGetNoticeById();
 //testUpdateNoticePicture();
-testGetCommentsInNotice();
+//testGetCommentsInNotice();
 //testUpdateNotice();
 //testDeleteNotice();

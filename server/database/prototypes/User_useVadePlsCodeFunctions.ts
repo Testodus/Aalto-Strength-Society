@@ -92,7 +92,7 @@ async function testUpdateUser() {
 }
 
 async function testDeleteUser() {
-  await deleteUser(200);
+  await deleteUser(1);
 }
 
 // ---- Run the test functions ----

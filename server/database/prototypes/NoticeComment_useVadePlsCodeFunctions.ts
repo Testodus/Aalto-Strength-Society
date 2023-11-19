@@ -10,8 +10,8 @@ import {
 
 // --- Create the test data ---
 const testNoticeComment: NoticeCommentCreationAttributes = {
-  text: 'Ben & Jerrys mixed with nutella is good',
-  userId: 4, // muscleMan
+  text: 'I also like carrots',
+  userId: 1,
   noticeId: 2, // Any bulking recipe tips?
 };
 
@@ -49,6 +49,6 @@ async function testDeleteNoticeComment() {
 // ---- Run the test functions ----
 //testGetAllNoticeComments();
 
-//testNoticeCommentCreation();
+testNoticeCommentCreation();
 //testGetNoticeCommentByID();
-testDeleteNoticeComment();
+//testDeleteNoticeComment();
