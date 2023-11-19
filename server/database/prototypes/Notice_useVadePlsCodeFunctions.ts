@@ -8,6 +8,7 @@ import {
   getNoticeByID,
   getCommentsInNotice,
   updateNotice,
+  deleteNotice,
 } from '../../src/vadePlsCode';
 
 // --- Create the test data ---
@@ -66,6 +67,10 @@ async function testUpdateNotice() {
   await updateNotice(updateThisNotice);
 }
 
+async function testDeleteNotice() {
+  await deleteNotice(120);
+}
+
 // ---- Run the test functions ----
 //testGetAllNotices();
 
@@ -73,4 +78,5 @@ async function testUpdateNotice() {
 //testGetNoticeById();
 //testUpdateNoticePicture();
 //testGetCommentsInNotice();
-testUpdateNotice();
+//testUpdateNotice();
+testDeleteNotice();

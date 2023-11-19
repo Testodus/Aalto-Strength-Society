@@ -194,6 +194,24 @@ export const updateNotice = async (notice: UpdateNoticeAttributes) => {
   }
 };
 
+export const deleteNotice = async (noticeId: number) => {
+  try {
+    const noticeToDelete = await Notice.findByPk(noticeId);
+    console.log('noticeToDelete', noticeToDelete);
+    if (noticeToDelete) {
+      await noticeToDelete.destroy();
+    } else {
+      throw new ForbiddenException(
+        `Could not delete the notice: There is no notice with such id as: ${noticeId}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to delete the notice: ${error}`
+    );
+  }
+};
+
 export const getCommentsInNotice = async (noticeId: number) => {
   const notice = await Notice.findByPk(noticeId, {
     include: [
@@ -235,4 +253,22 @@ export const getAllNoticeComments = async () => {
   console.log(prunedNoticeComments);
   // returns the current data values of the users in an array
   return prunedNoticeComments;
+};
+
+export const deleteNoticeComment = async (noticeCommentId: number) => {
+  try {
+    const noticeCommentToDelete = await NoticeComment.findByPk(noticeCommentId);
+    console.log('noticeCommentToDelete', noticeCommentToDelete);
+    if (noticeCommentToDelete) {
+      await noticeCommentToDelete.destroy();
+    } else {
+      throw new ForbiddenException(
+        `Could not delete the notice comment: There is no notice comment with such id as: ${noticeCommentId}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to delete the notice comment: ${error}`
+    );
+  }
 };
