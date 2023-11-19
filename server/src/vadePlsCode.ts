@@ -10,6 +10,7 @@ import {
   UpdateUserAttributes,
   UpdateNoticeAttributes,
 } from 'database/util/databaseTypes';
+import { ValidationError } from 'sequelize';
 
 // ---------- USER --------------
 // Creates new user, returns id & email
@@ -18,73 +19,122 @@ export const createUser = async (newUser: UserCreationAttributes) => {
   // Creaters user in database. Crerates id for user.
   // Returns userObject with fields: id, email
   console.log('newUser', newUser);
-  const newUserInDB: UserAttributes = await User.create(newUser);
-  const createdUser = {
-    userID: newUserInDB.id,
-    email: newUserInDB.email,
-  };
-  console.log('createdUser', createdUser);
-  return createdUser;
+  try {
+    const newUserInDB: UserAttributes = await User.create(newUser);
+    const createdUser = {
+      userID: newUserInDB.id,
+      email: newUserInDB.email,
+    };
+    console.log('createdUser', createdUser);
+    return createdUser;
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to create a new user: ${error}`
+    );
+  }
 };
 
 // Based on email, returns: email, password, userID
 export const getPartialUser = async (email: string) => {
-  const userByEmail = await User.findOne({
-    where: {
-      email: email,
-    },
-  });
-  const partialUser = {
-    email: userByEmail?.email,
-    userID: userByEmail?.id,
-    password: userByEmail?.password,
-  };
-  console.log('partialUser', partialUser);
-  return partialUser;
+  try {
+    const userByEmail = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
+    if (userByEmail) {
+      const partialUser = {
+        email: userByEmail?.email,
+        userID: userByEmail?.id,
+        password: userByEmail?.password,
+      };
+      console.log('partialUser', partialUser);
+      return partialUser;
+    } else {
+      throw new ForbiddenException(`There is no user with the email: ${email}`);
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get partial user by email ${error}`
+    );
+  }
 };
 
 // Gets user by ID and returns all the details of the user
 export const getUser = async (id: number) => {
-  const userByID = await User.findByPk(id);
-  const userToJSON = userByID?.toJSON();
-  console.log(userToJSON);
-  return userToJSON;
+  try {
+    const userByID = await User.findByPk(id);
+    if (userByID) {
+      console.log('userByID.dataValues', userByID.dataValues);
+      return userByID.dataValues;
+    } else {
+      throw new ForbiddenException(`There is no user with the id: ${id}`);
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to getUser with id: ${error}`
+    );
+  }
 };
 
-// Gets user by email
+// Gets user by username
 export const getUserByUsername = async (username: string) => {
-  const userByUsername = await User.findOne({
-    where: {
-      username: username,
-    },
-  });
-  console.log(JSON.stringify(userByUsername, null, 2));
-  return userByUsername;
+  try {
+    const userByUsername = await User.findOne({
+      where: {
+        username: username,
+      },
+    });
+    if (userByUsername) {
+      console.log('userByUsername.dataValues', userByUsername.dataValues);
+      return userByUsername.dataValues;
+    } else {
+      throw new ForbiddenException(
+        `There is no user with the username: ${username}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get user by username: ${error}`
+    );
+  }
 };
 
 // Gets all users and their full details
 export const getAllUsers = async () => {
-  const users = await User.findAll();
-  const prunedUsers = users.map(user => user.dataValues);
-  console.log(prunedUsers);
-  // returns the current data values of the users in an array
-  return prunedUsers;
+  try {
+    const users = await User.findAll();
+    const prunedUsers = users.map(user => user.dataValues);
+    console.log(prunedUsers);
+    // returns the current data values of the users in an array
+    return prunedUsers;
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get all users ${error}`
+    );
+  }
 };
 
 // Returns the user object and the notices she/he has posted
 export const getUsersNotices = async (userId: number) => {
-  const user = await User.findByPk(userId, {
-    include: [
-      {
-        model: Notice,
-      },
-    ],
-  });
-  if (user) {
-    console.log(JSON.stringify(user, null, 2));
-    return user;
-  } else {
-    return Error('User does not exist');
+  try {
+    const user = await User.findByPk(userId, {
+      include: [
+        {
+          model: Notice,
+        },
+      ],
+    });
+    if (user) {
+      console.log(JSON.stringify(user, null, 2));
+      return user;
+    } else {
+      throw new ForbiddenException(`There is no user with such id: ${userId}`);
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get the users notices: ${error}`
+    );
   }
 };
 
