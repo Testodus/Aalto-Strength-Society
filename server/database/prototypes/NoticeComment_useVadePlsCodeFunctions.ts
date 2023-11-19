@@ -50,6 +50,6 @@ async function testDeleteNoticeComment() {
 // ---- Run the test functions ----
 //testGetAllNoticeComments();
 
-//testNoticeCommentCreation();
+testNoticeCommentCreation();
 //testGetNoticeCommentByID();
-testDeleteNoticeComment();
+//testDeleteNoticeComment();

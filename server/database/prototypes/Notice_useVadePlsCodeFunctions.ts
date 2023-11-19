@@ -30,6 +30,12 @@ const testNoticeWraps: NoticeCreationAttributes = {
   userId: 3, // crossFitGal
 };
 
+const testNoticeCurl: NoticeCreationAttributes = {
+  title: 'What curl variation for bicep peaks?',
+  text: 'See title. What would be the best curl variation for that',
+  userId: 1, // liftingDude
+};
+
 const testNoticeFood: NoticeCreationAttributes = {
   title: 'Any bulking recipe tips?',
   text: 'Month 2 atm and need some new ones',
@@ -41,7 +47,7 @@ async function testNoticeCreation() {
   //await createNotice(testNotice);
   //await createNotice(testNoticeFood);
   //await createNotice(testNoticeCrossFitGal);
-  await createNotice(testNoticeWraps);
+  await createNotice(testNoticeCurl);
 }
 
 async function testGetAllNotices() {
@@ -51,24 +57,25 @@ async function testGetAllNotices() {
 async function testGetNoticeById() {
   await getNoticeByID(1); // Favorite lift?
   await getNoticeByID(2); // Any bulking recipe tips?
+  await getNoticeByID(200);
 }
 
 async function testGetCommentsInNotice() {
-  await getCommentsInNotice(1); // Favorite lift? => Romanian deadlifts have to be mine
+  await getCommentsInNotice(200); // Favorite lift? => Romanian deadlifts have to be mine
 }
 
 async function testUpdateNotice() {
   const updateThisNotice: UpdateNoticeAttributes = {
-    id: 77, // No such notice with id 77
-    title: 'Looking for new lifting shoes',
-    text: 'High heel and sturdy ones',
-    picture: 'www.imgur.com/liftingshoes.png',
+    id: 200,
+    title: 'Lifting barefoot?',
+    text: 'Does anyone do it',
+    picture: 'www.imgur.com/barefoot.png',
   };
   await updateNotice(updateThisNotice);
 }
 
 async function testDeleteNotice() {
-  await deleteNotice(120);
+  await deleteNotice(200);
 }
 
 // ---- Run the test functions ----
@@ -77,6 +84,6 @@ async function testDeleteNotice() {
 //testNoticeCreation();
 //testGetNoticeById();
 //testUpdateNoticePicture();
-//testGetCommentsInNotice();
+testGetCommentsInNotice();
 //testUpdateNotice();
-testDeleteNotice();
+//testDeleteNotice();
