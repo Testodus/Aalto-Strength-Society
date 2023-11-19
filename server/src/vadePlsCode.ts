@@ -126,8 +126,9 @@ export const getUsersNotices = async (userId: number) => {
       ],
     });
     if (user) {
-      console.log(JSON.stringify(user, null, 2));
-      return user;
+      console.log('user.dataValues', user.dataValues);
+      console.log('In a prettier JSON format', JSON.stringify(user, null, 2));
+      return user.dataValues;
     } else {
       throw new ForbiddenException(`There is no user with such id: ${userId}`);
     }
