@@ -199,24 +199,45 @@ export const deleteUser = async (userId: number) => {
 // -------- NOTICES ------------
 export const createNotice = async (newNotice: NoticeCreationAttributes) => {
   console.log('newNotice: ', newNotice);
-  const notice = await Notice.create(newNotice);
-  console.log('notice.dataValues', notice.dataValues);
-  return notice.dataValues;
+  try {
+    const notice = await Notice.create(newNotice);
+    console.log('notice.dataValues', notice.dataValues);
+    return notice.dataValues;
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to create a new notice: ${error}`
+    );
+  }
 };
 
 export const getNoticeByID = async (id: number) => {
-  const noticeByID = await Notice.findByPk(id);
-  const noticeToJSON = noticeByID?.toJSON();
-  console.log(noticeToJSON);
-  return noticeToJSON;
+  try {
+    const noticeByID = await Notice.findByPk(id);
+    if (noticeByID) {
+      console.log('noticeByID.dataValues', noticeByID.dataValues);
+      return noticeByID.dataValues;
+    } else {
+      throw new ForbiddenException(`There is no notice with such id: ${id}`);
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get notice by ID; ${error}`
+    );
+  }
 };
 
 export const getAllNotices = async () => {
-  const notices = await Notice.findAll();
-  const prunedNotices = notices.map(notice => notice.dataValues);
-  console.log(prunedNotices);
-  // returns the current data values of the users in an array
-  return prunedNotices;
+  try {
+    const notices = await Notice.findAll();
+    const prunedNotices = notices.map(notice => notice.dataValues);
+    console.log(prunedNotices);
+    // returns the current data values of the users in an array
+    return prunedNotices;
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get all notices: ${error}`
+    );
+  }
 };
 
 export const updateNotice = async (notice: UpdateNoticeAttributes) => {
@@ -264,18 +285,30 @@ export const deleteNotice = async (noticeId: number) => {
 };
 
 export const getCommentsInNotice = async (noticeId: number) => {
-  const notice = await Notice.findByPk(noticeId, {
-    include: [
-      {
-        model: NoticeComment,
-      },
-    ],
-  });
-  if (notice) {
-    console.log(JSON.stringify(notice, null, 2));
-    return notice;
-  } else {
-    return Error('Notice does not exist');
+  try {
+    const notice = await Notice.findByPk(noticeId, {
+      include: [
+        {
+          model: NoticeComment,
+        },
+      ],
+    });
+    if (notice) {
+      console.log(
+        'notice in a prettier format',
+        JSON.stringify(notice, null, 2)
+      );
+      console.log('notice.dataValues', notice.dataValues);
+      return notice.dataValues;
+    } else {
+      throw new ForbiddenException(
+        `Could not get comments in notice. There is no notice with the id: ${noticeId}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get comments in notice: ${error}`
+    );
   }
 };
 
