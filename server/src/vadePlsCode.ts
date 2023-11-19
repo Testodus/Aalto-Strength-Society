@@ -317,26 +317,49 @@ export const createNoticeComment = async (
   newNoticeComment: NoticeCommentCreationAttributes
 ) => {
   console.log('newNoticeComment: ', newNoticeComment);
-  const noticeComment = await NoticeComment.create(newNoticeComment);
-  console.log('noticeComment', noticeComment);
-  return noticeComment;
+  try {
+    const noticeComment = await NoticeComment.create(newNoticeComment);
+    console.log('noticeComment.dataValues', noticeComment.dataValues);
+    return noticeComment.dataValues;
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to create a new notice comment ${error}`
+    );
+  }
 };
 
 export const getNoticeCommentByID = async (id: number) => {
-  const noticeCommentByID = await NoticeComment.findByPk(id);
-  const noticeCommentToJSON = noticeCommentByID?.toJSON();
-  console.log(noticeCommentToJSON);
-  return noticeCommentToJSON;
+  try {
+    const noticeCommentByID = await NoticeComment.findByPk(id);
+    if (noticeCommentByID) {
+      console.log('noticeCommentByID.dataValues', noticeCommentByID.dataValues);
+      return noticeCommentByID.dataValues;
+    } else {
+      throw new ForbiddenException(
+        `Could not delete the notice comment. There is no notice comment with such id as: ${id}`
+      );
+    }
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get a notice comment by id ${error}`
+    );
+  }
 };
 
 export const getAllNoticeComments = async () => {
-  const noticeComments = await NoticeComment.findAll();
-  const prunedNoticeComments = noticeComments.map(
-    noticeComment => noticeComment.dataValues
-  );
-  console.log(prunedNoticeComments);
-  // returns the current data values of the users in an array
-  return prunedNoticeComments;
+  try {
+    const noticeComments = await NoticeComment.findAll();
+    const prunedNoticeComments = noticeComments.map(
+      noticeComment => noticeComment.dataValues
+    );
+    console.log(prunedNoticeComments);
+    // returns the current data values of the users in an array
+    return prunedNoticeComments;
+  } catch (error) {
+    throw new ForbiddenException(
+      `Something went wrong when trying to get all notice comments ${error}`
+    );
+  }
 };
 
 export const deleteNoticeComment = async (noticeCommentId: number) => {

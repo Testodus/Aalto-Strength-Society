@@ -10,8 +10,8 @@ import {
 
 // --- Create the test data ---
 const testNoticeComment: NoticeCommentCreationAttributes = {
-  text: 'I love chili con carne at least!',
-  userId: 1, // liftingDude
+  text: 'Ben & Jerrys mixed with nutella is good',
+  userId: 4, // muscleMan
   noticeId: 2, // Any bulking recipe tips?
 };
 
@@ -29,9 +29,7 @@ const testNoticeCommentLift2: NoticeCommentCreationAttributes = {
 
 // --- Define the wrapper test functions (cant run top level await)
 async function testNoticeCommentCreation() {
-  //await createNoticeComment(testNoticeComment);
-  //await createNoticeComment(testNoticeCommentLift);
-  await createNoticeComment(testNoticeCommentLift2);
+  await createNoticeComment(testNoticeComment);
 }
 
 async function testGetAllNoticeComments() {
@@ -41,15 +39,16 @@ async function testGetAllNoticeComments() {
 async function testGetNoticeCommentByID() {
   await getNoticeCommentByID(3); // I love chili con carne at least!
   await getNoticeCommentByID(4); // Romanian deadlifts have be mine
+  await getNoticeCommentByID(200); // Romanian deadlifts have be mine
 }
 
 async function testDeleteNoticeComment() {
-  await deleteNoticeComment(100);
+  await deleteNoticeComment(300);
 }
 
 // ---- Run the test functions ----
 //testGetAllNoticeComments();
 
-testNoticeCommentCreation();
+//testNoticeCommentCreation();
 //testGetNoticeCommentByID();
-//testDeleteNoticeComment();
+testDeleteNoticeComment();
