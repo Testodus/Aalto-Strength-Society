@@ -6,7 +6,7 @@ import {
   Heading3,
   RoundDivLarge,
 } from '../../styles/shared-styles';
-import { Profile } from '../../types';
+import { Profile } from '../../shared-types';
 import styled from 'styled-components';
 
 // TODO use actual images

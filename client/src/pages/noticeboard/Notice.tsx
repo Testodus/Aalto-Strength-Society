@@ -12,7 +12,7 @@ import {
 } from '../../styles/shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
-import { Comment, Notice } from '../../types';
+import { Comment, Notice } from '../../shared-types';
 import CommentEl from './Comment';
 import {
   BG_ROUND_DIV_SMALL,

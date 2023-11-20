@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DetailText, Bodytext } from '../../styles/shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
-import { Comment } from '../../types';
+import { Comment } from '../../shared-types';
 
 const CommentDiv = styled.div`
   display: flex;

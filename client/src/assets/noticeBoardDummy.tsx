@@ -1,4 +1,4 @@
-import { NoticeBoard, Profile } from '../types';
+import { NoticeBoard, Profile } from '../shared-types';
 
 /** Dummy data for running the noticeboard functionalities.
  */

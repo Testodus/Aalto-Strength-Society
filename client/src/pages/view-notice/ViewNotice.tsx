@@ -1,5 +1,5 @@
 import NoticeEl from '../noticeboard/Notice';
-import { Notice } from '../../types';
+import { Notice } from '../../shared-types';
 import { useLoaderData } from 'react-router-dom';
 import { Heading3 } from '../../styles/shared-styles';
 import styled from 'styled-components';
