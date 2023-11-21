@@ -1,4 +1,4 @@
-import { ForbiddenException } from '@nestjs/common';
+import { ForbiddenException, InternalServerErrorException } from '@nestjs/common';
 import { User, Notice, NoticeComment } from '../database/model/index';
 import {
   NoticeAttributes,
@@ -13,19 +13,13 @@ import {
 import { ValidationError } from 'sequelize';
 
 // ---------- USER --------------
-// Creates new user, returns id & email
 export const createUser = async (newUser: UserCreationAttributes) => {
-  // Takes userObject as input
-  // Creaters user in database. Crerates id for user.
-  // Returns userObject with fields: id, email
-  console.log('newUser', newUser);
   try {
     const newUserInDB: UserAttributes = await User.create(newUser);
     const createdUser = {
       userID: newUserInDB.id,
       email: newUserInDB.email,
     };
-    console.log('createdUser', createdUser);
     return createdUser;
   } catch (error) {
     throw new ForbiddenException(

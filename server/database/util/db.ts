@@ -1,8 +1,11 @@
 import { Sequelize } from 'sequelize';
 import { Umzug, SequelizeStorage } from 'umzug';
-import { DATABASE_URL } from './config';
+//import { DATABASE_URL } from './config';
+import 'dotenv/config';
 
-const sequelize = new Sequelize(DATABASE_URL, {
+const DATABASE_URL = process.env.DATABASE_URL || 'no database URL';
+
+const sequelize = new Sequelize(process.env.DATABASE_URL || 'no database URL', {
   dialectOptions: {
     ssl: {
       require: true,
