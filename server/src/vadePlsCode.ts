@@ -7,21 +7,23 @@ import {
   NoticeCommentAttributes,
   NoticeCommentCreationAttributes,
 } from 'database/util/databaseTypes';
+import {
+  ForbiddenException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 
 // ---------- USER --------------
-// Creates new user, returns id & email
 export const createUser = async (newUser: UserCreationAttributes) => {
-  // Takes userObject as input
-  // Creaters user in database. Crerates id for user.
-  // Returns userObject with fields: id, email
-  console.log('newUser', newUser);
-  const newUserInDB: UserAttributes = await User.create(newUser);
-  const createdUser = {
-    userID: newUserInDB.id,
-    email: newUserInDB.email,
-  };
-  console.log('createdUser', createdUser);
-  return createdUser;
+  try {
+    const newUserInDB: UserAttributes = await User.create(newUser);
+    const createdUser = {
+      userID: newUserInDB.id,
+      email: newUserInDB.email,
+    };
+    return createdUser;
+  } catch (error) {
+    throw new ForbiddenException('Validation error from database! :(');
+  }
 };
 
 // Based on email, returns: email, password, userID
@@ -31,13 +33,17 @@ export const getPartialUser = async (email: string) => {
       email: email,
     },
   });
-  const partialUser = {
-    email: userByEmail?.email,
-    userID: userByEmail?.id,
-    password: userByEmail?.password,
-  };
-  console.log('partialUser', partialUser);
-  return partialUser;
+
+  if (userByEmail) {
+    const partialUser = {
+      email: userByEmail.email,
+      userID: userByEmail.id,
+      password: userByEmail.password,
+    };
+    return partialUser;
+  } else {
+    throw new InternalServerErrorException('User data missing from database.');
+  }
 };
 
 // Gets user by ID and returns all the details of the user
