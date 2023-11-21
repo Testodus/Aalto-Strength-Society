@@ -38,29 +38,26 @@ export class AuthService {
     };
     return { ...optionalUserFields, ...dto, password: hash };
   };
+
   register(dto: RegisterDto) {
-    // TODO: Error handling
-    // Generate password hash and save user in database.
     const salt = bcrypt.genSaltSync(10);
     return bcrypt.hash(dto.password, salt).then(hash => {
       // Construct a user object that contains all possible fields.
-      //const user = this.createUserObject(dto, hash);
-      const user = { ...dto, password: hash };
-
-      //TODO: Add user to database. Replace with real function.
-      const createdUser = createUser(user);
-      return this.signToken(createdUser.userID, createdUser.email);
+      const user = this.createUserObject(dto, hash);
+      return createUser(user).then(user => {
+        return this.signToken(user.userID, user.email);
+      });
     });
   }
 
   login(dto: LoginDto) {
-    // TODO: Error handling
-    // TODO: Find user from database, if user doesn't exist, throw exception: 404 Not found
-    const user = getPartialUser(dto.email);
-    const pwMatches = bcrypt.compareSync(dto.password, user.password);
-    if (!pwMatches) {
-      throw new UnauthorizedException('Incorrect password');
-    }
-    return this.signToken(user.userID, user.email);
+    return getPartialUser(dto.email).then(user => {
+      return bcrypt.compare(dto.password, user.password).then(pwMatch => {
+        if (!pwMatch) {
+          throw new UnauthorizedException();
+        }
+        return this.signToken(user.userID, user.email);
+      });
+    });
   }
 }
