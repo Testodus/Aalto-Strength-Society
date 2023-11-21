@@ -13,7 +13,7 @@ import {
   DetailText,
   SecondaryButton,
   PaddingEl,
-} from '../../styles/shared-styles';
+} from '../../assets/styles/shared-styles';
 import axios, { AxiosError } from 'axios';
 import { filterErrors } from '../../shared-functions';
 import { emptyErrors } from '../../shared-functions';

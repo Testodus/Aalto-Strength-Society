@@ -6,7 +6,7 @@ import {
   DetailText,
   Heading4,
   Heading1,
-} from './styles/shared-styles';
+} from './assets/styles/shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import logo from './assets/ass.jpg';
@@ -14,7 +14,7 @@ import {
   BG_COLOR_FOOTER,
   BG_COLOR_HEADER,
   BG_COLOR_MAIN,
-} from './styles/variables';
+} from './assets/styles/variables';
 
 const AppHeader = styled.header`
   display: flex;
@@ -102,7 +102,7 @@ function App() {
   return (
     <div>
       <AppHeader>
-        <img height={250} width={250} src={logo}></img>
+        <img height={190} width={190} src={logo}></img>
         <Heading1>
           {screenSize.width > 465 ? 'Aalto Strength Society' : 'ASS'}
         </Heading1>

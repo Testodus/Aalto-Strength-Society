@@ -5,7 +5,7 @@ import {
   BG_COLOR_NAVIGATION,
   TEXT_COLOR_NAVIGATION,
   colors,
-} from '../styles/variables';
+} from '../assets/styles/variables';
 
 const NavbarContainer = styled.nav`
   max-width: 62rem;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DetailText, Bodytext } from '../../styles/shared-styles';
+import { DetailText, Bodytext } from '../../assets/styles/shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment } from '../../shared-types';
