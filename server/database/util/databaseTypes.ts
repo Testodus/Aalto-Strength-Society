@@ -17,6 +17,16 @@ export interface UserAttributes {
   contactInfo?: string | null;
 }
 
+export interface UpdateUserAttributes {
+  id: number;
+  profilePicture?: string | null;
+  typeOfLifting?: string | null;
+  favouriteLift?: string | null;
+  favouriteGym?: string | null;
+  favouriteGymTime?: string | null;
+  contactInfo?: string | null;
+}
+
 export interface NoticeAttributes {
   id: number;
   title: string;
@@ -25,6 +35,9 @@ export interface NoticeAttributes {
   createdAt: string;
   userId: number;
 }
+
+export interface UpdateNoticeAttributes
+  extends Omit<NoticeAttributes, 'createdAt' | 'userId'> { } // eslint-disable-line
 
 export interface NoticeCommentAttributes {
   id: number;
