@@ -13,9 +13,9 @@ import {
 
 // --- Create the test data ---
 const testNotice: NoticeCreationAttributes = {
-  title: 'Favorite lift?',
-  text: 'What is everyones favorite lift here?',
-  userId: 1, // liftingDude
+  title: 'Muscles',
+  text: 'More muscles, testing same title names :)',
+  userId: 3, // crossfitgal
 };
 
 const testNoticeCrossFitGal: NoticeCreationAttributes = {
@@ -66,9 +66,8 @@ async function testGetCommentsInNotice() {
 
 async function testUpdateNotice() {
   const updateThisNotice: UpdateNoticeAttributes = {
-    id: 200,
-    title: 'Lifting barefoot?',
-    text: 'Does anyone do it',
+    id: 23,
+    text: 'Cool text',
     picture: 'www.imgur.com/barefoot.png',
   };
   await updateNotice(updateThisNotice);
@@ -81,9 +80,9 @@ async function testDeleteNotice() {
 // ---- Run the test functions ----
 //testGetAllNotices();
 
-testNoticeCreation();
+//testNoticeCreation();
 //testGetNoticeById();
 //testUpdateNoticePicture();
 //testGetCommentsInNotice();
-//testUpdateNotice();
+testUpdateNotice();
 //testDeleteNotice();

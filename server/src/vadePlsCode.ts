@@ -1,4 +1,7 @@
-import { ForbiddenException, InternalServerErrorException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 
 import { User, Notice, NoticeComment } from '../database/model/index';
 import {
@@ -161,12 +164,24 @@ export const updateUser = async (user: UpdateUserAttributes) => {
     const userToUpdate = await User.findByPk(user.id);
     if (userToUpdate) {
       // Update each field
-      userToUpdate.profilePicture = user.profilePicture;
-      userToUpdate.typeOfLifting = user.typeOfLifting;
-      userToUpdate.favouriteLift = user.favouriteLift;
-      userToUpdate.favouriteGym = user.favouriteGym;
-      userToUpdate.favouriteGymTime = user.favouriteGymTime;
-      userToUpdate.contactInfo = user.contactInfo;
+      userToUpdate.profilePicture = user.profilePicture
+        ? user.profilePicture
+        : userToUpdate.profilePicture;
+      userToUpdate.typeOfLifting = user.typeOfLifting
+        ? user.typeOfLifting
+        : userToUpdate.typeOfLifting;
+      userToUpdate.favouriteLift = user.favouriteLift
+        ? user.favouriteLift
+        : userToUpdate.favouriteLift;
+      userToUpdate.favouriteGym = user.favouriteGym
+        ? user.favouriteGym
+        : userToUpdate.favouriteGym;
+      userToUpdate.favouriteGymTime = user.favouriteGymTime
+        ? user.favouriteGymTime
+        : userToUpdate.favouriteGymTime;
+      userToUpdate.contactInfo = user.contactInfo
+        ? user.contactInfo
+        : userToUpdate.contactInfo;
       await userToUpdate.save();
 
       console.log('userToUpdate.dataValues', userToUpdate.dataValues);
@@ -260,10 +275,12 @@ export const updateNotice = async (notice: UpdateNoticeAttributes) => {
   try {
     const noticeToUpdate = await Notice.findByPk(notice.id);
     if (noticeToUpdate) {
-      // Update each field
-      noticeToUpdate.title = notice.title;
-      noticeToUpdate.text = notice.text;
-      noticeToUpdate.picture = notice.picture;
+      // Update each field and check for possible null values given
+      noticeToUpdate.title = notice.title ? notice.title : noticeToUpdate.title;
+      noticeToUpdate.text = notice.text ? notice.text : noticeToUpdate.text;
+      noticeToUpdate.picture = notice.picture
+        ? notice.picture
+        : noticeToUpdate.picture;
       // Save the new values of the notice to database
       await noticeToUpdate.save();
       // Return the updated notice
