@@ -50,7 +50,6 @@ module.exports = {
       },
       title: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false, // The notice must have a title
       },
       text: {
