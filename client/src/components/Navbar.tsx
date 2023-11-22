@@ -5,7 +5,9 @@ import {
   BG_COLOR_NAVIGATION,
   TEXT_COLOR_NAVIGATION,
   colors,
-} from '../styles/variables';
+} from '../assets/styles/variables';
+import { useAuth } from '../provider/authProvider';
+import { useNavigate } from 'react-router-dom';
 
 const NavbarContainer = styled.nav`
   max-width: 62rem;
@@ -19,7 +21,7 @@ const NavbarContainer = styled.nav`
     text-decoration: none;
     color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -32,7 +34,7 @@ const NavbarContainer = styled.nav`
 
 const FullWidthDiv = styled.div`
   width: 100%;
-  max-width: 47rem;
+  max-width: 50rem;
   margin: 0;
   padding: 0;
 `;
@@ -49,7 +51,7 @@ const SecondaryNavbarContainer = styled.nav`
     text-decoration: none;
     color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -85,7 +87,7 @@ const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   background: ${colors.WHITE};
   border-radius: 0.5rem;
   padding: 1rem 1.5rem;
@@ -114,7 +116,8 @@ const NavButton = styled.button`
 const Navbar = () => {
   const [menuBarOpen, setMenubarOpen] = useState(window.innerWidth < 640);
   const [secondaryMenuOpen, setSecondaryMenuOpen] = useState(false);
-
+  const context = useAuth();
+  const navigate = useNavigate();
   // close the whole menu
   const CloseMenuBar = () => {
     setMenubarOpen(!menuBarOpen);
@@ -123,6 +126,11 @@ const Navbar = () => {
   // Open or close the Secondary menu to opposite of its state
   const ChangeAboutUsMenu = () => {
     setSecondaryMenuOpen(!secondaryMenuOpen);
+  };
+
+  const LogOut = () => {
+    context?.setUser(null, null);
+    navigate('/out', { replace: true });
   };
 
   // Close the secondary menu, but do not open it
@@ -144,9 +152,16 @@ const Navbar = () => {
               <Link onClick={CloseMenus} to="/noticeboard">
                 NOTICE BOARD
               </Link>
-              <Link onClick={CloseMenus} to="/login">
-                LOG IN
-              </Link>
+              {context?.token ? (
+                <>
+                  <Link to={'/profile/' + context.userID}>PROFILE</Link>
+                  <a onClick={LogOut}>LOG OUT</a>
+                </>
+              ) : (
+                <Link onClick={CloseMenus} to="/login">
+                  LOG IN
+                </Link>
+              )}
             </NavbarContainer>
           </FullWidthDiv>
         ) : null}

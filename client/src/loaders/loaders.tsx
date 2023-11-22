@@ -4,7 +4,7 @@ import {
   ParamParseKey,
   LoaderFunction,
 } from 'react-router-dom';
-import { Profile, Notice } from '../types';
+import { Profile, Notice } from '../shared-types';
 import { DummyProfiles } from '../assets/noticeBoardDummy';
 import { BasicBoard } from '../assets/noticeBoardDummy';
 

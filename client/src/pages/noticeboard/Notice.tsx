@@ -9,10 +9,10 @@ import {
   FormInputContainer,
   FormTextarea,
   WarningText,
-} from '../../styles/shared-styles';
+} from '../../assets/styles/shared-styles';
 import { Link } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
-import { Comment, Notice } from '../../types';
+import { Comment, Notice } from '../../shared-types';
 import CommentEl from './Comment';
 import {
   BG_ROUND_DIV_SMALL,
@@ -22,7 +22,7 @@ import {
   SECONDARY_BUTTON_TC,
   TEXT_COLOR_MAIN,
   NOTICE_BODYTEXT_SIZE,
-} from '../../styles/variables';
+} from '../../assets/styles/variables';
 
 const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   display: flex;
