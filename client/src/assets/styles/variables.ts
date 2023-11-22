@@ -19,8 +19,8 @@ export const HEADING_3_SIZE = '2.4rem';
 export const HEADING_4_SIZE = '1.9rem';
 
 // Body texts
-export const BODYTEXT_SIZE = '1.4rem';
-export const NOTICE_BODYTEXT_SIZE = '1.7rem';
+export const BODYTEXT_SIZE = '1.2rem';
+export const NOTICE_BODYTEXT_SIZE = '1.4rem';
 
 // Detail text
 export const DETAIL_SIZE = '1rem';
