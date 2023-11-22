@@ -1,17 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { getUser, deleteUser } from './../vadePlsCode';
+import { getUser, deleteUser, getAllUsers, updateUser } from './../vadePlsCode';
+import { EditDto } from './dto';
 
 @Injectable({})
 export class UserService {
   getUser(userID: number) {
-    // TODO: Errorhandling
     return getUser(userID);
   }
 
-  editUser() {}
+  getAllUsers() {
+    return getAllUsers();
+  }
+
+  editUser(id: number, dto: EditDto) {
+    const user = { ...dto, id: id };
+    return updateUser(user);
+  }
 
   deleteUser(userID: number) {
-    // TODO: Errorhandling
     deleteUser(userID);
   }
 }

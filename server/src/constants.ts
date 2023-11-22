@@ -1,1 +1,1 @@
-export const adminID = 111111;
+export const adminID = 8;
