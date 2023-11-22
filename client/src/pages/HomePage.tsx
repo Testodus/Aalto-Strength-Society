@@ -53,19 +53,17 @@ const HomePage = () => {
         <TextContent>
           <Heading2>Welcome</Heading2>
           <Bodytext>
-            comes from a line in section 1.10.32. The standard chunk of Lorem
-            Ipsum used since the 1500s is reproduced below for those interested.
-            Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by
-            Cicero are also reproduced in their exact original form, accompanied
-            by English versions from the 1914 translation by H. Rackham.
+            Welcome to Aalto Strength Society, where strength meets community!
+            As the premier lifting association at Aalto University, we`re
+            dedicated to fostering a culture of empowerment, support, and growth
+            through the world of lifting.
           </Bodytext>
           <Bodytext>
-            literature, discovered the undoubtable source. Lorem Ipsum comes
-            from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum
-            (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
-            book is a treatise on the theory of ethics, very popular during the
-            Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit
-            amet..,
+            Whether you`re a seasoned lifter or just starting your journey, join
+            us in celebrating strength in all its forms. Explore our vibrant
+            community, expert guidance, and exciting events designed to inspire,
+            educate, and elevate your lifting experience. Let`s unlock your full
+            potential together!
           </Bodytext>
         </TextContent>
       </HomePageContainer>

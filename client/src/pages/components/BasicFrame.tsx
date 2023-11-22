@@ -12,12 +12,14 @@ const ContentFrame = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 62rem;
-  width: 100%;
+  width: 90%;
   text-align: left;
   align-items: start;
   margin: 1rem 0 1rem 0;
-  padding: 1rem;
   background: none;
+  @media only screen and (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 type BasicFrameProps = {
