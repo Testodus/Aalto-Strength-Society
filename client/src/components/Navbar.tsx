@@ -21,7 +21,7 @@ const NavbarContainer = styled.nav`
     text-decoration: none;
     color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -51,7 +51,7 @@ const SecondaryNavbarContainer = styled.nav`
     text-decoration: none;
     color: ${TEXT_COLOR_NAVIGATION};
     padding: 1rem 1rem 1rem 1rem;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -87,7 +87,7 @@ const NavButton = styled.button`
   text-decoration: none;
   font-weight: bold;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   background: ${colors.WHITE};
   border-radius: 0.5rem;
   padding: 1rem 1.5rem;
@@ -153,7 +153,10 @@ const Navbar = () => {
                 NOTICE BOARD
               </Link>
               {context?.token ? (
-                <a onClick={LogOut}>LOG OUT</a>
+                <>
+                  <Link to={'/profile/' + context.userID}>PROFILE</Link>
+                  <a onClick={LogOut}>LOG OUT</a>
+                </>
               ) : (
                 <Link onClick={CloseMenus} to="/login">
                   LOG IN
