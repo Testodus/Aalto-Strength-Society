@@ -5,8 +5,8 @@ import {
   Heading2,
   Heading3,
   RoundDivLarge,
-} from '../../styles/shared-styles';
-import { Profile } from '../../types';
+} from '../../assets/styles/shared-styles';
+import { Profile } from '../../shared-types';
 import styled from 'styled-components';
 
 // TODO use actual images
@@ -77,7 +77,11 @@ const ProfileElement = () => {
           </ResponsiveContainer>
         </RoundDivLarge>
       ) : (
-        <Heading2> Profile does not exist </Heading2>
+        <RoundDivLarge>
+          <Heading2> Profile does not exist </Heading2>
+          <Bodytext>Profile you are looking for does not exist!</Bodytext>
+          <Bodytext>Please try another profile.</Bodytext>
+        </RoundDivLarge>
       )}
     </>
   );

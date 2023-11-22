@@ -13,7 +13,7 @@ import {
   SecondaryButton,
   FormStyle,
   PaddingEl,
-} from '../../styles/shared-styles';
+} from '../../assets/styles/shared-styles';
 
 /**
  * TODO: the login form

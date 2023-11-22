@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 /* User profile
 Mandatory
 - email
-- userName
+- username
 - password
 
 Optional

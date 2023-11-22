@@ -13,7 +13,7 @@ export const colors = {
 };
 
 // Heading sizes
-export const HEADING_1_SIZE = '4.8rem';
+export const HEADING_1_SIZE = '4rem';
 export const HEADING_2_SIZE = '3rem';
 export const HEADING_3_SIZE = '2.4rem';
 export const HEADING_4_SIZE = '1.9rem';

@@ -9,6 +9,7 @@ import ProfileElement from './profile/Profile';
 import HomePage from './HomePage';
 import Noticeboard from './noticeboard/Noticeboard';
 import ViewNotice from './view-notice/ViewNotice';
+import Announcement from './announcement/Announcement';
 
 // shared export for all the pages :D
 export {
@@ -23,4 +24,5 @@ export {
   HomePage,
   Noticeboard,
   ViewNotice,
+  Announcement,
 };
