@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 interface User {
   userID: string | null;
   token: string | null;
-  setUser: (newToken: string, newUserID: string) => void;
+  setUser: (newToken: string | null, newUserID: string | null) => void;
 }
 
 const AuthContext = createContext<User | null>(null);
@@ -19,7 +19,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const [userID, setUserID_] = useState(localStorage.getItem('userID'));
 
   // Function to set the authentication token
-  const setUser = (newToken: string, newUserID: string) => {
+  const setUser = (newToken: string | null, newUserID: string | null) => {
     setToken_(newToken);
     setUserID_(newUserID);
   };
