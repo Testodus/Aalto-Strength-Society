@@ -130,7 +130,7 @@ const Navbar = () => {
 
   const LogOut = () => {
     context?.setUser(null, null);
-    navigate('/', { replace: true });
+    navigate('/out', { replace: true });
   };
 
   // Close the secondary menu, but do not open it

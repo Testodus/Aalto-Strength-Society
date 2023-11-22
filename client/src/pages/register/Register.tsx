@@ -64,7 +64,7 @@ const Register = () => {
       // clear form values
       clearValues();
       // navigate to the landing page
-      navigate('/', { replace: true });
+      navigate('/in', { replace: true });
     } catch (err: unknown) {
       if (!(err instanceof AxiosError)) {
         setErrorMessages({ ...errorMessages, general: 'Server error' });

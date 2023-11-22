@@ -17,6 +17,7 @@ import {
   HomePage,
   Noticeboard,
   ViewNotice,
+  Announcement,
 } from '../pages/pages';
 import { profileLoader, noticeLoader } from '../loaders/loaders';
 import { ProtectedRoute } from '../routes/protectedRoute';
@@ -51,6 +52,8 @@ const Routes = () => {
         <Route path={'harassment'} element={<Harassment />} />
         <Route path={'login'} element={<Login />} />
         <Route path={'register'} element={<Register />} />
+        <Route path={'out'} element={<Announcement />} />
+        <Route path={'in'} element={<Announcement />} />
         <Route path="/" element={<ProtectedRoute />}>
           <Route
             path={'profile/:userID'}
