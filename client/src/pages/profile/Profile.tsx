@@ -77,7 +77,11 @@ const ProfileElement = () => {
           </ResponsiveContainer>
         </RoundDivLarge>
       ) : (
-        <Heading2> Profile does not exist </Heading2>
+        <RoundDivLarge>
+          <Heading2> Profile does not exist </Heading2>
+          <Bodytext>Profile you are looking for does not exist!</Bodytext>
+          <Bodytext>Please try another profile.</Bodytext>
+        </RoundDivLarge>
       )}
     </>
   );

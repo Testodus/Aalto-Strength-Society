@@ -18,6 +18,7 @@ import axios, { AxiosError } from 'axios';
 import { filterErrors } from '../../shared-functions';
 import { emptyErrors } from '../../shared-functions';
 import { useAuth } from '../../provider/authProvider';
+import { jwtDecode } from 'jwt-decode';
 
 const emptyRegisterFields = {
   password: '',
@@ -58,9 +59,10 @@ const Register = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      const accessToken = response?.data?.access_token;
+      const accessToken = response.data.access_token;
+      const userID = jwtDecode(accessToken).sub as string;
       // set user-information
-      context?.setUser(accessToken, '8');
+      context?.setUser(accessToken, userID);
       // clear form values
       clearValues();
       // navigate to the landing page
