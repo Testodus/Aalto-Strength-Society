@@ -1,5 +1,5 @@
-
 import { ForbiddenException, InternalServerErrorException } from '@nestjs/common';
+
 import { User, Notice, NoticeComment } from '../database/model/index';
 import {
   NoticeAttributes,
@@ -11,7 +11,6 @@ import {
   UpdateUserAttributes,
   UpdateNoticeAttributes,
 } from 'database/util/databaseTypes';
-import { ValidationError } from 'sequelize';
 
 // ---------- USER --------------
 export const createUser = async (newUser: UserCreationAttributes) => {
@@ -55,13 +54,22 @@ export const getPartialUser = async (email: string) => {
   }
 };
 
-// Gets user by ID and returns all the details of the user
+// Gets user by ID and returns all the details of the user except password.
 export const getUser = async (id: number) => {
   try {
     const userByID = await User.findByPk(id);
     if (userByID) {
-      console.log('userByID.dataValues', userByID.dataValues);
-      return userByID.dataValues;
+      return {
+        email: userByID?.email,
+        userID: userByID?.id,
+        username: userByID?.username,
+        profilePicture: userByID?.profilePicture,
+        typeOfLifting: userByID?.typeOfLifting,
+        favouriteLift: userByID?.favouriteLift,
+        favouriteGym: userByID?.favouriteGym,
+        favouriteGymTime: userByID?.favouriteGymTime,
+        contactInfo: userByID?.contactInfo,
+      };
     } else {
       throw new ForbiddenException(`There is no user with the id: ${id}`);
     }
@@ -99,7 +107,20 @@ export const getUserByUsername = async (username: string) => {
 export const getAllUsers = async () => {
   try {
     const users = await User.findAll();
-    const prunedUsers = users.map(user => user.dataValues);
+    //const prunedUsers = users.map(user => user.dataValues);
+    const prunedUsers = users.map(user => {
+      return {
+        email: user.email,
+        userID: user.id,
+        username: user.username,
+        profilePicture: user.profilePicture,
+        typeOfLifting: user.typeOfLifting,
+        favouriteLift: user.favouriteLift,
+        favouriteGym: user.favouriteGym,
+        favouriteGymTime: user.favouriteGymTime,
+        contactInfo: user.contactInfo,
+      };
+    });
     console.log(prunedUsers);
     // returns the current data values of the users in an array
     return prunedUsers;
@@ -176,7 +197,6 @@ export const updateUser = async (user: UpdateUserAttributes) => {
 export const deleteUser = async (userId: number) => {
   try {
     const userToDelete = await User.findByPk(userId);
-    console.log('userToDelete', userToDelete);
     if (userToDelete) {
       await userToDelete.destroy();
     } else {
