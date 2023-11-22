@@ -70,30 +70,3 @@ const Routes = () => {
 };
 
 export default Routes;
-
-/*
-  const RoutesJSX = (
-    <>
-      <Route path="/" element={<App />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path={'profile/:userID'}
-          loader={profileLoader}
-          element={<ProfileElement />}
-        />
-        <Route
-          path={'view-notice/:noticeID'}
-          loader={noticeLoader}
-          element={<ViewNotice />}
-        />
-        <Route path={'board'} element={<Board />} />
-        <Route path={'noticeboard'} element={<Noticeboard />} />
-        <Route path={'rules'} element={<Rules />} />
-        <Route path={'join'} element={<Join />} />
-        <Route path={'harassment'} element={<Harassment />} />
-        <Route path={'login'} element={<Login />} />
-        <Route path={'register'} element={<Register />} />
-      </Route>
-    </>
-  );
-  */

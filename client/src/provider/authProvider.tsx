@@ -4,11 +4,16 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 interface User {
   userID: string | null;
   token: string | null;
+  setUser: (newToken: string, newUserID: string) => void;
 }
 
 const AuthContext = createContext<User | null>(null);
 
-const AuthProvider = (children: React.ReactNode) => {
+interface ProviderProps {
+  children: React.ReactNode;
+}
+
+const AuthProvider = ({ children }: ProviderProps) => {
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem('token'));
   const [userID, setUserID_] = useState(localStorage.getItem('userID'));
@@ -20,14 +25,17 @@ const AuthProvider = (children: React.ReactNode) => {
   };
 
   useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    if (token && userID) {
+      axios.defaults.headers.common['Authorization'] =
+        'Bearer ' + token + userID;
       localStorage.setItem('token', token);
+      localStorage.setItem('userID', userID);
     } else {
       delete axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('token');
+      localStorage.removeItem('userID');
     }
-  }, [token]);
+  }, [token, userID]);
 
   // Memoized value of the authentication context
   const contextValue = useMemo(

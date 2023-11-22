@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Bodytext,
   Heading2,
@@ -17,6 +17,7 @@ import {
 import axios, { AxiosError } from 'axios';
 import { filterErrors } from '../../shared-functions';
 import { emptyErrors } from '../../shared-functions';
+import { useAuth } from '../../provider/authProvider';
 
 const emptyRegisterFields = {
   password: '',
@@ -37,6 +38,9 @@ const Register = () => {
   const [errorMessages, setErrorMessages] = useState(emptyErrors); // array of the fields that have faulty values
   const [inputValues, setInputValues] = useState(emptyRegisterFields);
 
+  const context = useAuth();
+  const navigate = useNavigate();
+
   const clearValues = () => {
     setErrorMessages(emptyErrors);
     setInputValues(emptyRegisterFields);
@@ -55,10 +59,12 @@ const Register = () => {
         }
       );
       const accessToken = response?.data?.access_token;
-      alert(accessToken ? 'yes' : 'no');
-      // TODO: aseta käyttäjä!! setAuth({ username, password, accessToken });
+      // set user-information
+      context?.setUser(accessToken, '8');
+      // clear form values
       clearValues();
-      // TODO: redirect
+      // navigate to the landing page
+      navigate('/', { replace: true });
     } catch (err: unknown) {
       if (!(err instanceof AxiosError)) {
         setErrorMessages({ ...errorMessages, general: 'Server error' });
@@ -72,7 +78,6 @@ const Register = () => {
       } else {
         setErrorMessages({ ...errorMessages, general: 'Registering failed' });
       }
-      // what is thiis?errRef.current.focus();
     }
   };
   return (
