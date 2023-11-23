@@ -9,7 +9,7 @@ import {
 } from './assets/styles/shared-styles';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import logo from './assets/ass.jpg';
+import logo from './assets/images/ass.jpg';
 import {
   BG_COLOR_FOOTER,
   BG_COLOR_HEADER,

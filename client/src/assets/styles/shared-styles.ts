@@ -220,3 +220,11 @@ export const PaddingEl = styled.div`
     padding: 1rem;
   }
 `;
+
+// images
+
+export const NoMarginsSVG = styled.svg`
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+`;

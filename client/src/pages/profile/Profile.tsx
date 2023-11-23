@@ -8,15 +8,7 @@ import {
 } from '../../assets/styles/shared-styles';
 import { Profile } from '../../shared-types';
 import styled from 'styled-components';
-
-// TODO use actual images
-const ImageContainer = styled.div`
-  height: 250px;
-  width: 250px;
-  color: grey;
-  background: grey;
-  flex-shrink: 0;
-`;
+import Kettlebell from '../../components/Kettlebell';
 
 const ResponsiveContainer = styled.div`
   display: flex;
@@ -52,13 +44,7 @@ const ProfileElement = () => {
         <RoundDivLarge>
           <Heading2>Profiles</Heading2>
           <ResponsiveContainer>
-            <ImageContainer>
-              <Heading3>
-                {profile.profilePicture
-                  ? profile.profilePicture
-                  : 'No profile picture set'}
-              </Heading3>
-            </ImageContainer>
+            <Kettlebell></Kettlebell>
             <div>
               <Heading3>{profile.username}</Heading3>
               {profile.contactInfo ? (

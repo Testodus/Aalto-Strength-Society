@@ -5,6 +5,7 @@ import {
   Heading2,
   RoundDivLarge,
 } from '../assets/styles/shared-styles';
+import KettlebellTransparent from '../components/KettlebellTransparent';
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -32,15 +33,6 @@ const TextContent = styled.div`
   flex-direction: column;
 `;
 
-// TODO: use actual images
-const ImageContainer = styled.svg`
-  height: 250px;
-  width: 250px;
-  color: grey;
-  background: grey;
-  flex-shrink: 0;
-`;
-
 /**
  * The Homepage-component, this is used as the landing page (the index-role is defined on the router-const in index.tsx).
  * @returns HomePage component
@@ -49,7 +41,7 @@ const HomePage = () => {
   return (
     <RoundDivLarge>
       <HomePageContainer>
-        <ImageContainer></ImageContainer>
+        <KettlebellTransparent></KettlebellTransparent>
         <TextContent>
           <Heading2>Welcome</Heading2>
           <Bodytext>
