@@ -18,18 +18,18 @@ import {
 } from '../../assets/styles/variables';
 
 const NoticeBoardContainer = styled.div`
-  width: 100%;
+  width: 90%;
   max-width: 62rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem 5rem;
+  padding: 0 5%;
 
   overflow: hidden;
 
   @media only screen and (max-width: 500px) {
-    padding: 0rem 2rem;
+    padding: 0rem 5%;
   }
 `;
 

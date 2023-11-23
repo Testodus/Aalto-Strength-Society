@@ -195,8 +195,8 @@ export const RoundDivLarge = styled.div`
   box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.25);
 
   @media only screen and (max-width: 640px) {
-    width: 97%;
-    margin: 1.5%;
+    width: 94%;
+    margin: 3%;
     padding: 0.5rem;
   }
 `;
