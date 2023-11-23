@@ -10,6 +10,12 @@ import {
   RoundDivLarge,
 } from '../../assets/styles/shared-styles';
 import NoticeEl from './Notice';
+import { Link } from 'react-router-dom';
+import {
+  PRIMARY_BUTTON_BG,
+  PRIMARY_BUTTON_SIZE,
+  PRIMARY_BUTTON_TC,
+} from '../../assets/styles/variables';
 
 const NoticeBoardContainer = styled.div`
   width: 100%;
@@ -35,6 +41,23 @@ const NoticesMenuBar = styled.div`
   @media only screen and (max-width: 640px) {
     flex-direction: column;
     align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: ${PRIMARY_BUTTON_SIZE};
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+
+    border-radius: 1.5rem;
+    margin: 1rem;
+    border: none;
+    background: ${PRIMARY_BUTTON_BG};
+    color: ${PRIMARY_BUTTON_TC};
+    width: max-content;
+    padding: 0.6rem 1.2rem;
+    align-self: center;
   }
 `;
 
@@ -79,7 +102,7 @@ const Noticeboard = () => {
             <Heading3>{currentBoard.title}</Heading3>
             <Bodytext>{currentBoard.description}</Bodytext>
           </NoticeboardInfoDiv>
-          <PrimaryButton>Post a Notice</PrimaryButton>
+          <Link to={'/notice-editor/new-notice'}>Post a Notice</Link>
         </NoticesMenuBar>
         <NoticesContainer>
           {currentBoard.notices.length
