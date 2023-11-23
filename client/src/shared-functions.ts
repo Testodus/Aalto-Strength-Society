@@ -21,3 +21,18 @@ export const emptyErrors = {
   email: '',
   general: '',
 };
+
+export const postNotice = (notice: string, title: string, userID: string) => {
+  console.log('posting a notice', notice, title, userID);
+  return '5';
+};
+
+export const updateNotice = (
+  notice: string,
+  title: string,
+  userID: string,
+  noticeID: string
+) => {
+  console.log('updating notice', notice, title, userID, noticeID);
+  return true;
+};
