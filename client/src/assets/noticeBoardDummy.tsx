@@ -11,7 +11,7 @@ export const BasicBoard: NoticeBoard = {
   notices: [
     {
       noticeID: '1',
-      userID: '1',
+      userID: '25',
       timeStamp: 1696881731877,
       title: 'Looking for gym buddy?',
       notice:

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Bodytext,
   DetailText,
@@ -14,31 +14,49 @@ import {
   FormStyle,
   PaddingEl,
 } from '../../assets/styles/shared-styles';
+import { useAuth } from '../../provider/authProvider';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
+const emptyLogin = {
+  password: '',
+  email: '',
+};
 /**
  * TODO: the login form
  * @returns Loginpage
  */
 const Login = () => {
   const [noMatch, setNoMatch] = useState(false);
-  const [inputValues, setInputValues] = useState({
-    password: '',
-    email: '',
-  });
+  const [inputValues, setInputValues] = useState(emptyLogin);
+
+  const context = useAuth();
+  const navigate = useNavigate();
+
+  const clearValues = () => {
+    setInputValues(emptyLogin);
+  };
 
   const onSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    const target = event.target as typeof event.target & {
-      commentText: { value: string };
-    };
-
-    const validate = true; // chnage when there is actually a validation
-
-    if (validate) {
-      setNoMatch(false);
-      setInputValues({ email: '', password: '' });
-    } else {
+    try {
+      const response = await axios.post(
+        'http://localhost:3333/auth/login',
+        JSON.stringify(inputValues),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      const accessToken = response.data.access_token;
+      const userID = jwtDecode(accessToken).sub as string;
+      // set user-information
+      context?.setUser(accessToken, userID);
+      // clear form values
+      clearValues();
+      // navigate to the landing page
+      navigate('/in', { replace: true });
+    } catch (err: unknown) {
       setNoMatch(true);
     }
   };

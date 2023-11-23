@@ -10,6 +10,7 @@ import HomePage from './HomePage';
 import Noticeboard from './noticeboard/Noticeboard';
 import ViewNotice from './view-notice/ViewNotice';
 import Announcement from './announcement/Announcement';
+import NoticeEditor from './notice-editor/NoticeEditor';
 
 // shared export for all the pages :D
 export {
@@ -25,4 +26,5 @@ export {
   Noticeboard,
   ViewNotice,
   Announcement,
+  NoticeEditor,
 };

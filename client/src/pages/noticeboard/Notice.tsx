@@ -22,7 +22,9 @@ import {
   SECONDARY_BUTTON_TC,
   TEXT_COLOR_MAIN,
   NOTICE_BODYTEXT_SIZE,
+  PRIMARY_BUTTON_TC,
 } from '../../assets/styles/variables';
+import { useAuth } from '../../provider/authProvider';
 
 const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   display: flex;
@@ -38,6 +40,26 @@ const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   box-shadow: 0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.25);
 `;
 // jos haluut noticet saman kokosiks ota toi hieght pois
+
+const EditDiv = styled.div`
+  margin: 1rem 0;
+  a {
+    text-decoration: none;
+    font-size: 1rem;
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+
+    border-radius: 1rem;
+    margin: 1rem;
+    border: none;
+    background: grey;
+    color: ${PRIMARY_BUTTON_TC};
+    width: max-content;
+    padding: 0.4rem 0.8rem;
+    align-self: center;
+  }
+`;
 
 const FadedContentGrid = styled.div`
   display: grid;
@@ -100,6 +122,8 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
   const [shortComment, setShortComment] = useState(false);
   const [textAreaValue, setTextAreaValue] = useState('');
 
+  const context = useAuth();
+
   const getUsername = (id: string) => {
     const user = DummyProfiles.find(profile => profile.userID === id);
     return user ? user.username : 'did not find it';
@@ -146,6 +170,11 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
   return (
     <NoticeDiv $fullNotice={fullNotice}>
       <Heading4>{notice.title}</Heading4>
+      <EditDiv>
+        {fullNotice && (context?.userID as string) === notice.userID ? (
+          <Link to={'/notice-editor/' + notice.noticeID}> Edit Notice </Link>
+        ) : null}
+      </EditDiv>
       <DetailText>
         <Link to={'/profile/' + notice.userID}>
           {getUsername(notice.userID)}
