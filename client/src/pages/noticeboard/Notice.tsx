@@ -22,8 +22,6 @@ import {
   SECONDARY_BUTTON_TC,
   TEXT_COLOR_MAIN,
   NOTICE_BODYTEXT_SIZE,
-  PRIMARY_BUTTON_BG,
-  PRIMARY_BUTTON_SIZE,
   PRIMARY_BUTTON_TC,
 } from '../../assets/styles/variables';
 import { useAuth } from '../../provider/authProvider';
@@ -44,20 +42,21 @@ const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
 // jos haluut noticet saman kokosiks ota toi hieght pois
 
 const EditDiv = styled.div`
+  margin: 1rem 0;
   a {
     text-decoration: none;
-    font-size: ${PRIMARY_BUTTON_SIZE};
+    font-size: 1rem;
 
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
 
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     margin: 1rem;
     border: none;
-    background: ${PRIMARY_BUTTON_BG};
+    background: grey;
     color: ${PRIMARY_BUTTON_TC};
     width: max-content;
-    padding: 0.6rem 1.2rem;
+    padding: 0.4rem 0.8rem;
     align-self: center;
   }
 `;
@@ -171,17 +170,17 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
   return (
     <NoticeDiv $fullNotice={fullNotice}>
       <Heading4>{notice.title}</Heading4>
+      <EditDiv>
+        {fullNotice && (context?.userID as string) === notice.userID ? (
+          <Link to={'/notice-editor/' + notice.noticeID}> Edit Notice </Link>
+        ) : null}
+      </EditDiv>
       <DetailText>
         <Link to={'/profile/' + notice.userID}>
           {getUsername(notice.userID)}
         </Link>{' '}
         {getDate(notice.timeStamp)}
       </DetailText>
-      <EditDiv>
-        {fullNotice && context?.userID === notice.userID ? (
-          <Link to={'/notice-editor/' + notice.noticeID}> Edit Notice </Link>
-        ) : null}
-      </EditDiv>
       {fullNotice ? (
         <>
           <Bodytext>{notice.notice}</Bodytext>
