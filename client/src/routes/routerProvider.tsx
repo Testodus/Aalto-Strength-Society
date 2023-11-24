@@ -19,6 +19,7 @@ import {
   ViewNotice,
   Announcement,
   NoticeEditor,
+  EditProfile,
 } from '../pages/pages';
 import {
   profileLoader,
@@ -65,6 +66,7 @@ const Routes = () => {
             loader={profileLoader}
             element={<ProfileElement />}
           />
+          <Route path={'edit-profile'} element={<EditProfile />} />
           <Route
             path={'notice-editor/:noticeID'}
             loader={noticeLoaderEditor}
