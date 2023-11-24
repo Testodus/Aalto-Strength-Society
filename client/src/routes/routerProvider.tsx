@@ -18,8 +18,13 @@ import {
   Noticeboard,
   ViewNotice,
   Announcement,
+  NoticeEditor,
 } from '../pages/pages';
-import { profileLoader, noticeLoader } from '../loaders/loaders';
+import {
+  profileLoader,
+  noticeLoader,
+  noticeLoaderEditor,
+} from '../loaders/loaders';
 import { ProtectedRoute } from '../routes/protectedRoute';
 
 /**
@@ -59,6 +64,15 @@ const Routes = () => {
             path={'profile/:userID'}
             loader={profileLoader}
             element={<ProfileElement />}
+          />
+          <Route
+            path={'notice-editor/:noticeID'}
+            loader={noticeLoaderEditor}
+            element={<NoticeEditor newNotice={false} />}
+          />
+          <Route
+            path={'notice-editor/new-notice'}
+            element={<NoticeEditor newNotice={true} />}
           />
         </Route>
       </Route>

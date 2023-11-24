@@ -1,7 +1,11 @@
 import NoticeEl from '../noticeboard/Notice';
 import { Notice } from '../../shared-types';
 import { useLoaderData } from 'react-router-dom';
-import { Heading3 } from '../../assets/styles/shared-styles';
+import {
+  RoundDivLarge,
+  Heading2,
+  Bodytext,
+} from '../../assets/styles/shared-styles';
 import styled from 'styled-components';
 
 const ViewNoticeContainer = styled.div`
@@ -17,7 +21,11 @@ const ViewNotice = () => {
       {notice ? (
         <NoticeEl notice={notice} fullNotice={true}></NoticeEl>
       ) : (
-        <Heading3>Notice does not exist.</Heading3>
+        <RoundDivLarge>
+          <Heading2> Notice does not exist </Heading2>
+          <Bodytext>Notice you are looking for does not exist!</Bodytext>
+          <Bodytext>Please try another notice.</Bodytext>
+        </RoundDivLarge>
       )}{' '}
     </ViewNoticeContainer>
   );
