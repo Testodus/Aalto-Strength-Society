@@ -2,21 +2,14 @@ import { IsDefined, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class NoticeDto {
   @IsDefined()
-  noticeTile: string;
+  title: string;
 
   @IsDefined()
-  noticeText: string;
-
-  //TODO: Mitä aikaa käytettään?
-  @IsNotEmpty()
-  timestamp: string;
+  text: string;
 
   @IsOptional()
-  noticePicture: string;
+  picture: string;
 
   @IsNotEmpty()
-  userID: string;
-
-  @IsNotEmpty()
-  boardID: string;
+  userId: number;
 }

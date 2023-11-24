@@ -45,7 +45,7 @@ export class UserController {
   }
 
   @UseGuards(JwtGuard)
-  @Patch('edit/:userID')
+  @Patch(':userID')
   editUser(
     @GetUser() user: { userID: number },
     @Param('userID') userID: number,
