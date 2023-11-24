@@ -42,7 +42,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3333/auth/login',
+        process.env.REACT_APP_API_URL + '/auth/login',
         JSON.stringify(inputValues),
         {
           headers: { 'Content-Type': 'application/json' },

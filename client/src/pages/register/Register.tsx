@@ -53,7 +53,7 @@ const Register = () => {
     // try to log in
     try {
       const response = await axios.post(
-        'http://localhost:3333/auth/register',
+        process.env.REACT_APP_API_URL + '/auth/register',
         JSON.stringify(inputValues),
         {
           headers: { 'Content-Type': 'application/json' },
