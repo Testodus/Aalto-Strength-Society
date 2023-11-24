@@ -274,7 +274,7 @@ export const updateNotice = async (notice: UpdateNoticeAttributes) => {
   console.log('notice', notice);
   try {
     const noticeToUpdate = await Notice.findByPk(notice.id);
-    console.log('-------------------------------');
+
     console.log(noticeToUpdate);
     if (noticeToUpdate) {
       // Update each field and check for possible null values given

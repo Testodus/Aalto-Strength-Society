@@ -28,6 +28,6 @@ export class NoticeService {
   }
 
   editNotice(noticeId: number, dto: EditNoticeDto) {
-    updateNotice({ ...dto, id: noticeId });
+    return updateNotice({ ...dto, id: noticeId });
   }
 }

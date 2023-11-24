@@ -38,7 +38,7 @@ export class NoticeController {
   }
   @UseGuards(JwtGuard)
   @Delete(':id')
-  deleteNotice(@GetUser() user: { userID: number }, @Body() id: number) {
+  deleteNotice(@GetUser() user: { userID: number }, @Param('id') id: number) {
     // Get notice, to get userId
     // Check that userId is the same as in toke or adminId.
     getNoticeByID(id).then(notice => {
@@ -60,12 +60,12 @@ export class NoticeController {
     @Param('id') noticeId: number,
     @Body() dto: EditNoticeDto
   ) {
-    getNoticeByID(noticeId).then(notice => {
+    return getNoticeByID(noticeId).then(notice => {
       if (
         user.userID.toString() == notice.userId.toString() ||
         user.userID.toString() == adminID.toString()
       ) {
-        this.noticeService.editNotice(noticeId, dto);
+        return this.noticeService.editNotice(noticeId, dto);
       } else {
         throw new UnauthorizedException();
       }
