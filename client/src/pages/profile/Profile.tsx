@@ -1,7 +1,8 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import {
   Bodytext,
+  DetailText,
   Heading2,
   Heading3,
   RoundDivLarge,
@@ -9,6 +10,7 @@ import {
 import { Profile } from '../../shared-types';
 import styled from 'styled-components';
 import Kettlebell from '../../components/Kettlebell';
+import { useAuth } from '../../provider/authProvider';
 
 const ResponsiveContainer = styled.div`
   display: flex;
@@ -37,6 +39,7 @@ const ResponsiveContainer = styled.div`
  */
 const ProfileElement = () => {
   const profile = useLoaderData() as Profile | null;
+  const context = useAuth();
 
   return (
     <>
@@ -46,6 +49,11 @@ const ProfileElement = () => {
           <ResponsiveContainer>
             <Kettlebell></Kettlebell>
             <div>
+              {(context?.userID as string) === (profile.userID as string) ? (
+                <DetailText>
+                  <Link to="/edit-profile">Edit profile</Link>
+                </DetailText>
+              ) : null}
               <Heading3>{profile.username}</Heading3>
               {profile.contactInfo ? (
                 <Bodytext>
