@@ -1,20 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import fs from 'fs';
+import {
+  createNotice,
+  deleteNotice,
+  getAllNotices,
+  getNoticeByID,
+  updateNotice,
+} from 'src/vadePlsCode';
 import { NoticeDto } from './dto';
+import { EditNoticeDto } from './dto/editNotice.dto';
 
 @Injectable({})
 export class NoticeService {
-  // TODO: Possibly useful operations: get one single notice?
-
   createNotice(notice: NoticeDto) {
-    // TODO: Create one single new notice.
+    return createNotice(notice);
+  }
+
+  getNotice(id: number) {
+    return getNoticeByID(id);
   }
 
   getAllNotices() {
-    // TODO: Fetch all notices?
+    return getAllNotices();
   }
 
-  deleteNotice() {
-    // TODO: Delete one single notice, by id.
+  deleteNotice(id: number) {
+    deleteNotice(id);
+  }
+
+  editNotice(noticeId: number, dto: EditNoticeDto) {
+    updateNotice({ ...dto, id: noticeId });
   }
 }

@@ -1,4 +1,7 @@
-import { ForbiddenException, InternalServerErrorException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 
 import { User, Notice, NoticeComment } from '../database/model/index';
 import {
@@ -259,6 +262,8 @@ export const updateNotice = async (notice: UpdateNoticeAttributes) => {
   console.log('notice', notice);
   try {
     const noticeToUpdate = await Notice.findByPk(notice.id);
+    console.log('-------------------------------');
+    console.log(noticeToUpdate);
     if (noticeToUpdate) {
       // Update each field
       noticeToUpdate.title = notice.title;
