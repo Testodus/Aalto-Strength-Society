@@ -15,7 +15,7 @@ class Notice
   public createdAt!: string;
   public userId!: number;
 }
-// TO-DO, make the typescript model
+
 Notice.init(
   {
     id: {
@@ -25,7 +25,6 @@ Notice.init(
     },
     title: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false, // The notice must have a title
     },
     text: {

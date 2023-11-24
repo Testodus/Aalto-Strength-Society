@@ -36,8 +36,9 @@ export interface NoticeAttributes {
   userId: number;
 }
 
+// Only the id is mandatory in UpdateNoticeAttributes
 export interface UpdateNoticeAttributes
-  extends Omit<NoticeAttributes, 'createdAt' | 'userId'> { } // eslint-disable-line
+  extends Optional<NoticeAttributes, 'createdAt' | 'userId' | 'title' | 'text' | 'picture'> { } // eslint-disable-line
 
 export interface NoticeCommentAttributes {
   id: number;
