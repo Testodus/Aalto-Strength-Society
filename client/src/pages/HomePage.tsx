@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
+  Bodylist,
   Bodytext,
   Heading2,
   RoundDivLarge,
@@ -45,18 +46,25 @@ const HomePage = () => {
         <TextContent>
           <Heading2>Welcome</Heading2>
           <Bodytext>
-            Welcome to Aalto Strength Society, where strength meets community!
-            As the premier lifting association at Aalto University, we`re
-            dedicated to fostering a culture of empowerment, support, and growth
-            through the world of lifting.
+            Aalto Strength Society, or more commonly known as ´ASS´is a strength
+            sports focused sporting club in Aalto University. The primary focus
+            of the club is in powerlifting and strongman sports, but we are up
+            for anything strength-related. That is, we lift heavy objects
+            together and we have fun doing it.
           </Bodytext>
-          <Bodytext>
-            Whether you`re a seasoned lifter or just starting your journey, join
-            us in celebrating strength in all its forms. Explore our vibrant
-            community, expert guidance, and exciting events designed to inspire,
-            educate, and elevate your lifting experience. Let`s unlock your full
-            potential together!
-          </Bodytext>
+          <Bodytext>When it comes to events we organize: </Bodytext>
+          <Bodylist>
+            <li>
+              Practices in which those who are new to strength sports can get a
+              grip on it{' '}
+            </li>{' '}
+            <li>
+              Internal competitions, in which you can test your limits in a
+              friendly environment{' '}
+            </li>
+            <li>Excursions to other strength-related events, and </li>
+            <li>Pretty much anything and everything else strength related</li>
+          </Bodylist>
         </TextContent>
       </HomePageContainer>
     </RoundDivLarge>
