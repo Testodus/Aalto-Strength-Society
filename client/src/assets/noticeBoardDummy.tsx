@@ -175,4 +175,12 @@ export const DummyProfiles: Array<Profile> = [
     username: 'TheLifter99',
     email: 'Gymbro.com',
   },
+  {
+    userID: '25',
+    username: 'moi',
+    email: 'moi@moi.fi',
+    contactInfo: 'Telegram: @theGymLover123',
+    favouriteLift: 'Lifting groceries',
+    profilePicture: 'GymLovers`s profile pic',
+  },
 ];
