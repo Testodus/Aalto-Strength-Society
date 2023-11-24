@@ -11,6 +11,7 @@ import Noticeboard from './noticeboard/Noticeboard';
 import ViewNotice from './view-notice/ViewNotice';
 import Announcement from './announcement/Announcement';
 import NoticeEditor from './notice-editor/NoticeEditor';
+import EditProfile from './profile/EditProfile';
 
 // shared export for all the pages :D
 export {
@@ -27,4 +28,5 @@ export {
   ViewNotice,
   Announcement,
   NoticeEditor,
+  EditProfile,
 };

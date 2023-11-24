@@ -6,7 +6,6 @@ import {
   Bodytext,
   Heading2,
   Heading3,
-  PrimaryButton,
   RoundDivLarge,
 } from '../../assets/styles/shared-styles';
 import NoticeEl from './Notice';
