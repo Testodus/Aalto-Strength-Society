@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
   Heading4,
@@ -10,7 +10,7 @@ import {
   FormTextarea,
   WarningText,
 } from '../../assets/styles/shared-styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment, Notice } from '../../shared-types';
 import CommentEl from './Comment';
@@ -25,6 +25,8 @@ import {
   PRIMARY_BUTTON_TC,
 } from '../../assets/styles/variables';
 import { useAuth } from '../../provider/authProvider';
+import { getNotice, getProfile } from '../../loaders/loaders';
+import { deleteNotice } from '../../shared-functions';
 
 const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   display: flex;
@@ -113,36 +115,69 @@ type NoticeProps = {
   notice: Notice;
 };
 
+type NoticeData = {
+  text: string;
+  userId: number;
+  id: number;
+  title: string;
+  picture: string;
+  createdAt: string;
+  noticeComments?: Array<CommentData>;
+};
+
+type CommentData = {
+  text: string;
+  userId: number;
+  createdAt: string;
+  id: number;
+  commentId: number;
+  noticeId: number;
+};
+
+type ProfileData = {
+  username: string;
+};
+
 /**
  *Can be used as the full Notice with comments and all with FullNotice: true and as a teaser with FullNotice:false
  * @returns Notice -element
  */
 const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
-  const [comments, setComments] = useState(notice.comments);
+  const [comments, setComments] = useState<Array<Comment> | null>(null);
   const [shortComment, setShortComment] = useState(false);
   const [textAreaValue, setTextAreaValue] = useState('');
+  const [loadReady, setLoad] = useState(false);
+  const [username, setUsername] = useState('');
 
   const context = useAuth();
+  const navigate = useNavigate();
 
-  const getUsername = (id: string) => {
-    const user = DummyProfiles.find(profile => profile.userID === id);
-    return user ? user.username : 'did not find it';
+  const fetchData = async () => {
+    // change to get notice comments
+    const noticeData: NoticeData = await getNotice(notice.noticeID);
+    const profileData: ProfileData = await getProfile(notice.userID);
+    setUsername(profileData.username);
+    if (noticeData?.noticeComments) {
+      const comments: Array<Comment> | undefined =
+        noticeData?.noticeComments?.map((comment: CommentData) => {
+          return {
+            userID: comment.userId,
+            timeStamp: comment.createdAt,
+            comment: comment.text,
+            commentID: comment.id,
+            noticeID: comment.noticeId,
+          };
+        });
+      setComments(comments);
+    }
   };
 
-  const addZeroToTime = (number: number) =>
-    number > 9 ? number : '0' + number;
+  if (!loadReady) {
+    fetchData();
+    setLoad(true);
+  }
 
-  const getDate = (timeStamp: number) => {
-    const date = new Date(timeStamp);
-    return (
-      addZeroToTime(date.getHours()) +
-      ':' +
-      addZeroToTime(date.getMinutes()) +
-      ', ' +
-      date.toDateString()
-    );
-  };
-
+  // API
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
@@ -150,13 +185,15 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
       commentText: { value: string };
     };
 
-    if (target.commentText.value.length > 0) {
+    if (
+      target.commentText.value.length > 0 &&
+      comments &&
+      typeof context?.userID === 'number'
+    ) {
       const newComment: Comment = {
         comment: target.commentText.value,
-        userID: '3',
-        commentID: notice.noticeID + '-' + (comments.length + 1),
+        userID: context?.userID,
         noticeID: notice.noticeID,
-        timeStamp: Date.now(),
       };
 
       setComments([...comments, newComment]);
@@ -167,29 +204,46 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
     }
   };
 
+  const deleteActionNotice = async () => {
+    if (context?.token) {
+      const success = await deleteNotice(notice.noticeID, context?.token);
+      if (success) navigate('/noticeboard', { replace: true });
+    }
+  };
+
   return (
     <NoticeDiv $fullNotice={fullNotice}>
       <Heading4>{notice.title}</Heading4>
       <EditDiv>
-        {fullNotice && (context?.userID as string) === notice.userID ? (
-          <Link to={'/notice-editor/' + notice.noticeID}> Edit Notice </Link>
+        {fullNotice && context?.userID + '' === notice.userID + '' ? (
+          <>
+            <Link to={'/notice-editor/' + notice.noticeID}> Edit Notice </Link>
+            <SecondaryButton onClick={deleteActionNotice}>
+              Delete Notice
+            </SecondaryButton>
+          </>
+        ) : null}
+        {fullNotice && context?.userID + '' === '8' ? (
+          <SecondaryButton onClick={deleteActionNotice}>
+            Delete Notice
+          </SecondaryButton>
         ) : null}
       </EditDiv>
       <DetailText>
-        <Link to={'/profile/' + notice.userID}>
-          {getUsername(notice.userID)}
-        </Link>{' '}
-        {getDate(notice.timeStamp)}
+        <Link to={'/profile/' + notice.userID}>{username}</Link>{' '}
+        {notice?.timeStamp?.slice(0, 10)}
       </DetailText>
       {fullNotice ? (
         <>
           <Bodytext>{notice.notice}</Bodytext>
-          {comments.map((comment, i) => (
-            <CommentEl
-              key={'comment-' + comment.commentID + i}
-              comment={comment}
-            ></CommentEl>
-          ))}
+          {comments
+            ? comments.map((comment, i) => (
+                <CommentEl
+                  key={'comment-' + comment.commentID + i}
+                  comment={comment}
+                ></CommentEl>
+              ))
+            : null}
           <form onSubmit={onSubmit}>
             <FormInputContainer>
               <FormLabel htmlFor="commentText">Comment</FormLabel>

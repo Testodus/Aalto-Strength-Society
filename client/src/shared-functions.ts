@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const filterErrors = (label: string, message?: Array<string>) => {
   if (!message || !message.length) return '';
   const errors = message.filter((message?: string) => {
@@ -22,17 +24,74 @@ export const emptyErrors = {
   general: '',
 };
 
-export const postNotice = (notice: string, title: string, userID: string) => {
-  console.log('posting a notice', notice, title, userID);
-  return '5';
-};
-
-export const updateNotice = (
+export const postNotice = async (
   notice: string,
   title: string,
-  userID: string,
-  noticeID: string
+  userID: number,
+  token: string
 ) => {
-  console.log('updating notice', notice, title, userID, noticeID);
-  return true;
+  const noticeObject = {
+    text: notice,
+    title: title,
+    userId: userID,
+  };
+  try {
+    const response = await axios.post(
+      process.env.REACT_APP_API_URL + '/notice',
+      JSON.stringify(noticeObject),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    return response.data.id;
+  } catch (err: unknown) {
+    return false;
+  }
+};
+
+export const updateNotice = async (
+  notice: string,
+  title: string,
+  noticeID: number,
+  token: string
+) => {
+  const noticeObject = {
+    text: notice,
+    title: title,
+  };
+  try {
+    const response = await axios.patch(
+      process.env.REACT_APP_API_URL + '/notice/' + noticeID,
+      JSON.stringify(noticeObject),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    return response.data.id;
+  } catch (err: unknown) {
+    return false;
+  }
+};
+
+export const deleteNotice = async (noticeID: number, token: string) => {
+  try {
+    const response = await axios.delete(
+      process.env.REACT_APP_API_URL + '/notice/' + noticeID,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return false;
+  }
 };

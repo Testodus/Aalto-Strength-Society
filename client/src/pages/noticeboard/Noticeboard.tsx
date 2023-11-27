@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { BasicBoard } from '../../assets/noticeBoardDummy';
 import { useState } from 'react';
 import {
   Bodytext,
@@ -15,6 +14,8 @@ import {
   PRIMARY_BUTTON_SIZE,
   PRIMARY_BUTTON_TC,
 } from '../../assets/styles/variables';
+import { getAllNotices } from '../../loaders/loaders';
+import { Notice } from '../../shared-types';
 
 const NoticeBoardContainer = styled.div`
   width: 90%;
@@ -81,6 +82,16 @@ const NoticesContainer = styled.div`
   }
 `;
 
+type NoticeData = {
+  text: string;
+  userId: number;
+  id: number;
+  title: string;
+  picture: string;
+  createdAt: string;
+  noticeComments: Array<unknown>;
+};
+
 /**
  * This creates the notice board component. It contains the headers, menumar for buttons and the notices section
  *
@@ -90,7 +101,28 @@ const NoticesContainer = styled.div`
  * @returns Noticeboard
  */
 const Noticeboard = () => {
-  const [currentBoard, setCurrentBoard] = useState(BasicBoard);
+  const [notices, setNotices] = useState<Array<Notice>>([]);
+  const [loadReady, setLoad] = useState(false);
+
+  const fetchData = async () => {
+    const noticeData: Array<NoticeData> = await getAllNotices();
+    const notices: Array<Notice> = noticeData.map((notice: NoticeData) => {
+      return {
+        notice: notice.text,
+        userID: notice.userId,
+        noticeID: notice.id,
+        title: notice.title,
+        imageSrc: notice.picture,
+        timeStamp: notice.createdAt,
+      };
+    });
+    setNotices(notices);
+  };
+
+  if (!loadReady) {
+    fetchData();
+    setLoad(true);
+  }
 
   return (
     <RoundDivLarge>
@@ -98,20 +130,26 @@ const Noticeboard = () => {
         <Heading2>Notice Board</Heading2>
         <NoticesMenuBar>
           <NoticeboardInfoDiv>
-            <Heading3>{currentBoard.title}</Heading3>
-            <Bodytext>{currentBoard.description}</Bodytext>
+            <Heading3>General notices</Heading3>
+            <Bodytext>
+              Welcome, here you are free to discuss all gym and training realted
+              topics. Users that are logged in can post and others are able to
+              just observe.
+            </Bodytext>
           </NoticeboardInfoDiv>
           <Link to={'/notice-editor/new-notice'}>Post a Notice</Link>
         </NoticesMenuBar>
         <NoticesContainer>
-          {currentBoard.notices.length
-            ? currentBoard.notices.map((notice, i) => (
-                <NoticeEl
-                  key={currentBoard.title + '-Notice-' + i}
-                  notice={notice}
-                  fullNotice={false}
-                ></NoticeEl>
-              ))
+          {notices.length
+            ? notices
+                .map((notice: Notice, i: number) => (
+                  <NoticeEl
+                    key={'-Notice-' + i}
+                    notice={notice}
+                    fullNotice={false}
+                  ></NoticeEl>
+                ))
+                .reverse()
             : null}
         </NoticesContainer>
       </NoticeBoardContainer>

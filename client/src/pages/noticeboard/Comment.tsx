@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DetailText, Bodytext } from '../../assets/styles/shared-styles';
 import { Link } from 'react-router-dom';
-import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment } from '../../shared-types';
+import { getProfile } from '../../loaders/loaders';
 
 const CommentDiv = styled.div`
   display: flex;
@@ -25,39 +25,39 @@ type CommentProps = {
   comment: Comment;
 };
 
+type ProfileData = {
+  username: string;
+};
+
 /**
  *Can be used as the full Notice with comments and all with FullNotice: true and as a teaser with FullNotice:false
  * @returns Notice -element
  */
 const CommentEl = ({ comment }: CommentProps) => {
-  const getUsername = (id: string) => {
-    const user = DummyProfiles.find(profile => profile.userID === id);
-    return user ? user.username : 'did not find it';
+  const [commentInfo, setCommentInfo] = useState(comment);
+  const [loadReady, setLoad] = useState(false);
+
+  const fetchData = async () => {
+    // change to get notice comments
+    const profileData: ProfileData = await getProfile(comment.userID);
+
+    setCommentInfo({ ...commentInfo, username: profileData.username });
   };
 
-  const addZeroToTime = (number: number) =>
-    number > 9 ? number : '0' + number;
-
-  const getDate = (timeStamp: number) => {
-    const date = new Date(timeStamp);
-    return (
-      addZeroToTime(date.getHours()) +
-      ':' +
-      addZeroToTime(date.getMinutes()) +
-      ', ' +
-      date.toDateString()
-    );
-  };
+  if (!loadReady) {
+    fetchData();
+    setLoad(true);
+  }
 
   return (
     <CommentDiv>
       <DetailText>
-        <Link to={'/profile/' + comment.userID}>
-          {getUsername(comment.userID)}
+        <Link to={'/profile/' + commentInfo.userID}>
+          {commentInfo.username}
         </Link>{' '}
-        {getDate(comment.timeStamp)}
+        {commentInfo?.timeStamp?.slice(0, 10)}
       </DetailText>
-      <Bodytext>{comment.comment}</Bodytext>
+      <Bodytext>{commentInfo.comment}</Bodytext>
     </CommentDiv>
   );
 };

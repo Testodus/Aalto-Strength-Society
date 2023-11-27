@@ -2,9 +2,9 @@ import axios from 'axios';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 interface User {
-  userID: string | null;
+  userID: number | null;
   token: string | null;
-  setUser: (newToken: string | null, newUserID: string | null) => void;
+  setUser: (newToken: string | null, newUserID: number | null) => void;
 }
 
 const AuthContext = createContext<User | null>(null);
@@ -16,10 +16,12 @@ interface ProviderProps {
 const AuthProvider = ({ children }: ProviderProps) => {
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem('token'));
-  const [userID, setUserID_] = useState(localStorage.getItem('userID'));
+  const [userID, setUserID_] = useState<number | null>(
+    localStorage.getItem('userID') as unknown as number
+  );
 
   // Function to set the authentication token
-  const setUser = (newToken: string | null, newUserID: string | null) => {
+  const setUser = (newToken: string | null, newUserID: number | null) => {
     setToken_(newToken);
     setUserID_(newUserID);
   };
@@ -29,7 +31,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
       axios.defaults.headers.common['Authorization'] =
         'Bearer ' + token + userID;
       localStorage.setItem('token', token);
-      localStorage.setItem('userID', userID);
+      localStorage.setItem('userID', userID as unknown as string);
     } else {
       delete axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('token');
