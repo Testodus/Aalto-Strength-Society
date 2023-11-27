@@ -11,7 +11,6 @@ import {
   WarningText,
 } from '../../assets/styles/shared-styles';
 import { Link, useNavigate } from 'react-router-dom';
-import { DummyProfiles } from '../../assets/noticeBoardDummy';
 import { Comment, Notice } from '../../shared-types';
 import CommentEl from './Comment';
 import {
@@ -25,8 +24,8 @@ import {
   PRIMARY_BUTTON_TC,
 } from '../../assets/styles/variables';
 import { useAuth } from '../../provider/authProvider';
-import { getNotice, getProfile } from '../../loaders/loaders';
-import { deleteNotice } from '../../shared-functions';
+import { getProfile } from '../../loaders/loaders';
+import { deleteNotice, getComments, postComment } from '../../shared-functions';
 
 const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   display: flex;
@@ -154,12 +153,12 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
 
   const fetchData = async () => {
     // change to get notice comments
-    const noticeData: NoticeData = await getNotice(notice.noticeID);
+    const noticeData: NoticeData = await getComments(notice.noticeID);
     const profileData: ProfileData = await getProfile(notice.userID);
     setUsername(profileData.username);
-    if (noticeData?.noticeComments) {
+    if (noticeData?.noticeComments?.length) {
       const comments: Array<Comment> | undefined =
-        noticeData?.noticeComments?.map((comment: CommentData) => {
+        noticeData.noticeComments.map((comment: CommentData) => {
           return {
             userID: comment.userId,
             timeStamp: comment.createdAt,
@@ -185,18 +184,16 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
       commentText: { value: string };
     };
 
-    if (
-      target.commentText.value.length > 0 &&
-      comments &&
-      typeof context?.userID === 'number'
-    ) {
-      const newComment: Comment = {
-        comment: target.commentText.value,
-        userID: context?.userID,
-        noticeID: notice.noticeID,
-      };
-
-      setComments([...comments, newComment]);
+    if (target.commentText.value.length > 0) {
+      postComment(
+        target.commentText.value,
+        context?.userID as number,
+        notice.noticeID,
+        context?.token as string
+      ).then(() => {
+        fetchData();
+      });
+      // fetch the comments again to update
       setShortComment(false);
       setTextAreaValue('');
     } else {

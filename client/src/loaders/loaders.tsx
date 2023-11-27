@@ -100,7 +100,6 @@ interface NoticeArgs extends ActionFunctionArgs {
 export const noticeLoader: LoaderFunction = async ({
   params,
 }: NoticeArgs): Promise<Notice | null> => {
-  console.log(params.noticeID);
   if (params.noticeID === undefined) return null;
   const notice = await getNotice(params.noticeID as unknown as number);
   return notice
