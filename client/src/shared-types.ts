@@ -25,21 +25,23 @@ export type BoardMember = {
 };
 
 export type Notice = {
-  userID: string;
-  timeStamp: number;
+  userID: number;
+  timeStamp?: string;
   title: string;
   notice: string;
   imageSrc?: string;
-  noticeID: string;
-  comments: Array<Comment>;
+  noticeID: number;
+  comments?: Array<Comment>;
+  username?: string;
 };
 
 export type Comment = {
-  userID: string;
-  timeStamp: number;
+  userID: number;
+  timeStamp?: string;
   comment: string;
-  commentID: string;
-  noticeID: string;
+  commentID?: number;
+  noticeID: number;
+  username?: string;
 };
 
 export type NoticeBoard = {
@@ -49,7 +51,7 @@ export type NoticeBoard = {
 };
 
 export type Profile = {
-  userID: string;
+  userID: number;
   username: string;
   favouriteLift?: string;
   contactInfo?: string;
