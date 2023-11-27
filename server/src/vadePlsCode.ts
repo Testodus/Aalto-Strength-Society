@@ -364,7 +364,10 @@ export const createNoticeComment = async (
 
 export const getNoticeCommentByID = async (id: number) => {
   try {
+    console.log('------------------');
     const noticeCommentByID = await NoticeComment.findByPk(id);
+    console.log('------------------');
+
     if (noticeCommentByID) {
       console.log('noticeCommentByID.dataValues', noticeCommentByID.dataValues);
       return noticeCommentByID.dataValues;

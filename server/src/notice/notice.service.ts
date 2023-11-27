@@ -6,8 +6,7 @@ import {
   getNoticeByID,
   updateNotice,
 } from 'src/vadePlsCode';
-import { NoticeDto } from './dto';
-import { EditNoticeDto } from './dto/editNotice.dto';
+import { NoticeDto, EditNoticeDto } from './dto';
 
 @Injectable({})
 export class NoticeService {

@@ -11,11 +11,10 @@ import {
 } from '@nestjs/common';
 import { NoticeService } from './notice.service';
 import { JwtGuard } from '../auth/guard';
-import { NoticeDto } from './dto';
+import { NoticeDto, EditNoticeDto } from './dto';
 import { adminID } from 'src/constants';
 import { GetUser } from 'src/auth/decorator';
 import { getNoticeByID } from 'src/vadePlsCode';
-import { EditNoticeDto } from './dto/editNotice.dto';
 
 @Controller('notice')
 export class NoticeController {
