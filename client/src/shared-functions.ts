@@ -95,3 +95,48 @@ export const deleteNotice = async (noticeID: number, token: string) => {
     return false;
   }
 };
+
+export const getComments = async (noticeID: number) => {
+  try {
+    const response = await axios.get(
+      process.env.REACT_APP_API_URL + '/notice/comment/' + noticeID,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return [];
+  }
+};
+
+export const postComment = async (
+  comment: string,
+  userID: number,
+  noticeID: number,
+  token: string
+) => {
+  const commentObject = {
+    text: comment,
+    userId: userID,
+    noticeId: noticeID,
+  };
+  try {
+    const response = await axios.post(
+      process.env.REACT_APP_API_URL + '/notice/comment',
+      JSON.stringify(commentObject),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    return response.data.id;
+  } catch (err: unknown) {
+    console.log(err);
+    return false;
+  }
+};
