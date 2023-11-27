@@ -49,7 +49,7 @@ const Login = () => {
         }
       );
       const accessToken = response.data.access_token;
-      const userID = jwtDecode(accessToken).sub as string;
+      const userID = jwtDecode(accessToken).sub as unknown as number;
       // set user-information
       context?.setUser(accessToken, userID);
       // clear form values

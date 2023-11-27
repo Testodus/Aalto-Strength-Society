@@ -61,31 +61,36 @@ const NoticeEditor = ({ newNotice }: EditorProps) => {
     setNoticeValues(emptyNotice);
   };
 
-  const postNewNotice = (notice: string, title: string, userID: string) => {
+  const postNewNotice = async (
+    notice: string,
+    title: string,
+    userID: number,
+    token: string
+  ) => {
     try {
-      const newNoticeID = postNotice(notice, title, userID);
+      const newNoticeID = await postNotice(notice, title, userID, token);
       if (newNoticeID) {
         clearValues();
         // navigate to the landing page
-        navigate('/view-notice/:' + newNoticeID, { replace: true });
+        navigate('/view-notice/' + newNoticeID, { replace: true });
       }
     } catch (err: unknown) {
       console.log(err);
     }
   };
 
-  const updateOldNotice = (
+  const updateOldNotice = async (
     notice: string,
     title: string,
-    userID: string,
-    noticeID: string
+    noticeID: number,
+    token: string
   ) => {
     try {
-      const success = updateNotice(notice, title, userID, noticeID);
+      const success = await updateNotice(notice, title, noticeID, token);
       if (success) {
         clearValues();
         // navigate to the landing page
-        navigate('/view-notice/:' + noticeID, { replace: true });
+        navigate('/view-notice/' + noticeID, { replace: true });
       }
     } catch (err: unknown) {
       console.log(err);
@@ -102,18 +107,24 @@ const NoticeEditor = ({ newNotice }: EditorProps) => {
     if (
       !target.notice?.value?.length ||
       !target.title?.value?.length ||
-      !context?.userID
+      !context?.userID ||
+      !context?.token
     ) {
       setErrorMessages('Notice and Title can not be empty');
     } else {
       if (newNotice)
-        postNewNotice(target.notice.value, target.title.value, context.userID);
+        postNewNotice(
+          target.notice.value,
+          target.title.value,
+          context.userID,
+          context.token
+        );
       else if (notice?.noticeID)
         updateOldNotice(
           target.notice.value,
           target.title.value,
           context.userID,
-          notice.noticeID
+          context.token
         );
     }
   };

@@ -5,9 +5,7 @@ import {
   LoaderFunction,
 } from 'react-router-dom';
 import { Profile, Notice } from '../shared-types';
-import { DummyProfiles } from '../assets/noticeBoardDummy';
-import { BasicBoard } from '../assets/noticeBoardDummy';
-
+import axios from 'axios';
 // the pathnames for loaders
 const PathNames = {
   profilePath: '/profile/:userID',
@@ -21,10 +19,21 @@ interface Args extends ActionFunctionArgs {
 }
 
 // function to query profile from the dummydata
-export const getProfile = (userID: string) => {
-  // TÄÄLLÄ ETSITÄÄN PROFILE
-  const profile = DummyProfiles.find(profile => profile.userID === userID);
-  return profile ? profile : null;
+export const getProfile = async (userID: number) => {
+  if (!userID) return null;
+  try {
+    const response = await axios.get(
+      process.env.REACT_APP_API_URL + '/users/' + userID,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return null;
+  }
 };
 
 /**
@@ -40,18 +49,46 @@ export const profileLoader: LoaderFunction = async ({
   params,
 }: Args): Promise<Profile | null> => {
   if (params.userID === undefined) return null;
-  const profile = await getProfile(params.userID);
-  return profile?.userID ? profile : null;
+  const profile = await getProfile(params.userID as unknown as number);
+  return profile?.userID
+    ? ({ ...profile, userID: profile.userID } as Profile)
+    : null;
 };
 
 // NOTICE
 
 // function to query profile from the dummydata // TÄÄLLÄ ETSITÄÄN NOTICE
-export const getNotice = (noticeID: string) => {
-  const notice = BasicBoard.notices.find(
-    notice => notice.noticeID === noticeID
-  );
-  return notice ? notice : null;
+export const getNotice = async (noticeID: number) => {
+  if (!noticeID) return null;
+  try {
+    const response = await axios.get(
+      process.env.REACT_APP_API_URL + '/notice/' + noticeID,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return null;
+  }
+};
+
+export const getAllNotices = async () => {
+  try {
+    const response = await axios.get(
+      process.env.REACT_APP_API_URL + '/notice',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return [];
+  }
 };
 
 // interface to type the Args of the noticeLoader
@@ -63,9 +100,19 @@ interface NoticeArgs extends ActionFunctionArgs {
 export const noticeLoader: LoaderFunction = async ({
   params,
 }: NoticeArgs): Promise<Notice | null> => {
+  console.log(params.noticeID);
   if (params.noticeID === undefined) return null;
-  const notice = await getNotice(params.noticeID);
-  return notice?.noticeID ? notice : null;
+  const notice = await getNotice(params.noticeID as unknown as number);
+  return notice
+    ? ({
+        ...notice,
+        notice: notice.text,
+        timeStamp: notice.createdAt,
+        userID: notice.userId,
+        noticeID: notice.id,
+        imageSrc: notice.picture,
+      } as Notice)
+    : null;
 };
 
 // interface to type the Args of the noticeLoader for editor
@@ -78,6 +125,15 @@ export const noticeLoaderEditor: LoaderFunction = async ({
   params,
 }: NoticeArgsEditor): Promise<Notice | null> => {
   if (params.noticeID === undefined) return null;
-  const notice = await getNotice(params.noticeID);
-  return notice?.noticeID ? notice : null;
+  const notice = await getNotice(params.noticeID as unknown as number);
+  return notice
+    ? ({
+        ...notice,
+        notice: notice.text,
+        timeStamp: notice.createdAt,
+        userID: notice.userId,
+        noticeID: notice.id,
+        imageSrc: notice.picture,
+      } as Notice)
+    : null;
 };

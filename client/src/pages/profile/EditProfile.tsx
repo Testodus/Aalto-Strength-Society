@@ -30,9 +30,7 @@ const EditProfile = () => {
 
   if (!context?.userID) navigate('/', { replace: true });
 
-  const oldProfileValues = getProfile(
-    context ? (context.userID as string) : ''
-  );
+  const oldProfileValues = getProfile(context ? (context.userID as number) : 1);
 
   const [inputValues, setInputValues] = useState(
     context ? emptyProfileFields : emptyProfileFields
@@ -42,7 +40,7 @@ const EditProfile = () => {
     event.preventDefault();
     // try to log in
     try {
-      console.log('päivitä');
+      console.log('API kutus tänne');
     } catch (err: unknown) {
       console.log(err);
     }

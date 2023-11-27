@@ -49,7 +49,7 @@ const ProfileElement = () => {
           <ResponsiveContainer>
             <Kettlebell></Kettlebell>
             <div>
-              {(context?.userID as string) === (profile.userID as string) ? (
+              {context?.userID + '' === profile.userID + '' ? (
                 <DetailText>
                   <Link to="/edit-profile">Edit profile</Link>
                 </DetailText>
