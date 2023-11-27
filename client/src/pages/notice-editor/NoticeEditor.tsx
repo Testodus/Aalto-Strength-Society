@@ -123,7 +123,7 @@ const NoticeEditor = ({ newNotice }: EditorProps) => {
         updateOldNotice(
           target.notice.value,
           target.title.value,
-          context.userID,
+          notice.noticeID,
           context.token
         );
     }
