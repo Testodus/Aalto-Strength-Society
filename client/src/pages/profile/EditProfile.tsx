@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { getProfile } from '../../loaders/loaders';
 import axios from 'axios';
-import { Profile } from '../../shared-types';
 
 const emptyProfileFields = {
   typeOfLifting: '',

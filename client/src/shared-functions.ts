@@ -170,7 +170,6 @@ export const postComment = async (
     );
     return response.data.id;
   } catch (err: unknown) {
-    console.log(err);
     return false;
   }
 };

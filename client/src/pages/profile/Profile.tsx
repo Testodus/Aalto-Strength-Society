@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import {
   Bodytext,
-  DetailText,
   Heading2,
   Heading3,
   RoundDivLarge,
