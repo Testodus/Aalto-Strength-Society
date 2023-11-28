@@ -55,16 +55,16 @@ const ProfileElement = () => {
                 </DetailText>
               ) : null}
               <Heading3>{profile.username}</Heading3>
+              {profile.favouriteLift ? (
+                <Bodytext>
+                  <b>{'My favourite lift: '}</b>
+                  {profile.favouriteLift}
+                </Bodytext>
+              ) : null}
               {profile.contactInfo ? (
                 <Bodytext>
                   <b>Contact information: </b>
                   {profile.contactInfo}
-                </Bodytext>
-              ) : null}
-              {profile.favouriteLift ? (
-                <Bodytext>
-                  <b>{profile.username + '´s favourite lift: '}</b>
-                  {profile.favouriteLift}
                 </Bodytext>
               ) : null}
             </div>

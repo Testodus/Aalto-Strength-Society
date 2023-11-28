@@ -53,12 +53,15 @@ const EditProfile = () => {
         <PaddingEl>
           <Bodytext>
             Update profile information. Password, username or email can not be
-            changed.
+            changed. This information is publicly available to other logged in
+            users, so be mindful of what you share!
           </Bodytext>
         </PaddingEl>
         <FormStyle onSubmit={onSubmit}>
           <FormInputContainer>
-            <FormLabel htmlFor="typeOfLifting">Type of Lifting</FormLabel>
+            <FormLabel htmlFor="typeOfLifting">
+              What type of lifting do you do?
+            </FormLabel>
             <FormInput
               id="typeOfLifting"
               value={inputValues.typeOfLifting}
@@ -72,7 +75,7 @@ const EditProfile = () => {
           </FormInputContainer>
           <FormInputContainer>
             <FormLabel htmlFor="favouriteLift">
-              What is your favourite lit?
+              What is your favourite lift?
             </FormLabel>
             <FormInput
               id="favouriteLift"
@@ -86,22 +89,9 @@ const EditProfile = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="profilePicture">
-              Choose a Profile picture?
+            <FormLabel htmlFor="favouriteGym">
+              Your favourite gym to go to?
             </FormLabel>
-            <FormInput
-              id="profilePicture"
-              value={inputValues.profilePicture}
-              onChange={e =>
-                setInputValues({
-                  ...inputValues,
-                  profilePicture: e.target.value,
-                })
-              }
-            />
-          </FormInputContainer>
-          <FormInputContainer>
-            <FormLabel htmlFor="favouriteGym">favouriteGym</FormLabel>
             <FormInput
               id="favouriteGym"
               value={inputValues.favouriteGym}
@@ -114,7 +104,9 @@ const EditProfile = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="favouriteGymTime">favouriteGymTime</FormLabel>
+            <FormLabel htmlFor="favouriteGymTime">
+              Your favourite gym time?
+            </FormLabel>
             <FormInput
               id="favouriteGymTime"
               value={inputValues.favouriteGymTime}
