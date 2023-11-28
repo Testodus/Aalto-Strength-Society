@@ -57,4 +57,7 @@ export type Profile = {
   contactInfo?: string;
   email: string;
   profilePicture?: string;
+  typeOfLifting?: string;
+  favouriteGym?: string;
+  favouriteGymTime?: string;
 };

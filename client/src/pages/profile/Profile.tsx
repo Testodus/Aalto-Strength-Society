@@ -55,10 +55,28 @@ const ProfileElement = () => {
                 </DetailText>
               ) : null}
               <Heading3>{profile.username}</Heading3>
+              {profile.typeOfLifting ? (
+                <Bodytext>
+                  <b>{'The type of lifting I do: '}</b>
+                  {profile.typeOfLifting}
+                </Bodytext>
+              ) : null}
               {profile.favouriteLift ? (
                 <Bodytext>
                   <b>{'My favourite lift: '}</b>
                   {profile.favouriteLift}
+                </Bodytext>
+              ) : null}
+              {profile.favouriteGym ? (
+                <Bodytext>
+                  <b>{'The gym I most often go to: '}</b>
+                  {profile.favouriteGym}
+                </Bodytext>
+              ) : null}
+              {profile.favouriteGymTime ? (
+                <Bodytext>
+                  <b>{'I prefer going to the gym at these times: '}</b>
+                  {profile.favouriteGymTime}
                 </Bodytext>
               ) : null}
               {profile.contactInfo ? (
