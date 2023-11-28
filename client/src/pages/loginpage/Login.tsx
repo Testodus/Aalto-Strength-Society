@@ -85,6 +85,7 @@ const Login = () => {
           <FormInputContainer>
             <FormLabel htmlFor="password">Password</FormLabel>
             <FormInput
+              type="password"
               id="password"
               value={inputValues.password}
               onChange={e =>
