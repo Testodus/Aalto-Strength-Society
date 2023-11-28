@@ -14,6 +14,7 @@ import { useAuth } from '../../provider/authProvider';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { getProfile } from '../../loaders/loaders';
+import axios from 'axios';
 
 const emptyProfileFields = {
   typeOfLifting: '',
@@ -24,23 +25,63 @@ const emptyProfileFields = {
   contactInfo: '',
 };
 
+type ProfileData = {
+  typeOfLifting: string;
+  favouriteLift: string;
+  profilePicture: string;
+  favouriteGym: string;
+  favouriteGymTime: string;
+  contactInfo: string;
+};
+
 const EditProfile = () => {
   const context = useAuth();
   const navigate = useNavigate();
+  const [inputValues, setInputValues] = useState(emptyProfileFields);
+  const [load, setLoad] = useState(false);
 
   if (!context?.userID) navigate('/', { replace: true });
 
-  const oldProfileValues = getProfile(context ? (context.userID as number) : 1);
+  const fetcData = async () => {
+    const oldProfileValues = await getProfile(context?.userID as number);
 
-  const [inputValues, setInputValues] = useState(
-    context ? emptyProfileFields : emptyProfileFields
-  );
+    const profileFields: ProfileData = {
+      typeOfLifting: oldProfileValues.typeOfLifting,
+      favouriteLift: oldProfileValues.favouriteLift,
+      profilePicture: oldProfileValues.profilePicture,
+      favouriteGym: oldProfileValues.favouriteGym,
+      favouriteGymTime: oldProfileValues.favouriteGymTime,
+      contactInfo: oldProfileValues.contactInfo,
+    };
+
+    setInputValues(profileFields);
+    setLoad(true);
+  };
+
+  if (!load && context) {
+    fetcData();
+  }
+
+  const clearValues = () => {
+    setInputValues(emptyProfileFields);
+  };
 
   const onSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     // try to log in
     try {
-      console.log('API kutus tänne');
+      await axios.patch(
+        process.env.REACT_APP_API_URL + '/users/' + context?.userID,
+        JSON.stringify(inputValues),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + context?.token,
+          },
+        }
+      );
+      clearValues();
+      navigate('/profile/' + context?.userID, { replace: true });
     } catch (err: unknown) {
       console.log(err);
     }

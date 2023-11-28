@@ -1,16 +1,38 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import {
   Bodytext,
-  DetailText,
   Heading2,
   Heading3,
   RoundDivLarge,
+  TertiaryButton,
 } from '../../assets/styles/shared-styles';
 import { Profile } from '../../shared-types';
 import styled from 'styled-components';
 import Kettlebell from '../../components/Kettlebell';
 import { useAuth } from '../../provider/authProvider';
+import { deleteProfile } from '../../shared-functions';
+import { PRIMARY_BUTTON_TC } from '../../assets/styles/variables';
+
+const EditDiv = styled.div`
+  margin: 1rem 0;
+  a {
+    text-decoration: none;
+    font-size: 1rem;
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+
+    border-radius: 1rem;
+    margin: 1rem;
+    border: none;
+    background: grey;
+    color: ${PRIMARY_BUTTON_TC};
+    width: max-content;
+    padding: 0.4rem 0.8rem;
+    align-self: center;
+  }
+`;
 
 const ResponsiveContainer = styled.div`
   display: flex;
@@ -40,6 +62,19 @@ const ResponsiveContainer = styled.div`
 const ProfileElement = () => {
   const profile = useLoaderData() as Profile | null;
   const context = useAuth();
+  const navigate = useNavigate();
+
+  const deleteActionProfile = async () => {
+    if (context?.token && profile?.userID) {
+      await deleteProfile(profile?.userID, context?.token);
+      if (context?.userID + '' === profile.userID + '') {
+        context?.setUser(null, null);
+        navigate('/out', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
+    }
+  };
 
   return (
     <>
@@ -49,11 +84,6 @@ const ProfileElement = () => {
           <ResponsiveContainer>
             <Kettlebell></Kettlebell>
             <div>
-              {context?.userID + '' === profile.userID + '' ? (
-                <DetailText>
-                  <Link to="/edit-profile">Edit profile</Link>
-                </DetailText>
-              ) : null}
               <Heading3>{profile.username}</Heading3>
               {profile.contactInfo ? (
                 <Bodytext>
@@ -66,6 +96,17 @@ const ProfileElement = () => {
                   <b>{profile.username + '´s favourite lift: '}</b>
                   {profile.favouriteLift}
                 </Bodytext>
+              ) : null}
+              {context?.userID + '' === profile.userID + '' ? (
+                <EditDiv>
+                  <Link to="/edit-profile">Edit profile</Link>
+                </EditDiv>
+              ) : null}
+              {context?.userID + '' === '8' ||
+              context?.userID + '' === profile.userID + '' ? (
+                <TertiaryButton onClick={deleteActionProfile}>
+                  Delete Profile
+                </TertiaryButton>
               ) : null}
             </div>
           </ResponsiveContainer>
