@@ -134,6 +134,7 @@ const Register = () => {
               Password<WarningText>*</WarningText>
             </FormLabel>
             <FormInput
+              type="password"
               id="password"
               value={inputValues.password}
               onChange={e =>
@@ -142,7 +143,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="typeOfLifting">Type of Lifting</FormLabel>
+            <FormLabel htmlFor="typeOfLifting">
+              What type of lifting do you do?
+            </FormLabel>
             <FormInput
               id="typeOfLifting"
               value={inputValues.typeOfLifting}
@@ -170,22 +173,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="profilePicture">
-              Choose a Profile picture?
+            <FormLabel htmlFor="favouriteGym">
+              Your favourite gym to go to?
             </FormLabel>
-            <FormInput
-              id="profilePicture"
-              value={inputValues.profilePicture}
-              onChange={e =>
-                setInputValues({
-                  ...inputValues,
-                  profilePicture: e.target.value,
-                })
-              }
-            />
-          </FormInputContainer>
-          <FormInputContainer>
-            <FormLabel htmlFor="favouriteGym">favouriteGym</FormLabel>
             <FormInput
               id="favouriteGym"
               value={inputValues.favouriteGym}
@@ -198,7 +188,9 @@ const Register = () => {
             />
           </FormInputContainer>
           <FormInputContainer>
-            <FormLabel htmlFor="favouriteGymTime">favouriteGymTime</FormLabel>
+            <FormLabel htmlFor="favouriteGymTime">
+              Your favourite gym time?
+            </FormLabel>
             <FormInput
               id="favouriteGymTime"
               value={inputValues.favouriteGymTime}
