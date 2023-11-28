@@ -114,6 +114,7 @@ const ProfileElement = () => {
                   <b>Contact information: </b>
                   {profile.contactInfo}
                 </Bodytext>
+              ) : null}
               {context?.userID + '' === profile.userID + '' ? (
                 <EditDiv>
                   <Link to="/edit-profile">Edit profile</Link>
