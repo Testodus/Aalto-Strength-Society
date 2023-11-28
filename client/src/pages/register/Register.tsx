@@ -89,7 +89,8 @@ const Register = () => {
         <PaddingEl>
           <Bodytext>
             Create a new account. Registered users get access to discuss in the
-            noticeboard.
+            noticeboard. The required fields are marked with an asterix,
+            everything else is optional.
           </Bodytext>
         </PaddingEl>
         <FormStyle onSubmit={onSubmit}>
@@ -159,7 +160,7 @@ const Register = () => {
           </FormInputContainer>
           <FormInputContainer>
             <FormLabel htmlFor="favouriteLift">
-              What is your favourite lit?
+              What is your favourite lift?
             </FormLabel>
             <FormInput
               id="favouriteLift"

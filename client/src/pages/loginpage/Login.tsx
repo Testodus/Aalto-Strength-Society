@@ -73,7 +73,7 @@ const Login = () => {
             <WarningText>Email or password was not valid</WarningText>
           ) : null}
           <FormInputContainer>
-            <FormLabel htmlFor="email">email</FormLabel>
+            <FormLabel htmlFor="email">Email</FormLabel>
             <FormInput
               id="email"
               value={inputValues.email}
@@ -96,7 +96,7 @@ const Login = () => {
           <SecondaryButton type="submit">Log in</SecondaryButton>
         </FormStyle>
         <DetailText>
-          {'If you are not an user, register '}
+          {'If you are not a user, register '}
           <Link to="/register">here.</Link>
         </DetailText>
       </RoundDivMedium>
