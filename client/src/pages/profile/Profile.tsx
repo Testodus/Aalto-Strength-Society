@@ -13,6 +13,27 @@ import styled from 'styled-components';
 import Kettlebell from '../../components/Kettlebell';
 import { useAuth } from '../../provider/authProvider';
 import { deleteProfile } from '../../shared-functions';
+import { PRIMARY_BUTTON_TC } from '../../assets/styles/variables';
+
+const EditDiv = styled.div`
+  margin: 1rem 0;
+  a {
+    text-decoration: none;
+    font-size: 1rem;
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+
+    border-radius: 1rem;
+    margin: 1rem;
+    border: none;
+    background: grey;
+    color: ${PRIMARY_BUTTON_TC};
+    width: max-content;
+    padding: 0.4rem 0.8rem;
+    align-self: center;
+  }
+`;
 
 const ResponsiveContainer = styled.div`
   display: flex;
@@ -64,17 +85,6 @@ const ProfileElement = () => {
           <ResponsiveContainer>
             <Kettlebell></Kettlebell>
             <div>
-              {context?.userID + '' === profile.userID + '' ? (
-                <DetailText>
-                  <Link to="/edit-profile">Edit profile</Link>
-                </DetailText>
-              ) : null}
-              {context?.userID + '' === '8' ||
-              context?.userID + '' === profile.userID + '' ? (
-                <TertiaryButton onClick={deleteActionProfile}>
-                  Delete Profile
-                </TertiaryButton>
-              ) : null}
               <Heading3>{profile.username}</Heading3>
               {profile.contactInfo ? (
                 <Bodytext>
@@ -87,6 +97,17 @@ const ProfileElement = () => {
                   <b>{profile.username + '´s favourite lift: '}</b>
                   {profile.favouriteLift}
                 </Bodytext>
+              ) : null}
+              {context?.userID + '' === profile.userID + '' ? (
+                <EditDiv>
+                  <Link to="/edit-profile">Edit profile</Link>
+                </EditDiv>
+              ) : null}
+              {context?.userID + '' === '8' ||
+              context?.userID + '' === profile.userID + '' ? (
+                <TertiaryButton onClick={deleteActionProfile}>
+                  Delete Profile
+                </TertiaryButton>
               ) : null}
             </div>
           </ResponsiveContainer>
