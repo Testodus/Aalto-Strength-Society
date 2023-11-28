@@ -96,6 +96,40 @@ export const deleteNotice = async (noticeID: number, token: string) => {
   }
 };
 
+export const deleteComment = async (commentID: number, token: string) => {
+  try {
+    const response = await axios.delete(
+      process.env.REACT_APP_API_URL + '/notice/comment/' + commentID,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return false;
+  }
+};
+
+export const deleteProfile = async (userID: number, token: string) => {
+  try {
+    const response = await axios.delete(
+      process.env.REACT_APP_API_URL + '/users/' + userID,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    return response.data;
+  } catch (err: unknown) {
+    return false;
+  }
+};
+
 export const getComments = async (noticeID: number) => {
   try {
     const response = await axios.get(
@@ -136,7 +170,6 @@ export const postComment = async (
     );
     return response.data.id;
   } catch (err: unknown) {
-    console.log(err);
     return false;
   }
 };

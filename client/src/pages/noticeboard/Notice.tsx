@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   Heading4,
@@ -9,6 +9,7 @@ import {
   FormInputContainer,
   FormTextarea,
   WarningText,
+  TertiaryButton,
 } from '../../assets/styles/shared-styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { Comment, Notice } from '../../shared-types';
@@ -25,7 +26,12 @@ import {
 } from '../../assets/styles/variables';
 import { useAuth } from '../../provider/authProvider';
 import { getProfile } from '../../loaders/loaders';
-import { deleteNotice, getComments, postComment } from '../../shared-functions';
+import {
+  deleteNotice,
+  getComments,
+  postComment,
+  deleteComment,
+} from '../../shared-functions';
 
 const NoticeDiv = styled.div.attrs<{ $fullNotice?: boolean }>(props => ({}))`
   display: flex;
@@ -168,6 +174,8 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
           };
         });
       setComments(comments);
+    } else {
+      setComments(null);
     }
   };
 
@@ -203,29 +211,20 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
 
   const deleteActionNotice = async () => {
     if (context?.token) {
-      const success = await deleteNotice(notice.noticeID, context?.token);
-      if (success) navigate('/noticeboard', { replace: true });
+      await deleteNotice(notice.noticeID, context?.token);
+      navigate('/deleted', { replace: true });
+    }
+  };
+
+  const deleteActionComment = async (commentID: number) => {
+    if (context?.token) {
+      await deleteComment(commentID, context?.token).then(() => fetchData());
     }
   };
 
   return (
     <NoticeDiv $fullNotice={fullNotice}>
       <Heading4>{notice.title}</Heading4>
-      <EditDiv>
-        {fullNotice && context?.userID + '' === notice.userID + '' ? (
-          <>
-            <Link to={'/notice-editor/' + notice.noticeID}> Edit Notice </Link>
-            <SecondaryButton onClick={deleteActionNotice}>
-              Delete Notice
-            </SecondaryButton>
-          </>
-        ) : null}
-        {fullNotice && context?.userID + '' === '8' ? (
-          <SecondaryButton onClick={deleteActionNotice}>
-            Delete Notice
-          </SecondaryButton>
-        ) : null}
-      </EditDiv>
       <DetailText>
         <Link to={'/profile/' + notice.userID}>{username}</Link>{' '}
         {notice?.timeStamp?.slice(0, 10)}
@@ -233,11 +232,29 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
       {fullNotice ? (
         <>
           <Bodytext>{notice.notice}</Bodytext>
+          <EditDiv>
+            {context?.userID + '' === notice.userID + '' ? (
+              <>
+                <Link to={'/notice-editor/' + notice.noticeID}>
+                  {' '}
+                  Edit Notice{' '}
+                </Link>
+              </>
+            ) : null}
+            {fullNotice &&
+            (context?.userID + '' === '8' ||
+              context?.userID + '' === notice.userID + '') ? (
+              <TertiaryButton onClick={deleteActionNotice}>
+                Delete Notice
+              </TertiaryButton>
+            ) : null}
+          </EditDiv>
           {comments
             ? comments.map((comment, i) => (
                 <CommentEl
                   key={'comment-' + comment.commentID + i}
                   comment={comment}
+                  deleteAction={deleteActionComment}
                 ></CommentEl>
               ))
             : null}

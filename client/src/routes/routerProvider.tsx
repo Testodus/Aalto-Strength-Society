@@ -20,6 +20,7 @@ import {
   Announcement,
   NoticeEditor,
   EditProfile,
+  AnnouncementNoticeDelete,
 } from '../pages/pages';
 import {
   profileLoader,
@@ -60,6 +61,7 @@ const Routes = () => {
         <Route path={'register'} element={<Register />} />
         <Route path={'out'} element={<Announcement />} />
         <Route path={'in'} element={<Announcement />} />
+        <Route path={'deleted'} element={<AnnouncementNoticeDelete />} />
         <Route path="/" element={<ProtectedRoute />}>
           <Route
             path={'profile/:userID'}
