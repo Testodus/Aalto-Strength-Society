@@ -203,8 +203,8 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
 
   const deleteActionNotice = async () => {
     if (context?.token) {
-      const success = await deleteNotice(notice.noticeID, context?.token);
-      if (success) navigate('/noticeboard', { replace: true });
+      await deleteNotice(notice.noticeID, context?.token);
+      navigate('/deleted', { replace: true });
     }
   };
 
