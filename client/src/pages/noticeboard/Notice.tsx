@@ -161,7 +161,6 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
     // change to get notice comments
     const noticeData: NoticeData = await getComments(notice.noticeID);
     const profileData: ProfileData = await getProfile(notice.userID);
-    console.log(noticeData);
     setUsername(profileData.username);
     if (noticeData?.noticeComments?.length) {
       const comments: Array<Comment> | undefined =
@@ -175,10 +174,8 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
           };
         });
       setComments(comments);
-      console.log('set coms');
     } else {
       setComments(null);
-      console.log('remove coms');
     }
   };
 
@@ -242,15 +239,14 @@ const NoticeEl = ({ fullNotice, notice }: NoticeProps) => {
                   {' '}
                   Edit Notice{' '}
                 </Link>
-                <TertiaryButton onClick={deleteActionNotice}>
-                  Delete Notice
-                </TertiaryButton>
               </>
             ) : null}
-            {fullNotice && context?.userID + '' === '8' ? (
-              <SecondaryButton onClick={deleteActionNotice}>
+            {fullNotice &&
+            (context?.userID + '' === '8' ||
+              context?.userID + '' === notice.userID + '') ? (
+              <TertiaryButton onClick={deleteActionNotice}>
                 Delete Notice
-              </SecondaryButton>
+              </TertiaryButton>
             ) : null}
           </EditDiv>
           {comments

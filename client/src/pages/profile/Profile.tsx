@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import {
   Bodytext,
   DetailText,
   Heading2,
   Heading3,
   RoundDivLarge,
+  TertiaryButton,
 } from '../../assets/styles/shared-styles';
 import { Profile } from '../../shared-types';
 import styled from 'styled-components';
 import Kettlebell from '../../components/Kettlebell';
 import { useAuth } from '../../provider/authProvider';
+import { deleteProfile } from '../../shared-functions';
 
 const ResponsiveContainer = styled.div`
   display: flex;
@@ -40,6 +42,19 @@ const ResponsiveContainer = styled.div`
 const ProfileElement = () => {
   const profile = useLoaderData() as Profile | null;
   const context = useAuth();
+  const navigate = useNavigate();
+
+  const deleteActionProfile = async () => {
+    if (context?.token && profile?.userID) {
+      await deleteProfile(profile?.userID, context?.token);
+      if (context?.userID + '' === profile.userID + '') {
+        context?.setUser(null, null);
+        navigate('/out', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
+    }
+  };
 
   return (
     <>
@@ -53,6 +68,12 @@ const ProfileElement = () => {
                 <DetailText>
                   <Link to="/edit-profile">Edit profile</Link>
                 </DetailText>
+              ) : null}
+              {context?.userID + '' === '8' ||
+              context?.userID + '' === profile.userID + '' ? (
+                <TertiaryButton onClick={deleteActionProfile}>
+                  Delete Profile
+                </TertiaryButton>
               ) : null}
               <Heading3>{profile.username}</Heading3>
               {profile.contactInfo ? (
