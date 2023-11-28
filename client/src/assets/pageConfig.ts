@@ -12,4 +12,12 @@ export const PageConfig: Array<PageInfo> = [
     title: 'Logged out',
     textContent: ['You have succesfully logged out.'],
   },
+  {
+    name: 'delete',
+    title: 'Notice deleted',
+    textContent: [
+      'You have successfully deleted the notice!',
+      'Deleted notices, can not be retrieved!',
+    ],
+  },
 ];

@@ -131,6 +131,23 @@ export const SecondaryButton = styled.button`
   align-self: center;
 `;
 
+export const TertiaryButton = styled.button`
+  text-decoration: none;
+  font-size: 1rem;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+
+  border-radius: 1rem;
+  margin: 1rem;
+  border: none;
+  background: grey;
+  color: ${palette.PRIMARY_BUTTON_TC};
+  width: max-content;
+  padding: 0.4rem 0.8rem;
+  align-self: center;
+`;
+
 // FORM
 
 export const FormLabel = styled.label`
